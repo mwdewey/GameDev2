@@ -3,28 +3,24 @@ using System.Collections;
 
 public class PlayerInput : MonoBehaviour {
 
-    Rigidbody2D rb;
-
-    KeyCode up_key = KeyCode.W;
-    KeyCode down_key = KeyCode.S;
-    KeyCode left_key = KeyCode.S;
-    KeyCode right_key = KeyCode.D;
+    public static KeyCode move_up = KeyCode.W;
+    public static KeyCode move_down = KeyCode.S;
+    public static KeyCode move_left = KeyCode.A;
+    public static KeyCode move_right = KeyCode.D;
 
 	// Use this for initialization
 	void Start () {
-
-        rb = GetComponent<Rigidbody2D>();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetKeyDown(up_key)) rb.AddForce(new Vector2(0, 1));
-        if (Input.GetKeyDown(down_key)) rb.AddForce(new Vector2(0, -1));
-        if (Input.GetKeyDown(left_key)) rb.AddForce(new Vector2(-1,0));
-        if (Input.GetKeyDown(right_key)) rb.AddForce(new Vector2(1,0));
-
-
 	}
+
+    void FixedUpdate()
+    {
+
+
+    }
 }

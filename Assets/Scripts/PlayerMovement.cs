@@ -3,20 +3,28 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public float speed;
+	public float speed = 10;
+    private Vector2 velocity;
+    private Rigidbody2D rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        velocity = rb.velocity;
+    }
 
 	void Update () {
-		if (Input.GetKey(KeyCode.D)) { 
-			transform.Translate(Vector2.right * speed);
-		}
-		if (Input.GetKey(KeyCode.A)) { 
-			transform.Translate(Vector2.right * -speed);
-		}
-		if (Input.GetKey(KeyCode.S)) { 
-			transform.Translate(Vector2.up * -speed);
-		}
-		if (Input.GetKey(KeyCode.W)) { 
-			transform.Translate(Vector2.up * speed);
-		}
+		
 	}
+
+    void FixedUpdate()
+    {
+        velocity.x = Input.GetAxis("Horizontal") * speed;
+        velocity.y = Input.GetAxis("Vertical") * speed;
+        
+        rb.velocity = velocity;
+    }
+
+
+
 }
