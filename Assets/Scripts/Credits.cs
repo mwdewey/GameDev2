@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StartScreen : MonoBehaviour {
+public class Credits : MonoBehaviour {
 
-    public GameObject controllerUI;
+    public GameObject mainMenu;
 
 	// Use this for initialization
 	void Start () {
@@ -12,15 +12,17 @@ public class StartScreen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         if (Input.anyKeyDown && gameObject.activeSelf)
         {
             gameObject.SetActive(false);
-            controllerUI.SetActive(true);
+            mainMenu.SetActive(true);
         }
-
-
-
-
 	}
+
+    public void ButtonClicked()
+    {
+        Debug.logger.Log("Credits started");
+        gameObject.SetActive(true);
+        mainMenu.SetActive(false);
+    }
 }
