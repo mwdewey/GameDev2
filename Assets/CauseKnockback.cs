@@ -34,6 +34,7 @@ public class CauseKnockback : MonoBehaviour {
 			//...activate the GetKnockedBack function of the thing we just hit
 			//causing them to fly backward! In players, this function is in PlayerMovement.
 		}
+		//ADD EXCEPTIONS FOR DIE_ON_CONTACT object destroys here \/
 		if (die_on_contact && c.gameObject.name != my_parent_name){
 			//if we hit ANYTHING but the player we came from
 			Destroy (gameObject);
