@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public Vector2 velocity;
     private Rigidbody2D rb;
     int MAX_VELOCITY = 5;
+    public bool useKeyboard;
 
     void Start()
     {
@@ -40,9 +41,17 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        velocity.x = Input.GetAxis("Joy1_LeftStickHorizontal") * speed;
-        velocity.y = Input.GetAxis("Joy1_LeftStickVertical") * speed; 
-        
+        if (!useKeyboard)
+        {
+            velocity.x = Input.GetAxis("Joy1_LeftStickHorizontal") * speed;
+            velocity.y = Input.GetAxis("Joy1_LeftStickVertical") * speed;
+        }
+        else
+        {
+            velocity.x = Input.GetAxis("kb_horizontal") * speed;
+            velocity.y = Input.GetAxis("kb_vertical") * speed;
+        }
+
         rb.velocity = velocity;
     }
 

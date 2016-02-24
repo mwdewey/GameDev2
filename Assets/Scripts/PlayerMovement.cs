@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour {
 		velocity.x = Input.GetAxis ("Horizontal") * speed;
 		velocity.y = Input.GetAxis ("Vertical") * speed;
 
+        //velocity.x = Input.GetAxis("kb_horizontal") * speed;
+        //velocity.y = Input.GetAxis("kb_vertical") * speed;
+
         
         rb.velocity = velocity;
 			
