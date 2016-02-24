@@ -43,10 +43,13 @@ public class Score_Counter : MonoBehaviour {
 		}
 		if (in_portal) {
 			portal_progress -= Time.deltaTime;
+			if (portal_progress < 0) {
+				portal_progress = 0;
+			}
 			if (Input.GetKeyDown (KeyCode.Return)) {
 				portal_progress += 0.5f;
 			}
-			pp_sprite.color = new Color(pp_color.r, pp_color.g, pp_color.b, portal_progress / 5f);
+			pp_sprite.color = new Color (pp_color.r, pp_color.g, pp_color.b, portal_progress / 5f);
 			if (portal_progress >= 5) {
 				GetComponent<SpriteRenderer> ().enabled = false;
 				Destroy (gameObject);
@@ -54,6 +57,13 @@ public class Score_Counter : MonoBehaviour {
 				Destroy (pp_sprite.gameObject);
 				Debug.Log ("Player has escaped with " + score + " coins!");
 			}
+		} 
+		else if (pp_sprite.color.a > 0f) {
+			portal_progress -= Time.deltaTime;
+			if (portal_progress < 0) {
+				portal_progress = 0;
+			}
+			pp_sprite.color = new Color (pp_color.r, pp_color.g, pp_color.b, portal_progress / 5f);
 		}
 	}
 }
