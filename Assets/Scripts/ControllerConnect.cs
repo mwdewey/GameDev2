@@ -17,12 +17,14 @@ public class ControllerConnect : MonoBehaviour
 
     private List<Color32> playerColors;
     private readonly Color32 P1_Color = new Color32(244, 67, 54, 255);
-    private readonly Color32 P2_Color = new Color32(33,150,243, 255);
+    private readonly Color32 P2_Color = new Color32(33, 150, 243, 255);
     private readonly Color32 P3_Color = new Color32(76, 175, 80, 255);
     private readonly Color32 P4_Color = new Color32(255, 235, 59, 255);
 
+    private int characterCount = 4;
 
     private List<GameObject> csList;
+    private List<List<GameObject>> csIconList;
     private List<GameObject> pbList;
     private List<GameObject> dbList;
     private GameObject cb;
@@ -30,7 +32,8 @@ public class ControllerConnect : MonoBehaviour
     private List<List<int>> characterSelections;
     private List<int> playerSelections;
 
-    private List<float> timeSinceLastMovement; 
+    private List<float> timeSinceLastMovement;
+    private readonly float TIME_TO_MOVE = 0.2f;
 
 	// Use this for initialization
 	void Start ()
@@ -38,6 +41,7 @@ public class ControllerConnect : MonoBehaviour
         joystickRegex = new Regex(@"Joystick([0-9]+)Button([0-9]+)");
         controllerIds = new List<int>();
         controllerCount = Input.GetJoystickNames().Length;
+        controllerCount = 4;
 
         playerColors = new List<Color32>();
         playerColors.Add(P1_Color);
@@ -46,7 +50,18 @@ public class ControllerConnect : MonoBehaviour
         playerColors.Add(P4_Color);
 
         csList = new List<GameObject>();
-        for (var i = 1; i < 5; i++) csList.Add(transform.Find("CS " + i).gameObject);
+        for (var i = 1; i < characterCount+1; i++) csList.Add(transform.Find("CS " + i).gameObject);
+
+        csIconList = new List<List<GameObject>>();
+        for (var i = 0; i < characterCount; i++)
+        {
+            csIconList.Add(new List<GameObject>());
+
+            for (var i2 = 0; i2 < 4; i2++)
+            {
+                csIconList[i].Add(csList[i].transform.Find("icon " + (i2+1)).gameObject);
+            }
+        }
 
         pbList = new List<GameObject>();
         for (var i = 1; i < 5; i++) pbList.Add(transform.Find("PB " + i).gameObject);
@@ -57,7 +72,7 @@ public class ControllerConnect : MonoBehaviour
         cb = transform.Find("CB").gameObject;
 
         characterSelections = new List<List<int>>();
-        for (var i = 0; i < 4; i++) characterSelections.Add(new List<int>());
+        for (var i = 0; i < characterCount; i++) characterSelections.Add(new List<int>());
         for (var i = 0; i < controllerCount; i++) characterSelections[0].Add(i);
 
         playerSelections = new List<int>();
@@ -79,13 +94,16 @@ public class ControllerConnect : MonoBehaviour
 	    detectControllers();
         moveSelections();
 
-        if (Input.GetKeyDown(KeyCode.A)) generateCharacterUI();
+        if (Input.GetKeyDown(KeyCode.S)) test1();
+        if (Input.GetKeyDown(KeyCode.D)) test2();
+
+        animateTest();
 
 	}
 
     void generateCharacterUI()
     {
-        for (var i = 0; i < 4; i++)
+        for (var i = 0; i < characterCount; i++)
         {
             GameObject cs = csList[i];
             List<int> currentSelected = characterSelections[i];
@@ -96,7 +114,7 @@ public class ControllerConnect : MonoBehaviour
                 Image csIconImage = csIcon.GetComponent<Image>();
 
                 if (currentSelected.Count > i2) csIconImage.color = playerColors[currentSelected[i2]];
-                else csIconImage.color = Color.white;
+                else csIconImage.color = new Color32(158,158,158,255);
             }
 
 
@@ -113,7 +131,7 @@ public class ControllerConnect : MonoBehaviour
             Image pbImage = pb.GetComponent<Image>();
             Image dbImage = db.GetComponent<Image>();
 
-            if (controllerIds.Count > i)
+            if (controllerCount > i)
             {
                 pbImage.color = playerColors[i];
                 dbImage.color = playerColors[i];
@@ -213,17 +231,104 @@ public class ControllerConnect : MonoBehaviour
     void moveSelections()
     {
 
-        for (var i = 0; i < 4; i++)
+        for (var i = 0; i < controllerCount; i++)
         {
-
-            if (Input.GetButtonDown(" "))
+            if (timeSinceLastMovement[i] > TIME_TO_MOVE)
             {
+
+                int currentPosition = playerSelections[i];
+                int prevPosition = currentPosition;
+
+                // move down
+                if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") > 0.5f)
+                {
+                    if (currentPosition == (characterCount - 1)) currentPosition = 0;
+                    else currentPosition++;
+                }
+
+                // move up
+                else if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") < -0.5f)
+                {
+                    if (currentPosition == 0) currentPosition = (characterCount - 1);
+                    else currentPosition--;
+                }
+
+                // if position changed, 
+                if (prevPosition != currentPosition)
+                {
+                    characterSelections[prevPosition].Remove(i);
+                    playerSelections[i] = currentPosition;
+                    characterSelections[currentPosition].Add(i);
+
+                    generateCharacterUI();
+                    generatePlayerUI();
+
+                    timeSinceLastMovement[i] = 0;
+                }
 
             }
 
-
+            timeSinceLastMovement[i] += Time.deltaTime;
         }
 
+    }
+
+    void animateTest()
+    {
+        for (var i = 0; i < controllerCount; i++)
+        {
+            if (timeSinceLastMovement[i] < TIME_TO_MOVE && Time.fixedTime > 1)
+            {
+                int iconIndex = characterSelections[playerSelections[i]].IndexOf(i);
+                float scale = timeSinceLastMovement[i] / TIME_TO_MOVE;
+                csIconList[playerSelections[i]][iconIndex].transform.localScale = new Vector3(scale, scale, 1);
+
+            }
+        }
+        
+        
+    }
+
+    void test1()
+    {
+        if (timeSinceLastMovement[0] > TIME_TO_MOVE)
+        {
+            int currentPosition = playerSelections[0];
+            int prevPosition = currentPosition;
+
+            if (currentPosition == (characterCount - 1)) currentPosition = 0;
+            else currentPosition++;
+
+            characterSelections[prevPosition].Remove(0);
+            playerSelections[0] = currentPosition;
+            characterSelections[currentPosition].Add(0);
+
+            generateCharacterUI();
+            generatePlayerUI();
+
+            timeSinceLastMovement[0] = 0;
+        }
+    }
+
+    void test2()
+    {
+        if (timeSinceLastMovement[1] > TIME_TO_MOVE)
+        {
+            int currentPosition = playerSelections[1];
+            int prevPosition = currentPosition;
+
+            if (currentPosition == (characterCount - 1)) currentPosition = 0;
+            else currentPosition++;
+
+            characterSelections[prevPosition].Remove(1);
+            playerSelections[1] = currentPosition;
+            characterSelections[currentPosition].Add(1);
+
+            generateCharacterUI();
+            generatePlayerUI();
+
+            timeSinceLastMovement[1] = 0;
+        }
     }
 
 
