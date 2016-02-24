@@ -5,7 +5,7 @@ using System.Linq;
 
 public class PlayerController : MonoBehaviour {
 
-    private string PID; // Joystick Number of a player
+    public string PID; // Joystick Number of a player
     
     public float speed = 0.0f;
     public Vector2 velocity;
@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (!useKeyboard)
         {
-            velocity.x = Input.GetAxis("Joy1_LeftStickHorizontal") * speed;
-            velocity.y = Input.GetAxis("Joy1_LeftStickVertical") * speed;
+            velocity.x = Input.GetAxis(PID + "_LeftStickHorizontal") * speed;
+            velocity.y = Input.GetAxis(PID + "_LeftStickVertical") * speed;
         }
         else
         {
