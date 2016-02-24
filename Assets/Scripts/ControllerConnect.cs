@@ -14,33 +14,35 @@ public class ControllerConnect : MonoBehaviour
     private readonly Color32 ACTIVE_COLOR = new Color32(56, 142, 60, 255);
     private readonly Color32 INACTIVE_COLOR = new Color32(211, 47, 47, 255);
 
-    private GameObject player_1_ui;
-    private GameObject player_2_ui;
-    private GameObject player_3_ui;
-    private GameObject player_4_ui;
+    private Vector2 icon_margin = new Vector2(20,20);
 
-    private Image player_1_icon;
-    private Image player_2_icon;
-    private Image player_3_icon;
-    private Image player_4_icon;
+    public GameObject charSelectIcon_object;
+    private List<GameObject> charSelectIconList;
+    public int numOfChars = 8;
 
+    public GameObject playerIcon_object;
+    private List<GameObject> playerIconList;
+    private float playerIconWidth = 132.5f;
+
+    public GameObject descriptionBox_object;
+    private List<GameObject> descriptionBoxList;
+
+    public GameObject continueButton_object;
+    private GameObject continueButtonInstance;
+    private float continueButtonHeight = 40;
 
 	// Use this for initialization
 	void Start ()
 	{
         joystickRegex = new Regex(@"Joystick([0-9]+)Button([0-9]+)");
-
         controllerIds = new List<int>();
 
-        player_1_ui = GameObject.Find("Player 1");
-        player_2_ui = GameObject.Find("Player 2");
-        player_3_ui = GameObject.Find("Player 3");
-        player_4_ui = GameObject.Find("Player 4");
+        charSelectIconList = new List<GameObject>();
+        playerIconList = new List<GameObject>();
+        descriptionBoxList = new List<GameObject>();
 
-        player_1_icon = player_1_ui.transform.FindChild("connected icon").gameObject.GetComponent<Image>();
-        player_2_icon = player_2_ui.transform.FindChild("connected icon").gameObject.GetComponent<Image>();
-        player_3_icon = player_3_ui.transform.FindChild("connected icon").gameObject.GetComponent<Image>();
-        player_4_icon = player_4_ui.transform.FindChild("connected icon").gameObject.GetComponent<Image>();
+        generateCharacterUI();
+	    generatePlayerUI();
 
 	    updateUI();
 	}
@@ -51,7 +53,83 @@ public class ControllerConnect : MonoBehaviour
 
 	    DetectControllers();
 
+        if (Input.GetKeyDown(KeyCode.A)) generateCharacterUI();
+
 	}
+
+    void generateCharacterUI()
+    {
+
+        foreach (GameObject g in charSelectIconList) Destroy(g);
+        charSelectIconList.Clear();
+
+        Vector2 win_dim = GetComponent<RectTransform>().sizeDelta;
+
+        for (var i = 0; i < numOfChars; i++)
+        {
+            GameObject uiIcon = Instantiate(charSelectIcon_object);
+            uiIcon.transform.parent = transform;
+
+            RectTransform rectTransform = uiIcon.GetComponent<RectTransform>();
+            float height = (win_dim.y - icon_margin.y * (numOfChars + 1)) / numOfChars;
+            rectTransform.sizeDelta = new Vector2(150, height);
+            rectTransform.anchoredPosition = new Vector2(95, -height * (i + 0.5f) - icon_margin.y * (i + 1));
+            rectTransform.localScale = new Vector3(1, 1, 1);
+
+            charSelectIconList.Add(uiIcon);
+        }
+
+    }
+
+    void generatePlayerUI()
+    {
+        //int playerCount = controllerIds.Count;
+        int playerCount = 4;
+        Vector2 win_dim = GetComponent<RectTransform>().sizeDelta;
+        float height = (win_dim.y - icon_margin.y*4 - continueButtonHeight)/2;
+
+        foreach (GameObject g in playerIconList) Destroy(g);
+        playerIconList.Clear();
+        foreach (GameObject g in descriptionBoxList) Destroy(g);
+        descriptionBoxList.Clear();
+
+        // create player selected character UIs and descriptions
+        for (var i = 0; i < playerCount; i++)
+        {
+            GameObject playerIcon = Instantiate(playerIcon_object);
+            playerIcon.transform.parent = transform;
+
+            RectTransform rectTransform = playerIcon.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = new Vector2(playerIconWidth, height);
+            rectTransform.anchoredPosition = new Vector2(190+playerIconWidth*(0.5f + i) + icon_margin.x*i, -icon_margin.y - height/2);
+            rectTransform.localScale = new Vector3(1, 1, 1);
+
+            playerIconList.Add(playerIcon);
+
+            GameObject descriptionBox = Instantiate(descriptionBox_object);
+            descriptionBox.transform.parent = transform;
+
+            rectTransform = descriptionBox.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = new Vector2(playerIconWidth, height);
+            rectTransform.anchoredPosition = new Vector2(190 + playerIconWidth * (0.5f + i) + icon_margin.x * i, -icon_margin.y * 2 - height * 1.5f);
+            rectTransform.localScale = new Vector3(1, 1, 1);
+
+            descriptionBoxList.Add(descriptionBox);
+
+        }
+
+        // create continue button
+        Destroy(continueButtonInstance);
+        continueButtonInstance = Instantiate(continueButton_object);
+        continueButtonInstance.transform.parent = transform;
+
+        RectTransform conTransform = continueButtonInstance.GetComponent<RectTransform>();
+        float continueButtonWidth = win_dim.x - 210;
+        conTransform.sizeDelta = new Vector2(continueButtonWidth, continueButtonHeight);
+        conTransform.anchoredPosition = new Vector2(190 + continueButtonWidth / 2, -win_dim.y + icon_margin.y + continueButtonHeight / 2);
+        conTransform.localScale = new Vector3(1, 1, 1);
+
+    }
 
 
     void DetectControllers()
@@ -132,17 +210,6 @@ public class ControllerConnect : MonoBehaviour
 
     void updateUI()
     {
-        if (controllerIds.Count > 0) player_1_icon.color = ACTIVE_COLOR;
-        else player_1_icon.color = INACTIVE_COLOR;
-
-        if (controllerIds.Count > 1) player_2_icon.color = ACTIVE_COLOR;
-        else player_2_icon.color = INACTIVE_COLOR;
-
-        if (controllerIds.Count > 2) player_3_icon.color = ACTIVE_COLOR;
-        else player_3_icon.color = INACTIVE_COLOR;
-
-        if (controllerIds.Count > 3) player_4_icon.color = ACTIVE_COLOR;
-        else player_4_icon.color = INACTIVE_COLOR;
 
         Debug.logger.Log("Count: " + controllerIds.Count);
     }
