@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class ControllerConnect : MonoBehaviour
 {
+    public GameObject mainMenu;
+
     private Regex joystickRegex;
     private List<int> controllerIds;
     private int controllerCount;
@@ -35,13 +37,16 @@ public class ControllerConnect : MonoBehaviour
     private List<float> timeSinceLastMovement;
     private readonly float TIME_TO_MOVE = 0.2f;
 
+    private bool isBackPressed;
+    private Curtain curtain;
+
 	// Use this for initialization
 	void Start ()
 	{
         joystickRegex = new Regex(@"Joystick([0-9]+)Button([0-9]+)");
         controllerIds = new List<int>();
         controllerCount = Input.GetJoystickNames().Length;
-        controllerCount = 4;
+        controllerCount = 3;
 
         playerColors = new List<Color32>();
         playerColors.Add(P1_Color);
@@ -81,6 +86,9 @@ public class ControllerConnect : MonoBehaviour
         timeSinceLastMovement = new List<float>();
         for (var i = 0; i < controllerCount; i++) timeSinceLastMovement.Add(0);
 
+	    isBackPressed = false;
+        curtain = transform.Find("Curtain").gameObject.GetComponent<Curtain>();
+
         generateCharacterUI();
 	    generatePlayerUI();
 
@@ -96,6 +104,20 @@ public class ControllerConnect : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S)) test1();
         if (Input.GetKeyDown(KeyCode.D)) test2();
+
+
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) && !isBackPressed)
+	    {
+	        isBackPressed = true;
+            curtain.close();
+	    }
+
+	    if (isBackPressed && !curtain.isRunning)
+	    {
+	        isBackPressed = false;
+	        gotoMainMenu();
+            curtain.instantOpen();
+	    }
 
         animateTest();
 
@@ -240,14 +262,14 @@ public class ControllerConnect : MonoBehaviour
                 int prevPosition = currentPosition;
 
                 // move down
-                if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") > 0.5f)
+                if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") < -0.5f)
                 {
                     if (currentPosition == (characterCount - 1)) currentPosition = 0;
                     else currentPosition++;
                 }
 
                 // move up
-                else if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") < -0.5f)
+                else if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") > 0.5f)
                 {
                     if (currentPosition == 0) currentPosition = (characterCount - 1);
                     else currentPosition--;
@@ -271,6 +293,18 @@ public class ControllerConnect : MonoBehaviour
             timeSinceLastMovement[i] += Time.deltaTime;
         }
 
+    }
+
+    public void onClick(String gameMode)
+    {
+        gameObject.SetActive(true);
+        mainMenu.SetActive(false);
+    }
+
+    void gotoMainMenu()
+    {
+        gameObject.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     void animateTest()
