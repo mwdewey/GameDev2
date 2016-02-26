@@ -6,6 +6,8 @@ using System.Linq;
 public class PlayerController : MonoBehaviour {
 
     public string PID; // Joystick Number of a player
+
+	private bool awake = true;
     
     public float speed = 0.0f;
     public Vector2 velocity;
@@ -54,6 +56,18 @@ public class PlayerController : MonoBehaviour {
 
         rb.velocity = velocity;
     }
+
+	bool isAwake() {
+		return awake;
+	}
+
+	bool sleep() {
+		awake = false;
+	}
+
+	bool wake() {
+		awake = true;
+	}
 
     void debugger()
     {

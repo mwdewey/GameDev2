@@ -6,16 +6,6 @@ public class ReceiveKnockback : MonoBehaviour {
 	 * GameObject you'd like to be able to receive knockback. 
 	*/
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	public void GetKnockedBack(Vector2 knockback){
 		//GetComponent<Rigidbody2D> ().AddForce (knockback);
 		Vector3 delta = new Vector3();
