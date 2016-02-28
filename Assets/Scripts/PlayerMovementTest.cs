@@ -20,7 +20,7 @@ public class PlayerMovementTest : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         velocity = new Vector2(0, 0);
 
-        if (PID == 0)
+        if (PID == 1)
         {
             up = KeyCode.W;
             down = KeyCode.S;
@@ -28,7 +28,7 @@ public class PlayerMovementTest : MonoBehaviour {
             right = KeyCode.D;
         }
 
-        else if (PID == 1)
+        else if (PID == 2)
         {
             up = KeyCode.UpArrow;
             down = KeyCode.DownArrow;

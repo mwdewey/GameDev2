@@ -63,10 +63,12 @@ public class PlayerController : MonoBehaviour {
 
 	bool sleep() {
 		awake = false;
+        return true;
 	}
 
 	bool wake() {
 		awake = true;
+        return true;
 	}
 
     void debugger()

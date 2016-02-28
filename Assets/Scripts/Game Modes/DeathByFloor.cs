@@ -43,7 +43,7 @@ public class DeathByFloor : MonoBehaviour {
 		for (int i = 0; i < all_respawn_pts.Count; i++) {
 			float dis = Vector3.Distance (all_respawn_pts [i].transform.position, transform.position);
 			if (i == 0 || dis < closest_distance) {
-				closest_distance = dis;
+                closest_distance = (int) dis;
 				closest_spawn_pt = all_respawn_pts [i];
 			}
 		}
