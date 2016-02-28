@@ -81,7 +81,7 @@ public class MainMenu : MonoBehaviour {
         }
 
         // pressing menu item
-        if (Input.GetKeyDown(KeyCode.JoystickButton0) && !isMove)
+        if ((Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Return)) && !isMove)
         {
             isMove = true;
             eventToFire = selectIcon.transform.parent.gameObject.GetComponent<Button>().onClick;

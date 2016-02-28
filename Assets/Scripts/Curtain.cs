@@ -33,9 +33,6 @@ public class Curtain : MonoBehaviour
 	{
 	    animateCurtain();
 
-        if(Input.GetKeyDown(KeyCode.A)) open();
-        if (Input.GetKeyDown(KeyCode.S)) close();
-
 	}
 
     void animateCurtain()

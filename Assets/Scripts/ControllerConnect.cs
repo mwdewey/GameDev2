@@ -29,7 +29,9 @@ public class ControllerConnect : MonoBehaviour
     private List<List<GameObject>> csIconList;
     private List<GameObject> pbList;
     private List<GameObject> dbList;
+
     private GameObject cb;
+    private List<Image> cbIconList;
 
     private List<List<int>> characterSelections;
     private List<int> playerSelections;
@@ -46,7 +48,7 @@ public class ControllerConnect : MonoBehaviour
         joystickRegex = new Regex(@"Joystick([0-9]+)Button([0-9]+)");
         controllerIds = new List<int>();
         controllerCount = Input.GetJoystickNames().Length;
-        controllerCount = 3;
+        controllerCount = 4;
 
         playerColors = new List<Color32>();
         playerColors.Add(P1_Color);
@@ -75,6 +77,9 @@ public class ControllerConnect : MonoBehaviour
         for (var i = 1; i < 5; i++) dbList.Add(transform.Find("DB " + i).gameObject);
 
         cb = transform.Find("CB").gameObject;
+        cbIconList = new List<Image>();
+        for (var i = 1; i < 5; i++) cbIconList.Add(cb.transform.Find("P" + i).gameObject.GetComponent<Image>());
+        for (var i = 0; i < 4; i++) cbIconList[i].color = playerColors[i];
 
         characterSelections = new List<List<int>>();
         for (var i = 0; i < characterCount; i++) characterSelections.Add(new List<int>());
@@ -318,6 +323,17 @@ public class ControllerConnect : MonoBehaviour
                 csIconList[playerSelections[i]][iconIndex].transform.localScale = new Vector3(scale, scale, 1);
 
             }
+
+            int mult = (i + 1) * 60;
+            int frame = Time.frameCount % mult;
+            Vector3 sc = cbIconList[i].transform.localScale;
+
+            sc.y = ((float)frame) / mult;
+            sc.x = ((float)frame) / mult;
+
+            cbIconList[i].transform.localScale = sc;
+
+            //cbIconList[i].rectTransform.sizeDelta = new Vector2(132.5f * ((float)frame) / 360, 40);
         }
         
         
