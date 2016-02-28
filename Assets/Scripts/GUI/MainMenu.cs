@@ -54,7 +54,7 @@ public class MainMenu : MonoBehaviour {
     {
 
         // moving between menu items
-        if (timeSinceAction > TIME_ACTION)
+        if (timeSinceAction > TIME_ACTION && !isMove)
         {
             int tempSelected = currentSelected;
 

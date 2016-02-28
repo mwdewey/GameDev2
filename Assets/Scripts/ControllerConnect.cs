@@ -31,7 +31,15 @@ public class ControllerConnect : MonoBehaviour
     private List<GameObject> dbList;
 
     private GameObject cb;
-    private List<Image> cbIconList;
+    private List<PlayerLock> cbIconList;
+    private readonly float TIME_TO_LOCK = 1;
+
+    private GameObject cb_ready;
+    private Text cb_ready_text;
+    private readonly float START_TIME = 5;
+    private float cb_ready_time;
+    private bool start_initiated;
+    private int currentStartSecond;
 
     private List<List<int>> characterSelections;
     private List<int> playerSelections;
@@ -77,9 +85,20 @@ public class ControllerConnect : MonoBehaviour
         for (var i = 1; i < 5; i++) dbList.Add(transform.Find("DB " + i).gameObject);
 
         cb = transform.Find("CB").gameObject;
-        cbIconList = new List<Image>();
-        for (var i = 1; i < 5; i++) cbIconList.Add(cb.transform.Find("P" + i).gameObject.GetComponent<Image>());
-        for (var i = 0; i < 4; i++) cbIconList[i].color = playerColors[i];
+        cbIconList = new List<PlayerLock>();
+	    for (var i = 1; i < 5; i++)
+	    {
+	        Image img = cb.transform.Find("P" + i).gameObject.GetComponent<Image>();
+            Image ico = cb.transform.Find("P" + i + " Check").gameObject.GetComponent<Image>();
+	        img.color = playerColors[i-1];
+            PlayerLock pl = new PlayerLock(img, ico, TIME_TO_LOCK);
+            cbIconList.Add(pl);
+	    }
+
+        cb_ready = transform.Find("CB Ready").gameObject;
+        cb_ready_text = cb_ready.transform.Find("Text").gameObject.GetComponent<Text>();
+	    cb_ready_time = 0;
+	    start_initiated = false;
 
         characterSelections = new List<List<int>>();
         for (var i = 0; i < characterCount; i++) characterSelections.Add(new List<int>());
@@ -324,19 +343,83 @@ public class ControllerConnect : MonoBehaviour
 
             }
 
-            int mult = (i + 1) * 60;
-            int frame = Time.frameCount % mult;
-            Vector3 sc = cbIconList[i].transform.localScale;
+            // player lock code
 
-            sc.y = ((float)frame) / mult;
-            sc.x = ((float)frame) / mult;
+            PlayerLock playerLock = cbIconList[i];
+            Vector3 iconScale = playerLock.LockBackground.transform.localScale;
 
-            cbIconList[i].transform.localScale = sc;
+            if (Input.GetKey("joystick " + (0 + 1) + " button 0"))
+            {
+                if (!playerLock.IsLocked)
+                {
+                    playerLock.LockTime += Time.deltaTime;
 
-            //cbIconList[i].rectTransform.sizeDelta = new Vector2(132.5f * ((float)frame) / 360, 40);
+                    if (playerLock.LockTime >= playerLock.TimeToLock)
+                    {
+                        playerLock.IsLocked = true;
+                        iconScale.y = 1;
+                        playerLock.LockIcon.color = new Color32(33,33,33,255);
+                        playerLock.LockBackground.transform.localScale = iconScale;
+                    }
+                }
+            }
+                
+            else
+            {
+                if (playerLock.LockTime > 0 && !playerLock.IsLocked)
+                {
+                    playerLock.LockTime -= Time.deltaTime;
+                }
+
+                if (playerLock.LockTime < 0) playerLock.LockTime = 0;
+            }
+
+            if (!playerLock.IsLocked)
+            {
+                iconScale.y = playerLock.LockTime/playerLock.TimeToLock;
+                playerLock.LockBackground.transform.localScale = iconScale;
+            }
+
         }
-        
-        
+
+        // game start code
+        if (!start_initiated)
+        {
+            bool isAllLocked = true;
+            for (var i = 0; i < controllerCount; i++) if (!cbIconList[i].IsLocked) isAllLocked = false;
+
+            if (isAllLocked)
+            {
+                start_initiated = true;
+                cb_ready.active = true;
+                cb_ready_time = 0;
+                currentStartSecond = Convert.ToInt32(START_TIME);
+                cb_ready_text.text = "Starting in " + currentStartSecond;
+            }
+        }
+
+        else
+        {
+            if (cb_ready_time > START_TIME)
+            {
+                // start dungeon
+                cb_ready_text.text = "Starting...";
+            }
+
+            else
+            {
+                int tempCurSec = currentStartSecond;
+                cb_ready_time += Time.deltaTime;
+                currentStartSecond = Convert.ToInt32(START_TIME - cb_ready_time);
+
+                // if second changes, update text
+                if (tempCurSec != currentStartSecond)
+                {
+                    cb_ready_text.text = "Starting in " + currentStartSecond;
+                }
+            }
+        }
+
     }
 
     void test1()
@@ -381,6 +464,26 @@ public class ControllerConnect : MonoBehaviour
         }
     }
 
+
+}
+
+public class PlayerLock
+{
+    public Image LockBackground;
+    public Image LockIcon;
+    public float TimeToLock;
+    public float LockTime;
+    public bool IsLocked;
+
+    public PlayerLock(Image lockBackground, Image lockIcon,float timeToLock)
+    {
+        LockBackground = lockBackground;
+        LockIcon = lockIcon;
+        TimeToLock = timeToLock;
+
+        LockTime = 0;
+        IsLocked = false;
+    }
 
 }
 
