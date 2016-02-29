@@ -7,6 +7,7 @@ public class Healthbar : MonoBehaviour {
 
     private Image meter;
     private Color32 good_health = new Color32(0,255,0,255);
+    private Color32 mid_health = new Color32(255, 255, 0, 255);
     private Color32 bad_health = new Color32(255,0,0,255);
 
     public float health;
@@ -30,7 +31,9 @@ public class Healthbar : MonoBehaviour {
         size.x = health / max_health * icon_max_width;
         meter.rectTransform.sizeDelta = size;
 
-        Color newColor = Color.Lerp(bad_health,good_health,health / max_health);
+        Color newColor;
+        if(health < max_health/2) newColor = Color.Lerp(bad_health, mid_health, health / (max_health / 2));
+        else newColor = Color.Lerp(mid_health, good_health, (health - max_health / 2)/ (max_health / 2));
         meter.color = newColor;
 
 	}
