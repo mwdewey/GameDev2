@@ -30,6 +30,8 @@ public class ControllerConnect : MonoBehaviour
     private List<GameObject> pbList;
     private List<GameObject> dbList;
 
+    private List<CharacterObject> charList; 
+
     private GameObject cb;
     private List<PlayerLock> cbIconList;
     private readonly float TIME_TO_LOCK = 1;
@@ -64,8 +66,18 @@ public class ControllerConnect : MonoBehaviour
         playerColors.Add(P3_Color);
         playerColors.Add(P4_Color);
 
+        charList = new List<CharacterObject>();
+        for (var i = 1; i < 5; i++) charList.Add(transform.Find("Char " + i).gameObject.GetComponent<CharacterObject>());
+
         csList = new List<GameObject>();
-        for (var i = 1; i < characterCount+1; i++) csList.Add(transform.Find("CS " + i).gameObject);
+	    for (var i = 0; i < characterCount; i++)
+	    {
+	        GameObject characterSelectObject = transform.Find("CS " + (i + 1)).gameObject;
+            csList.Add(characterSelectObject);
+
+	        Text titleObject = characterSelectObject.transform.Find("title").gameObject.GetComponent<Text>();
+	        titleObject.text = charList[i].name;
+	    }
 
         csIconList = new List<List<GameObject>>();
         for (var i = 0; i < characterCount; i++)
@@ -177,10 +189,15 @@ public class ControllerConnect : MonoBehaviour
             Image pbImage = pb.GetComponent<Image>();
             Image dbImage = db.GetComponent<Image>();
 
+            Image portraitImg = pb.transform.Find("Image").gameObject.GetComponent<Image>();
+            Text charDescription = db.transform.Find("text").gameObject.GetComponent<Text>();
+
             if (controllerCount > i)
             {
                 pbImage.color = playerColors[i];
                 dbImage.color = playerColors[i];
+                portraitImg.sprite = charList[playerSelections[i]].portrait;
+                charDescription.text = charList[playerSelections[i]].description;
             }
 
             else {
@@ -393,7 +410,7 @@ public class ControllerConnect : MonoBehaviour
                 start_initiated = true;
                 cb_ready.active = true;
                 cb_ready_time = 0;
-                currentStartSecond = Convert.ToInt32(START_TIME);
+                currentStartSecond = (int)(START_TIME - cb_ready_time) + 1;
                 cb_ready_text.text = "Starting in " + currentStartSecond;
             }
         }
@@ -404,19 +421,27 @@ public class ControllerConnect : MonoBehaviour
             {
                 // start dungeon
                 cb_ready_text.text = "Starting...";
+                curtain.instantOpen();
             }
 
             else
             {
                 int tempCurSec = currentStartSecond;
                 cb_ready_time += Time.deltaTime;
-                currentStartSecond = Convert.ToInt32(START_TIME - cb_ready_time);
+                currentStartSecond = (int) (START_TIME - cb_ready_time) + 1;
 
                 // if second changes, update text
                 if (tempCurSec != currentStartSecond)
                 {
                     cb_ready_text.text = "Starting in " + currentStartSecond;
                 }
+
+                // 
+                if (!curtain.isRunning && curtain.transitionTime > (START_TIME - cb_ready_time))
+                {
+                    curtain.close();
+                }
+
             }
         }
 
