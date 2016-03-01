@@ -421,6 +421,7 @@ public class ControllerConnect : MonoBehaviour
             {
                 // start dungeon
                 cb_ready_text.text = "Starting...";
+                Application.LoadLevel("split_screen_test");
                 curtain.instantOpen();
             }
 
