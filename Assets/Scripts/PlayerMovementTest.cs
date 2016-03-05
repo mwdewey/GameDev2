@@ -5,6 +5,7 @@ public class PlayerMovementTest : MonoBehaviour {
 
     public int PID;
     public float speed;
+	private SpriteRenderer ring;
 
     private Rigidbody2D rb;
     private Vector2 velocity;
@@ -39,6 +40,21 @@ public class PlayerMovementTest : MonoBehaviour {
             left = KeyCode.LeftArrow;
             right = KeyCode.RightArrow;
         }
+
+		ring = GetComponentsInChildren<SpriteRenderer> ()[1];
+
+		if (PID == 1) {
+			ring.color = Color.red;
+		}
+		else if (PID == 2) {
+			ring.color = Color.blue;
+		}
+		else if (PID == 3) {
+			ring.color = Color.green;
+		}
+		else if (PID == 4) {
+			ring.color = Color.yellow;
+		}
 	
 	}
 	
@@ -88,7 +104,7 @@ public class PlayerMovementTest : MonoBehaviour {
                 anim.SetFloat("delta_y", 0);
             }
 
-            print(angle);
+            //print(angle);
         }
 
         else
