@@ -1,0 +1,466 @@
+fileFormatVersion: 2
+guid: cd3a03f9b79e72346b9776c5d9fd05fc
+timeCreated: 1457031439
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Shifter_Side(R)_Walk_01_0
+    21300002: Shifter_Side(R)_Walk_01_1
+    21300004: Shifter_Side(R)_Walk_01_2
+    21300006: Shifter_Side(R)_Walk_01_3
+    21300008: Shifter_Side(R)_Walk_01_4
+    21300010: Shifter_Side(R)_Walk_01_5
+    21300012: Shifter_Side(R)_Walk_01_6
+    21300014: Shifter_Side(R)_Walk_01_7
+    21300016: Shifter_Side(R)_Walk_01_8
+    21300018: Shifter_Side(R)_Walk_01_9
+    21300020: Shifter_Side(R)_Walk_01_10
+    21300022: Shifter_Side(R)_Walk_01_11
+    21300024: Shifter_Side(R)_Walk_01_12
+    21300026: Shifter_Side(R)_Walk_01_13
+    21300028: Shifter_Side(R)_Walk_01_14
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Shifter_Side(R)_Walk_01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: -47}
+        - {x: -19, y: -49}
+        - {x: -19, y: -55}
+        - {x: -18, y: -57}
+        - {x: -15, y: -59}
+        - {x: 17, y: -59}
+        - {x: 20, y: -54}
+        - {x: 20, y: -48}
+        - {x: 19, y: -47}
+      - - {x: -13, y: 57}
+        - {x: -28, y: 3}
+        - {x: -28, y: -23}
+        - {x: -26, y: -23}
+        - {x: -23, y: -22}
+        - {x: -23, y: -20}
+        - {x: -24, y: -28}
+        - {x: -22, y: -31}
+        - {x: -11, y: -42}
+        - {x: 0, y: -47}
+        - {x: 17, y: -47}
+        - {x: 17, y: 57}
+    - name: Shifter_Side(R)_Walk_01_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: -47}
+        - {x: -19, y: -49}
+        - {x: -19, y: -55}
+        - {x: -18, y: -57}
+        - {x: -15, y: -59}
+        - {x: 17, y: -59}
+        - {x: 20, y: -54}
+        - {x: 20, y: -48}
+        - {x: 19, y: -47}
+      - - {x: -14, y: 59}
+        - {x: -29, y: -5}
+        - {x: -29, y: -27}
+        - {x: -24, y: -33}
+        - {x: -3, y: -47}
+        - {x: 18, y: -47}
+        - {x: 18, y: 54}
+        - {x: 12, y: 59}
+    - name: Shifter_Side(R)_Walk_01_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: -47}
+        - {x: -19, y: -49}
+        - {x: -19, y: -55}
+        - {x: -18, y: -57}
+        - {x: -15, y: -59}
+        - {x: 17, y: -59}
+        - {x: 20, y: -54}
+        - {x: 20, y: -48}
+        - {x: 19, y: -47}
+      - - {x: -14, y: 60}
+        - {x: -29, y: -4}
+        - {x: -29, y: -26}
+        - {x: -24, y: -32}
+        - {x: -3, y: -46}
+        - {x: 18, y: -46}
+        - {x: 18, y: 55}
+        - {x: 12, y: 60}
+    - name: Shifter_Side(R)_Walk_01_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: -47}
+        - {x: -19, y: -49}
+        - {x: -19, y: -55}
+        - {x: -18, y: -57}
+        - {x: -15, y: -59}
+        - {x: 17, y: -59}
+        - {x: 20, y: -54}
+        - {x: 20, y: -48}
+        - {x: 19, y: -47}
+      - - {x: -14, y: 60}
+        - {x: -29, y: -4}
+        - {x: -29, y: -26}
+        - {x: -24, y: -32}
+        - {x: -3, y: -46}
+        - {x: 18, y: -46}
+        - {x: 18, y: 55}
+        - {x: 12, y: 60}
+    - name: Shifter_Side(R)_Walk_01_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: -47}
+        - {x: -19, y: -49}
+        - {x: -19, y: -55}
+        - {x: -18, y: -57}
+        - {x: -15, y: -59}
+        - {x: 17, y: -59}
+        - {x: 20, y: -54}
+        - {x: 20, y: -48}
+        - {x: 19, y: -47}
+      - - {x: -14, y: 60}
+        - {x: -29, y: -4}
+        - {x: -29, y: -26}
+        - {x: -24, y: -32}
+        - {x: -3, y: -46}
+        - {x: 18, y: -46}
+        - {x: 18, y: 55}
+        - {x: 12, y: 60}
+    - name: Shifter_Side(R)_Walk_01_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: -48}
+        - {x: -16, y: -52}
+        - {x: -16, y: -55}
+        - {x: -13, y: -57}
+        - {x: 16, y: -57}
+        - {x: 17, y: -54}
+        - {x: 17, y: -49}
+        - {x: 16, y: -48}
+      - - {x: -18, y: 64}
+        - {x: -30, y: 6}
+        - {x: -30, y: -27}
+        - {x: -28, y: -30}
+        - {x: -1, y: -47}
+        - {x: 22, y: -47}
+        - {x: 22, y: 64}
+    - name: Shifter_Side(R)_Walk_01_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: -48}
+        - {x: -16, y: -52}
+        - {x: -16, y: -55}
+        - {x: -13, y: -57}
+        - {x: 16, y: -57}
+        - {x: 17, y: -54}
+        - {x: 17, y: -49}
+        - {x: 16, y: -48}
+      - - {x: -14, y: 64}
+        - {x: -21, y: 47}
+        - {x: -30, y: 13}
+        - {x: -30, y: -29}
+        - {x: -7, y: -48}
+        - {x: 17, y: -48}
+        - {x: 22, y: -32}
+        - {x: 22, y: 58}
+        - {x: 19, y: 64}
+    - name: Shifter_Side(R)_Walk_01_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 63}
+        - {x: -30, y: 10}
+        - {x: -30, y: -37}
+        - {x: -19, y: -56}
+        - {x: -17, y: -57}
+        - {x: 14, y: -57}
+        - {x: 20, y: -56}
+        - {x: 22, y: -49}
+        - {x: 22, y: 58}
+        - {x: 20, y: 63}
+    - name: Shifter_Side(R)_Walk_01_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 63}
+        - {x: -30, y: 10}
+        - {x: -30, y: -36}
+        - {x: -18, y: -57}
+        - {x: 16, y: -57}
+        - {x: 22, y: -56}
+        - {x: 22, y: 49}
+        - {x: 19, y: 63}
+    - name: Shifter_Side(R)_Walk_01_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 58}
+        - {x: -29, y: -6}
+        - {x: -29, y: -27}
+        - {x: -23, y: -33}
+        - {x: -12, y: -41}
+        - {x: -19, y: -51}
+        - {x: -19, y: -55}
+        - {x: -16, y: -59}
+        - {x: 15, y: -59}
+        - {x: 20, y: -58}
+        - {x: 20, y: 41}
+        - {x: 12, y: 58}
+    - name: Shifter_Side(R)_Walk_01_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 58}
+        - {x: -29, y: -6}
+        - {x: -29, y: -27}
+        - {x: -23, y: -33}
+        - {x: -12, y: -41}
+        - {x: -19, y: -51}
+        - {x: -19, y: -55}
+        - {x: -16, y: -59}
+        - {x: 15, y: -59}
+        - {x: 20, y: -58}
+        - {x: 20, y: 41}
+        - {x: 12, y: 58}
+    - name: Shifter_Side(R)_Walk_01_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 58}
+        - {x: -29, y: -6}
+        - {x: -29, y: -27}
+        - {x: -23, y: -33}
+        - {x: -12, y: -41}
+        - {x: -19, y: -51}
+        - {x: -19, y: -55}
+        - {x: -16, y: -59}
+        - {x: 15, y: -59}
+        - {x: 20, y: -58}
+        - {x: 20, y: 41}
+        - {x: 12, y: 58}
+    - name: Shifter_Side(R)_Walk_01_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -14, y: 58}
+        - {x: -29, y: -6}
+        - {x: -29, y: -27}
+        - {x: -23, y: -33}
+        - {x: -12, y: -41}
+        - {x: -19, y: -51}
+        - {x: -19, y: -55}
+        - {x: -16, y: -59}
+        - {x: 15, y: -59}
+        - {x: 20, y: -58}
+        - {x: 20, y: 41}
+        - {x: 12, y: 58}
+    - name: Shifter_Side(R)_Walk_01_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: -47}
+        - {x: -19, y: -49}
+        - {x: -19, y: -55}
+        - {x: -18, y: -57}
+        - {x: -15, y: -59}
+        - {x: 17, y: -59}
+        - {x: 20, y: -54}
+        - {x: 20, y: -48}
+        - {x: 19, y: -47}
+      - - {x: -13, y: 57}
+        - {x: -28, y: 3}
+        - {x: -28, y: -23}
+        - {x: -26, y: -23}
+        - {x: -23, y: -22}
+        - {x: -23, y: -20}
+        - {x: -24, y: -28}
+        - {x: -22, y: -31}
+        - {x: -11, y: -42}
+        - {x: 0, y: -47}
+        - {x: 17, y: -47}
+        - {x: 17, y: 57}
+    - name: Shifter_Side(R)_Walk_01_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -11, y: -47}
+        - {x: -19, y: -49}
+        - {x: -19, y: -55}
+        - {x: -18, y: -57}
+        - {x: -15, y: -59}
+        - {x: 17, y: -59}
+        - {x: 20, y: -54}
+        - {x: 20, y: -48}
+        - {x: 19, y: -47}
+      - - {x: -13, y: 57}
+        - {x: -28, y: 3}
+        - {x: -28, y: -23}
+        - {x: -26, y: -23}
+        - {x: -23, y: -22}
+        - {x: -23, y: -20}
+        - {x: -24, y: -28}
+        - {x: -22, y: -31}
+        - {x: -11, y: -42}
+        - {x: 0, y: -47}
+        - {x: 17, y: -47}
+        - {x: 17, y: 57}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
