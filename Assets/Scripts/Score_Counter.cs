@@ -7,7 +7,7 @@ public class Score_Counter : MonoBehaviour {
 	Transform t;
 	public bool in_portal;
 	float portal_progress;
-	public SpriteRenderer pp_sprite;
+	private SpriteRenderer pp_sprite;
 	Color pp_color;
 
 	// Use this for initialization
@@ -15,6 +15,7 @@ public class Score_Counter : MonoBehaviour {
 		score = 0;
 		t = GetComponent<Transform> ();
 		in_portal = false;
+		pp_sprite = GetComponentsInChildren<SpriteRenderer> ()[2];
 		pp_color = pp_sprite.color;
 	}
 
