@@ -20,7 +20,7 @@ public class Attacks : MonoBehaviour {
 		//find the newest direction that the player is facing, so long as they're moving
 		if (!(GetComponent<Rigidbody2D> ().velocity.x == 0 && GetComponent<Rigidbody2D> ().velocity.y == 0)) {
 			Vector2 old_direction = direction;//in case direction is 0,0 after normalizaiton anyway
-			direction = GetComponent<PlayerMovement> ().velocity;
+			direction = GetComponent<Rigidbody2D> ().velocity;
 			direction.Normalize ();
 			if (direction.x==0 && direction.y==0)
 				direction = old_direction;

@@ -25,7 +25,7 @@ public class DeathByFloor : MonoBehaviour {
 			original_sprite = c.gameObject.GetComponent<SpriteRenderer>().sprite;
 			  //save sprite info so it can be restored later
 			c.gameObject.GetComponent<SpriteRenderer> ().sprite = dead;//switch sprite
-			c.gameObject.GetComponent<PlayerMovement> ().enabled = false;//stop movement
+			c.gameObject.GetComponent<PlayerMovementTest> ().enabled = false;//stop movement
 			c.gameObject.GetComponent<Attacks> ().enabled = false;//stop attacks
 			c.gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			  //make sure they don't just keep moving on the velocity they already had
@@ -39,7 +39,8 @@ public class DeathByFloor : MonoBehaviour {
 
 		//pick the closest available respawn point
 		List<GameObject> all_respawn_pts = GameObject.FindGameObjectsWithTag ("Respawn").ToList();
-		GameObject closest_spawn_pt;
+		print (all_respawn_pts.Count);
+		GameObject closest_spawn_pt = null;
 		for (int i = 0; i < all_respawn_pts.Count; i++) {
 			float dis = Vector3.Distance (all_respawn_pts [i].transform.position, transform.position);
 			if (i == 0 || dis < closest_distance) {
@@ -48,7 +49,8 @@ public class DeathByFloor : MonoBehaviour {
 			}
 		}
 
-		g.GetComponent<PlayerMovement> ().enabled = true;
+		if (all_respawn_pts.Count>0) g.transform.position = new Vector3(closest_spawn_pt.transform.position.x, closest_spawn_pt.transform.position.y+.6f, closest_spawn_pt.transform.position.z);
+		g.GetComponent<PlayerMovementTest> ().enabled = true;
 		g.GetComponent<Attacks> ().enabled = true;
 		g.GetComponent<SpriteRenderer> ().sprite = original;
 		//  ^put stuff back the way it was
