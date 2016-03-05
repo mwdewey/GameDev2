@@ -18,7 +18,7 @@ public class Attacks : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//find the newest direction that the player is facing, so long as they're moving
-		if (!(GetComponent<PlayerMovement> ().velocity.x == 0 && GetComponent<PlayerMovement> ().velocity.y == 0)) {
+		if (!(GetComponent<Rigidbody2D> ().velocity.x == 0 && GetComponent<Rigidbody2D> ().velocity.y == 0)) {
 			Vector2 old_direction = direction;//in case direction is 0,0 after normalizaiton anyway
 			direction = GetComponent<PlayerMovement> ().velocity;
 			direction.Normalize ();
