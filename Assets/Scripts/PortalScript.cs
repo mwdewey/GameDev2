@@ -14,13 +14,13 @@ public class PortalScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Player" && opened) {
-			other.GetComponent<Score_Counter> ().in_portal = true;
+			other.GetComponentsInParent<Score_Counter> ()[0].in_portal = true;
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "Player" && opened) {
-			other.GetComponent<Score_Counter> ().in_portal = false;
+			other.GetComponentsInParent<Score_Counter> ()[0].in_portal = false;
 		}
 	}
 	
