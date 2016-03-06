@@ -365,7 +365,7 @@ public class ControllerConnect : MonoBehaviour
             PlayerLock playerLock = cbIconList[i];
             Vector3 iconScale = playerLock.LockBackground.transform.localScale;
 
-            if (Input.GetKey("joystick " + (0 + 1) + " button 0"))
+            if (Input.GetKey("joystick " + (0 + 1) + " button 0") || Input.GetKey(KeyCode.L))
             {
                 if (!playerLock.IsLocked)
                 {
