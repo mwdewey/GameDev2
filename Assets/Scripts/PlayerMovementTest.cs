@@ -71,12 +71,15 @@ public class PlayerMovementTest : MonoBehaviour {
 
         rb.velocity = velocity;
 
-        float angle = Mathf.Atan2(velocity.x, velocity.y) * Mathf.Rad2Deg;
-
-        if (angle >= -45 && angle <= 45) anim.SetInteger("DirectionState", 2); // up
-        if (angle <= -135 || angle >= 135) anim.SetInteger("DirectionState", 3); // down
-        if (angle < -45 && angle > -135) anim.SetInteger("DirectionState", 0); // left
-        if (angle > 45 && angle < 135) anim.SetInteger("DirectionState", 1); // right
+        // only change angle if moving
+        if (velocity.magnitude > 0.1)
+        {
+            float angle = Mathf.Atan2(velocity.x, velocity.y) * Mathf.Rad2Deg;
+            if (angle >= -45 && angle <= 45) anim.SetInteger("DirectionState", 2); // up
+            if (angle <= -135 || angle >= 135) anim.SetInteger("DirectionState", 3); // down
+            if (angle < -45 && angle > -135) anim.SetInteger("DirectionState", 0); // left
+            if (angle > 45 && angle < 135) anim.SetInteger("DirectionState", 1); // right
+        }
 
 
     }
