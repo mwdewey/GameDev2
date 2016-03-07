@@ -3,7 +3,8 @@ using System.Collections;
 
 public class CauseKnockback : MonoBehaviour {
 
-	float KNOCKBACK_AMOUNT = 1; //variable constant, change in testing
+	float KNOCKBACK_AMOUNT = 4; //variable constant, change in testing
+    private readonly float KNOCKBACK_TIME = 1;
 	public string my_parent_name = ""; //this is what the object stores their parent's name in
 	public bool die_on_contact = true;
 
@@ -30,7 +31,8 @@ public class CauseKnockback : MonoBehaviour {
 			knockback.Normalize ();
 			knockback.x *= KNOCKBACK_AMOUNT;
 			knockback.y *= KNOCKBACK_AMOUNT;
-			c.gameObject.SendMessage ("GetKnockedBack", knockback);
+            Knockback knockbackObject = new Knockback(KNOCKBACK_TIME,knockback);
+            c.gameObject.SendMessage("GetKnockedBack", knockbackObject);
 			//...activate the GetKnockedBack function of the thing we just hit
 			//causing them to fly backward! In players, this function is in PlayerMovement.
 		}

@@ -17,6 +17,8 @@ public class PlayerMovementTest : MonoBehaviour {
 
     private Animator anim;
 
+    private Knockback playerKnockback;
+
 	// Use this for initialization
 	void Start () {
 
@@ -55,7 +57,9 @@ public class PlayerMovementTest : MonoBehaviour {
 		else if (PID == 4) {
 			ring.color = Color.yellow;
 		}
-	
+
+        playerKnockback = null;
+
 	}
 	
 	// Update is called once per frame
@@ -68,6 +72,15 @@ public class PlayerMovementTest : MonoBehaviour {
         if (Input.GetKey(down)) velocity.y -= speed;
         if (Input.GetKey(left)) velocity.x -= speed;
         if (Input.GetKey(right)) velocity.x += speed;
+
+        if (playerKnockback != null)
+        {
+            playerKnockback.timeRemaining -= Time.deltaTime;
+            if (playerKnockback.timeRemaining < 0) playerKnockback.isActing = false;
+
+            if (playerKnockback.isActing) velocity += playerKnockback.force;
+
+        }
 
         if (PID == 1)
         {
@@ -90,5 +103,10 @@ public class PlayerMovementTest : MonoBehaviour {
         }
 
 
+    }
+
+    public void setKnockBack(Knockback knockback)
+    {
+        this.playerKnockback = knockback;
     }
 }
