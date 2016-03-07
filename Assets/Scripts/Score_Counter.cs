@@ -47,7 +47,7 @@ public class Score_Counter : MonoBehaviour {
 			if (portal_progress < 0) {
 				portal_progress = 0;
 			}
-			if (Input.GetKeyDown (KeyCode.Return)) {
+            if (Input.GetKeyDown(KeyCode.Return)) {
 				portal_progress += 0.5f;
 			}
 			pp_sprite.color = new Color (pp_color.r, pp_color.g, pp_color.b, portal_progress / 5f);

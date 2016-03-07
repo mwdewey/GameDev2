@@ -41,7 +41,7 @@ public class PlayerMovementTest : MonoBehaviour {
             right = KeyCode.RightArrow;
         }
 
-		ring = GetComponentsInChildren<SpriteRenderer> ()[1];
+        ring = transform.Find("Ring").gameObject.GetComponent<SpriteRenderer>();
 
 		if (PID == 1) {
 			ring.color = Color.red;
@@ -71,48 +71,13 @@ public class PlayerMovementTest : MonoBehaviour {
 
         rb.velocity = velocity;
 
-        // only handling cases with dual input
-        if (velocity.x != 0 && velocity.y != 0)
-        {
-            float angle = Mathf.Atan2(velocity.x, velocity.y) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(velocity.x, velocity.y) * Mathf.Rad2Deg;
 
-            // up
-            if (angle >= -45 && angle <= 45)
-            {
-                anim.SetFloat("delta_x", 0);
-                anim.SetFloat("delta_y", 1);
-            }
-
-            // down
-            else if (angle <= -135 || angle >= 135)
-            {
-                anim.SetFloat("delta_x", 0);
-                anim.SetFloat("delta_y", -1);
-            }
-
-            // left
-            if (angle < -45 && angle > -135)
-            {
-                anim.SetFloat("delta_x", -1);
-                anim.SetFloat("delta_y", 0);
-            }
-
-            // right
-            if (angle > 45 && angle < 135)
-            {
-                anim.SetFloat("delta_x", 1);
-                anim.SetFloat("delta_y", 0);
-            }
-
-            //print(angle);
-        }
-
-        else
-        {
-            anim.SetFloat("delta_x", velocity.x);
-            anim.SetFloat("delta_y", velocity.y);
-        }
+        if (angle >= -45 && angle <= 45) anim.SetInteger("DirectionState", 2); // up
+        if (angle <= -135 || angle >= 135) anim.SetInteger("DirectionState", 3); // down
+        if (angle < -45 && angle > -135) anim.SetInteger("DirectionState", 0); // left
+        if (angle > 45 && angle < 135) anim.SetInteger("DirectionState", 1); // right
 
 
-	}
+    }
 }
