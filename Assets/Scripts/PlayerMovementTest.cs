@@ -69,6 +69,14 @@ public class PlayerMovementTest : MonoBehaviour {
         if (Input.GetKey(left)) velocity.x -= speed;
         if (Input.GetKey(right)) velocity.x += speed;
 
+        if (PID == 1)
+        {
+            if (Input.GetKeyDown(KeyCode.J)) anim.SetTrigger("Melee");
+            if (Input.GetKeyDown(KeyCode.K)) anim.SetTrigger("Range");
+            if (Input.GetKeyDown(KeyCode.L)) anim.SetTrigger("Flinch");
+        }
+
+
         rb.velocity = velocity;
 
         // only change angle if moving
