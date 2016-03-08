@@ -28,7 +28,6 @@ public class Score_Counter : MonoBehaviour {
                 other.GetComponent<Renderer>().enabled = false;
                 Destroy(other);
                 Manager.coins_remaining -= 1;
-				Debug.Log (score + " " + GetComponent<PlayerMovementTest>().PID);
             }
         }
 	}
