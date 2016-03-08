@@ -28,7 +28,7 @@ public class ReceiveKnockback : MonoBehaviour {
 
         playerMoveScript.setKnockBack(knockback);
 
-		print ("knocked back! "+transform.position);
+		//print ("knocked back! "+transform.position);
 		//Whatever you do, make sure your walls are bigger than the amount of 
 		//knockback defined in CauseKnockback, or a player may clip through 
 		//walls when shot.

@@ -19,6 +19,8 @@ public class PlayerMovementTest : MonoBehaviour {
 
     private Knockback playerKnockback;
 
+	public bool unconscious;
+
 	// Use this for initialization
 	void Start () {
 
@@ -64,6 +66,7 @@ public class PlayerMovementTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (unconscious) return;
 	
         velocity.x = 0;
         velocity.y = 0;
@@ -107,6 +110,7 @@ public class PlayerMovementTest : MonoBehaviour {
 
     public void setKnockBack(Knockback knockback)
     {
+		if (unconscious) return;
         this.playerKnockback = knockback;
     }
 }
