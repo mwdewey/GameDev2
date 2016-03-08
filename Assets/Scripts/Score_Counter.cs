@@ -15,20 +15,23 @@ public class Score_Counter : MonoBehaviour {
 		score = 0;
 		t = GetComponent<Transform> ();
 		in_portal = false;
-		pp_sprite = GetComponentsInChildren<SpriteRenderer> ()[2];
+        pp_sprite = transform.Find("Portal Progress").gameObject.GetComponent<SpriteRenderer>();
 		pp_color = pp_sprite.color;
 	}
 
 	void OnTriggerStay2D(Collider2D other){
-		if (other.tag == "Coin") {
-			other.GetComponent<Rigidbody2D> ().velocity = Vector3.Scale((t.position - other.transform.position).normalized, new Vector3(3f, 3f, 0));
-		}
-		if (Vector3.Distance(t.position, other.transform.position) <= 0.5) {
-			score += 1;
-			other.GetComponent<Renderer>().enabled = false;
-			Destroy (other);
-			Manager.coins_remaining -= 1;
-		}
+        if (other.tag == "Coin")
+        {
+            other.GetComponent<Rigidbody2D>().velocity = Vector3.Scale((t.position - other.transform.position).normalized, new Vector3(3f, 3f, 0));
+
+            if (Vector3.Distance(t.position, other.transform.position) <= 0.5)
+            {
+                score += 1;
+                other.GetComponent<Renderer>().enabled = false;
+                Destroy(other);
+                Manager.coins_remaining -= 1;
+            }
+        }
 	}
 
 	void OnTriggerExit2D(Collider2D other){
