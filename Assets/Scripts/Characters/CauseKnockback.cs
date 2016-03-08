@@ -3,7 +3,8 @@ using System.Collections;
 
 public class CauseKnockback : MonoBehaviour {
 
-	float KNOCKBACK_AMOUNT = 1; //variable constant, change in testing
+	float KNOCKBACK_AMOUNT = 4; //variable constant, change in testing
+    private readonly float KNOCKBACK_TIME = 1;
 	public string my_parent_name = ""; //this is what the object stores their parent's name in
 	public bool die_on_contact = true;
 
@@ -23,19 +24,20 @@ public class CauseKnockback : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D c){
-		print ("Pokeball pushes back "+c.gameObject.name);
+		//print ("Pokeball pushes back "+c.gameObject.name);
 		if (c.gameObject.GetComponent<ReceiveKnockback>()!=null && c.gameObject.name != my_parent_name) {
 			//if what we hit is a player and isn't the player who made us...
 			Vector2 knockback = GetComponent<Rigidbody2D>().velocity;
 			knockback.Normalize ();
 			knockback.x *= KNOCKBACK_AMOUNT;
 			knockback.y *= KNOCKBACK_AMOUNT;
-			c.gameObject.SendMessage ("GetKnockedBack", knockback);
+            Knockback knockbackObject = new Knockback(KNOCKBACK_TIME,knockback);
+            c.gameObject.SendMessage("GetKnockedBack", knockbackObject);
 			//...activate the GetKnockedBack function of the thing we just hit
 			//causing them to fly backward! In players, this function is in PlayerMovement.
 		}
 		//ADD EXCEPTIONS FOR DIE_ON_CONTACT object destroys here \/
-		if (die_on_contact && c.gameObject.name != my_parent_name){
+		if (die_on_contact && c.gameObject.name != my_parent_name && c.gameObject.name!="Ring"){
 			//if we hit ANYTHING but the player we came from
 			Destroy (gameObject);
 		}

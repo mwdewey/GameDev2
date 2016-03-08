@@ -6,14 +6,29 @@ public class ReceiveKnockback : MonoBehaviour {
 	 * GameObject you'd like to be able to receive knockback. 
 	*/
 
-	public void GetKnockedBack(Vector2 knockback){
+
+    private PlayerMovementTest playerMoveScript;
+
+	public void Start(){
+
+        playerMoveScript = GetComponent<PlayerMovementTest>();
+
+	}
+
+	public void Update(){
+	}
+
+	public void GetKnockedBack(Knockback knockback){
 		//GetComponent<Rigidbody2D> ().AddForce (knockback);
-		Vector3 delta = new Vector3();
+		/*Vector3 delta = new Vector3();
 		delta.x = transform.position.x + knockback.x;
 		delta.y = transform.position.y + knockback.y;
 		delta.z = 0;
-		transform.position = delta;
-		print ("knocked back! "+transform.position);
+		transform.position = delta;*/
+
+        playerMoveScript.setKnockBack(knockback);
+
+		//print ("knocked back! "+transform.position);
 		//Whatever you do, make sure your walls are bigger than the amount of 
 		//knockback defined in CauseKnockback, or a player may clip through 
 		//walls when shot.

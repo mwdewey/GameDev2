@@ -1,0 +1,192 @@
+fileFormatVersion: 2
+guid: 64638e2296483444cb5ca7c4faf67ae9
+timeCreated: 1457319917
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Shifter_Melee_Left_0
+    21300002: Shifter_Melee_Left_1
+    21300004: Shifter_Melee_Left_2
+    21300006: Shifter_Melee_Left_3
+    21300008: Shifter_Melee_Left_4
+    21300010: Shifter_Melee_Left_5
+    21300012: Shifter_Melee_Left_6
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Shifter_Melee_Left_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 19}
+        - {x: 11, y: 17}
+        - {x: 14, y: 18}
+        - {x: 14, y: 58}
+        - {x: 12, y: 60}
+        - {x: 9, y: 59}
+    - name: Shifter_Melee_Left_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 60}
+        - {x: 8, y: 17}
+        - {x: 15, y: 17}
+        - {x: 15, y: 60}
+    - name: Shifter_Melee_Left_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 64}
+        - {x: -9, y: 58}
+        - {x: -9, y: 25}
+        - {x: -2, y: 17}
+        - {x: 31, y: 17}
+        - {x: 31, y: 64}
+    - name: Shifter_Melee_Left_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 64}
+        - {x: -32, y: 45}
+        - {x: -32, y: 4}
+        - {x: -28, y: -2}
+        - {x: -13, y: -2}
+        - {x: -7, y: 6}
+        - {x: 14, y: -2}
+        - {x: 14, y: 64}
+    - name: Shifter_Melee_Left_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 50}
+        - {x: -32, y: 43}
+        - {x: -32, y: -2}
+        - {x: -3, y: -2}
+        - {x: 3, y: 2}
+        - {x: 14, y: 15}
+        - {x: 14, y: 30}
+        - {x: -15, y: 53}
+    - name: Shifter_Melee_Left_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 16}
+        - {x: 14, y: 24}
+        - {x: -12, y: 49}
+        - {x: -14, y: 50}
+        - {x: -24, y: 50}
+        - {x: -32, y: 40}
+        - {x: -32, y: 4}
+        - {x: -28, y: -2}
+        - {x: -13, y: -2}
+        - {x: -7, y: 6}
+        - {x: -6, y: 10}
+        - {x: 13, y: 14}
+    - name: Shifter_Melee_Left_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: 38}
+        - {x: -32, y: 34}
+        - {x: -32, y: -2}
+        - {x: -2, y: -2}
+        - {x: 14, y: 7}
+        - {x: 14, y: 23}
+        - {x: -13, y: 38}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

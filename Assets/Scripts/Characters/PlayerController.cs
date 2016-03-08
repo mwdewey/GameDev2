@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour {
     int MAX_VELOCITY = 5;
     public bool useKeyboard;
 
+    private Knockback playerKnockback;
+    private SpriteRenderer ring;
+    private Animator anim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,6 +39,20 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
+        // Color ring around players
+        ring = transform.Find("Ring").gameObject.GetComponent<SpriteRenderer>();
+        switch (PID)
+        {
+            case "1": ring.color = Color.red; break;
+            case "2": ring.color = Color.red; break;
+            case "3": ring.color = Color.red; break;
+            case "4": ring.color = Color.red; break;
+        }
+
+        anim = GetComponent<Animator>();
+        playerKnockback = null;
+        
+
     }
 
 	void Update () {
@@ -45,8 +63,8 @@ public class PlayerController : MonoBehaviour {
     {
         if (!useKeyboard)
         {
-            velocity.x = Input.GetAxis(PID + "_LeftStickHorizontal") * speed;
-            velocity.y = Input.GetAxis(PID + "_LeftStickVertical") * speed;
+            velocity.x = Input.GetAxis("Joy" + PID + "_LeftStickHorizontal") * speed;
+            velocity.y = Input.GetAxis("Joy" + PID + "_LeftStickVertical") * speed;
         }
         else
         {
@@ -55,6 +73,16 @@ public class PlayerController : MonoBehaviour {
         }
 
         rb.velocity = velocity;
+
+        // only change angle if moving
+        if (velocity.magnitude > 0.1)
+        {
+            float angle = Mathf.Atan2(velocity.x, velocity.y) * Mathf.Rad2Deg;
+            if (angle >= -45 && angle <= 45) anim.SetInteger("DirectionState", 2); // up
+            if (angle <= -135 || angle >= 135) anim.SetInteger("DirectionState", 3); // down
+            if (angle < -45 && angle > -135) anim.SetInteger("DirectionState", 0); // left
+            if (angle > 45 && angle < 135) anim.SetInteger("DirectionState", 1); // right
+        }
     }
 
 	bool isAwake() {
@@ -70,6 +98,11 @@ public class PlayerController : MonoBehaviour {
 		awake = true;
         return true;
 	}
+
+    public void setKnockBack(Knockback knockback)
+    {
+        this.playerKnockback = knockback;
+    }
 
     void debugger()
     {
