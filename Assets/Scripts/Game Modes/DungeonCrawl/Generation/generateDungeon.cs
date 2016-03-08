@@ -42,6 +42,7 @@ public class generateDungeon : MonoBehaviour {
 
 	public GameObject cornerPrefab;
 	public bool cornerRotation = false;
+	public bool generateOnLoad;
 
 	public int minimumRoomCount = 0;
 	public int maximumRoomCount = 0;
@@ -191,7 +192,7 @@ public class generateDungeon : MonoBehaviour {
 			//walls 
 			for (int x = 0; x < map_size -1  ; x++) {
 				for (int y = 0; y < map_size -1 ; y++) {
-					if ( (map[x,y].type == 0) && (map[x + 1,y].type == 1 || map[x + 1,y].type == 3) )  {
+					if (map[x,y].type == 0) {
 						if(map[x + 1,y].type == 1 || map[x + 1,y].type == 3) { 
 							map[x,y].type = 2;
 						}
@@ -465,12 +466,7 @@ public class generateDungeon : MonoBehaviour {
 	}
 	
 	void Start () {
-		ClearOldDungeon();
-		Generate();
-	}
-
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (generateOnLoad) {
 			ClearOldDungeon();
 			Generate();
 		}

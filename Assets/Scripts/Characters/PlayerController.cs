@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     // Public required objects
     public GameObject melee_hitbox;
     public GameObject ranged_hitbox;
+	public GameObject init_spawn_point;
 
     // Public non editor objects
     [HideInInspector]
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+		rb = GetComponent<Rigidbody2D>();
         velocity = rb.velocity;
 
         //ignore all collisions between players
