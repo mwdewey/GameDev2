@@ -7,7 +7,7 @@ public class ObjectLifetime : MonoBehaviour {
 	 * after the specified number of milliseconds instead. 
 	 * */
 
-	public int die_after_seconds = 1;
+	public float die_after_seconds = 1;
 	public int die_after_frames = 1;
 	float start_time = 0;
 	int start_frame = 0;

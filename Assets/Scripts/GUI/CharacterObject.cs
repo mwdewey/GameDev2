@@ -11,7 +11,7 @@ public class CharacterObject : MonoBehaviour
 
     public String name;
     public String description;
-    public Sprite portrait;
+    public RuntimeAnimatorController portrait;
 
 	// Use this for initialization
 	void Start ()

@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour {
             rangeAttack();
         }
 
+        if (PID.Equals("1")) print(rb.velocity);
 
 
         //debugger();
@@ -107,7 +108,7 @@ public class PlayerController : MonoBehaviour {
         rb.velocity = velocity;
 
         // only change angle if moving
-        if (velocity.magnitude > 0.1)
+        if (velocity.magnitude > 0.5)
         {
             float angle = Mathf.Atan2(velocity.x, velocity.y) * Mathf.Rad2Deg;
             if (angle >= -45 && angle <= 45)   anim.SetInteger("DirectionState", 2); // up
@@ -174,7 +175,8 @@ public class PlayerController : MonoBehaviour {
             case 3: direction.Set(0, -1); angle = Quaternion.Euler(0, 0, 90); break; // Down
         }
 
-        Instantiate(melee_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
+        GameObject melee = (GameObject) Instantiate(melee_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
+        melee.transform.parent = gameObject.transform;
 
         // preform animation
         anim.SetTrigger("Melee");
