@@ -5,15 +5,24 @@ using System.Linq;
 
 public class PlayerController : MonoBehaviour {
 
+    // Configurable options
     public string PID; // Joystick Number of a player
-
-	private bool awake = true;
-    
-    public float speed = 0.0f;
-    public Vector2 velocity;
-    private Rigidbody2D rb;
-    int MAX_VELOCITY = 5;
+    public float MELEE_DAMAGE = 20;
+    public float PROJECTILE_SPEED = 12;
+    public float PLAYER_SPEED = 0.0f;
     public bool useKeyboard;
+
+    // Public required objects
+    public GameObject melee_hitbox;
+    public GameObject ranged_hitbox;
+
+    // Public non editor objects
+    [HideInInspector]
+    public bool unconscious;
+
+    private bool awake = true;
+    private Vector2 velocity;
+    private Rigidbody2D rb;
 
     private Knockback playerKnockback;
     private SpriteRenderer ring;
@@ -28,12 +37,10 @@ public class PlayerController : MonoBehaviour {
         List<GameObject> all_players = GameObject.FindGameObjectsWithTag("Player").ToList();
         for (int i = 0; i < all_players.Count; i++)
         {
-            print(all_players[i].name);
             for (int j = 0; j < all_players.Count; j++)
             {
                 if (all_players[i] != all_players[j])
                 {
-                    print("Canceling collisions between " + all_players[i] + " and " + all_players[j]);
                     Physics2D.IgnoreCollision(all_players[i].GetComponent<Collider2D>(), all_players[j].GetComponent<Collider2D>());
                 }
             }
@@ -43,33 +50,58 @@ public class PlayerController : MonoBehaviour {
         ring = transform.Find("Ring").gameObject.GetComponent<SpriteRenderer>();
         switch (PID)
         {
-            case "1": ring.color = Color.red; break;
-            case "2": ring.color = Color.red; break;
-            case "3": ring.color = Color.red; break;
-            case "4": ring.color = Color.red; break;
+            case "1": ring.color = new Color32(244, 67, 54, 255); break;
+            case "2": ring.color = new Color32(33, 150, 243, 255); break;
+            case "3": ring.color = new Color32(76, 175, 80, 255); break;
+            case "4": ring.color = new Color32(255, 235, 59, 255); break;
         }
 
         anim = GetComponent<Animator>();
+        anim.SetFloat("rangeSpeed", 3);
+        anim.SetFloat("meleeSpeed", 3);
         playerKnockback = null;
         
 
     }
 
 	void Update () {
-        debugger();
+
+        // detect melee
+        if(Input.GetButtonDown("Joy" + PID + "_MeleeAttack"))
+        {
+            meleeAttack();
+        }
+
+        // detect range attack
+        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack"))
+        {
+            rangeAttack();
+        }
+
+
+
+        //debugger();
 	}
 
     void FixedUpdate()
     {
         if (!useKeyboard)
         {
-            velocity.x = Input.GetAxis("Joy" + PID + "_LeftStickHorizontal") * speed;
-            velocity.y = Input.GetAxis("Joy" + PID + "_LeftStickVertical") * speed;
+            velocity.x = Input.GetAxis("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED;
+            velocity.y = Input.GetAxis("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED;
         }
         else
         {
-            velocity.x = Input.GetAxis("kb_horizontal") * speed;
-            velocity.y = Input.GetAxis("kb_vertical") * speed;
+            velocity.x = Input.GetAxis("kb_horizontal") * PLAYER_SPEED;
+            velocity.y = Input.GetAxis("kb_vertical") * PLAYER_SPEED;
+        }
+
+        // add knockback velocity
+        if (playerKnockback != null)
+        {
+            playerKnockback.timeRemaining -= Time.deltaTime;
+            if (playerKnockback.timeRemaining < 0) playerKnockback.isActing = false;
+            if (playerKnockback.isActing) velocity += playerKnockback.force;
         }
 
         rb.velocity = velocity;
@@ -78,10 +110,10 @@ public class PlayerController : MonoBehaviour {
         if (velocity.magnitude > 0.1)
         {
             float angle = Mathf.Atan2(velocity.x, velocity.y) * Mathf.Rad2Deg;
-            if (angle >= -45 && angle <= 45) anim.SetInteger("DirectionState", 2); // up
+            if (angle >= -45 && angle <= 45)   anim.SetInteger("DirectionState", 2); // up
             if (angle <= -135 || angle >= 135) anim.SetInteger("DirectionState", 3); // down
-            if (angle < -45 && angle > -135) anim.SetInteger("DirectionState", 0); // left
-            if (angle > 45 && angle < 135) anim.SetInteger("DirectionState", 1); // right
+            if (angle < -45 && angle > -135)   anim.SetInteger("DirectionState", 0); // left
+            if (angle > 45 && angle < 135)     anim.SetInteger("DirectionState", 1); // right
         }
     }
 
@@ -101,7 +133,51 @@ public class PlayerController : MonoBehaviour {
 
     public void setKnockBack(Knockback knockback)
     {
-        this.playerKnockback = knockback;
+        playerKnockback = knockback;
+    }
+
+    private void rangeAttack()
+    {
+        // get position to fire range attack
+        int directionState = anim.GetInteger("DirectionState");
+        Vector2 direction = new Vector2(0,0);
+        Quaternion angle = Quaternion.Euler(0,0,0);
+
+        switch (directionState)
+        {
+            case 0: direction.Set(-1, 0); angle = Quaternion.Euler(0, 0, 90); break; // Left
+            case 1: direction.Set(1, 0); angle = Quaternion.Euler(0, 0, -90);  break; // Right
+            case 2: direction.Set(0, 1); angle = Quaternion.Euler(0, 0, 0);  break; // Up
+            case 3: direction.Set(0, -1); angle = Quaternion.Euler(0, 0, 180);  break; // Down
+        }
+
+        GameObject projectile = (GameObject)Instantiate(ranged_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
+        projectile.GetComponent<Rigidbody2D>().velocity = direction * PROJECTILE_SPEED;
+        projectile.GetComponent<CauseKnockback>().my_parent_name = name; //tell it who made it
+
+        // preform animation
+        anim.SetTrigger("Range");
+    }
+
+    private void meleeAttack()
+    {
+        // get position to fire range attack
+        int directionState = anim.GetInteger("DirectionState");
+        Vector2 direction = new Vector2(0, 0);
+        Quaternion angle = Quaternion.Euler(0, 0, 0);
+
+        switch (directionState)
+        {
+            case 0: direction.Set(-1, 0); break; // Left
+            case 1: direction.Set(1, 0); break; // Right
+            case 2: direction.Set(0, 1); angle = Quaternion.Euler(0, 0, 90);  break; // Up
+            case 3: direction.Set(0, -1); angle = Quaternion.Euler(0, 0, 90); break; // Down
+        }
+
+        Instantiate(melee_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
+
+        // preform animation
+        anim.SetTrigger("Melee");
     }
 
     void debugger()

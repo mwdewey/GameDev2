@@ -22,7 +22,7 @@ public class Consciousness : MonoBehaviour {
 	void Update () {
 		if (healthBar.health <= 0) {
 			//trigger knock down animation
-			GetComponent<PlayerMovementTest>().unconscious = true;
+			GetComponent<PlayerController>().unconscious = true;
 			GetComponent<Attacks>().unconscious = true;
 			StartCoroutine(GetUp());
 		}
@@ -35,7 +35,7 @@ public class Consciousness : MonoBehaviour {
 
 	IEnumerator GetUp(){
 		yield return new WaitForSeconds (2);
-		GetComponent<PlayerMovementTest> ().unconscious = false;
+		GetComponent<PlayerController> ().unconscious = false;
 		GetComponent<Attacks> ().unconscious = false;
 		healthBar.health = initial_health;
 	}
