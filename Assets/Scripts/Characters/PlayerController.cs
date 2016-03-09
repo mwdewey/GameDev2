@@ -80,7 +80,11 @@ public class PlayerController : MonoBehaviour {
             rangeAttack();
         }
 
-        if (PID.Equals("1")) print(rb.velocity);
+		if (Input.GetButtonDown ("Joy" + PID + "_UltimateAttack")) {
+			GetComponent<Score_Counter> ().progress_portal ();
+		}
+
+        //if (PID.Equals("1")) print(rb.velocity);
 
 
         //debugger();

@@ -40,6 +40,12 @@ public class Score_Counter : MonoBehaviour {
 			other.GetComponent<Rigidbody2D> ().velocity = Vector3.zero;
 		}
 	}
+
+	public void progress_portal(){
+		if (in_portal) {
+			portal_progress += 0.5f;
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,9 +56,6 @@ public class Score_Counter : MonoBehaviour {
 			portal_progress -= Time.deltaTime;
 			if (portal_progress < 0) {
 				portal_progress = 0;
-			}
-            if (Input.GetKeyDown(KeyCode.Return)) {
-				portal_progress += 0.5f;
 			}
 			pp_sprite.color = new Color (pp_color.r, pp_color.g, pp_color.b, portal_progress / 5f);
 			if (portal_progress >= 5) {

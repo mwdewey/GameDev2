@@ -36,6 +36,7 @@ public class Minimap : MonoBehaviour {
         icons.Add(P2_icon);
         icons.Add(P3_icon);
         icons.Add(P4_icon);
+		players = new List<GameObject>();
 
        
 
@@ -52,7 +53,6 @@ public class Minimap : MonoBehaviour {
 		if (P1_object == null)
 			tryFillPlayers ();
 		else if (players == null) {
-			players = new List<GameObject>();
 			players.Add(P1_object);
 			players.Add(P2_object);
 			players.Add(P3_object);
@@ -90,6 +90,10 @@ public class Minimap : MonoBehaviour {
     void updateMiniMap()
     {
         GameObject targ = main_player;
+
+		if (players.Count == 0) {
+			return;
+		}
 
         for (var i = 0; i < players.Count; i++ )
         {

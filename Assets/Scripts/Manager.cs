@@ -18,8 +18,14 @@ public class Manager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (portal == null) {
+			time_remaining = 60f;
+			coins_remaining = GameObject.FindGameObjectsWithTag ("Coin").Length;
+			portal = GameObject.FindGameObjectWithTag ("Portal");
+		}
 		if (!portal_active) {
 			time_remaining -= Time.deltaTime;
+			Debug.Log (time_remaining);
 			if (time_remaining <= 0 || coins_remaining <= 0) {
 				portal_active = true;
 				Color portal_color = portal.GetComponent<SpriteRenderer> ().color;
