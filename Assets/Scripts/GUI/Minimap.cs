@@ -37,25 +37,54 @@ public class Minimap : MonoBehaviour {
         icons.Add(P3_icon);
         icons.Add(P4_icon);
 
-        players = new List<GameObject>();
-        players.Add(P1_object);
-        players.Add(P2_object);
-        players.Add(P3_object);
-        players.Add(P4_object);
+       
 
 
         map_width = GetComponent<RectTransform>().rect.width;
         map_height = GetComponent<RectTransform>().rect.height;
 
+		tryFillPlayers ();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (P1_object == null)
+			tryFillPlayers ();
+		else if (players == null) {
+			players = new List<GameObject>();
+			players.Add(P1_object);
+			players.Add(P2_object);
+			players.Add(P3_object);
+			players.Add(P4_object);
+		}
 
         updateMiniMap();
 
 	}
+	
+	void tryFillPlayers(){
+		P1_object = GameObject.Find ("player_test_1(Clone)");
+		P2_object = GameObject.Find ("player_test_2(Clone)");
+		P3_object = GameObject.Find ("player_test_3(Clone)");
+		P4_object = GameObject.Find ("player_test_4(Clone)");
 
+		string pid = transform.parent.name;
+		switch (pid) {
+		case "Player 1 UI":
+			main_player = GameObject.Find ("player_test_1(Clone)");
+			break;
+		case "Player 2 UI":
+			main_player = GameObject.Find ("player_test_2(Clone)");
+			break;
+		case "Player 3 UI":
+			main_player = GameObject.Find ("player_test_3(Clone)");
+			break;
+		case "Player 4 UI":
+			main_player = GameObject.Find ("player_test_4(Clone)");
+			break;
+		}
+	}
 
 
     void updateMiniMap()

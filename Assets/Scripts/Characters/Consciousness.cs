@@ -8,13 +8,14 @@ public class Consciousness : MonoBehaviour {
 	*/
 
 	//int CONSCIOUSNESS = 50; //this is the test constant. Change this to affect the staring consciousness value.
-	public GameObject myHealthBar;
+	private GameObject myHealthBar;
 	private Healthbar healthBar;
 	private float initial_health;
 
 	// Use this for initialization
 	void Start () {
-		healthBar = myHealthBar.GetComponent<Healthbar> ();
+		string pid = GetComponent<PlayerController> ().PID;
+		healthBar = (Healthbar) GameObject.Find ("Player " + pid + " UI").transform.FindChild ("Healthbar").gameObject.GetComponent<Healthbar>();
 		initial_health = healthBar.health;
 	}
 	
