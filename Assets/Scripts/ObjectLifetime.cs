@@ -7,7 +7,7 @@ public class ObjectLifetime : MonoBehaviour {
 	 * after the specified number of milliseconds instead. 
 	 * */
 
-	public int die_after_millis = 100;
+	public float die_after_seconds = 1;
 	public int die_after_frames = 1;
 	float start_time = 0;
 	int start_frame = 0;
@@ -15,7 +15,7 @@ public class ObjectLifetime : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		start_time = Time.time * 1000;
+		start_time = Time.time;
 		start_frame = Time.frameCount;
 	}
 	
@@ -27,7 +27,7 @@ public class ObjectLifetime : MonoBehaviour {
 			} 
 		}
 		else {
-			if (Time.time * 1000 >= start_time+die_after_millis) {
+			if (Time.time >= start_time+ die_after_seconds) {
 				Destroy (gameObject);
 			}
 		

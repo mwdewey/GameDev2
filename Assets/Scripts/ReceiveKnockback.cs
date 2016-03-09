@@ -7,11 +7,11 @@ public class ReceiveKnockback : MonoBehaviour {
 	*/
 
 
-    private PlayerMovementTest playerMoveScript;
+    private PlayerController playerMoveScript;
 
 	public void Start(){
 
-        playerMoveScript = GetComponent<PlayerMovementTest>();
+        playerMoveScript = GetComponent<PlayerController>();
 
 	}
 

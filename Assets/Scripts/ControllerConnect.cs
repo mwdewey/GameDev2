@@ -191,12 +191,13 @@ public class ControllerConnect : MonoBehaviour
 
             Image portraitImg = pb.transform.Find("Image").gameObject.GetComponent<Image>();
             Text charDescription = db.transform.Find("text").gameObject.GetComponent<Text>();
+            Animator portraitAnim = portraitImg.GetComponent<Animator>();
 
             if (controllerCount > i)
             {
                 pbImage.color = playerColors[i];
                 dbImage.color = playerColors[i];
-                portraitImg.sprite = charList[playerSelections[i]].portrait;
+                portraitAnim.runtimeAnimatorController = charList[playerSelections[i]].portrait;
                 charDescription.text = charList[playerSelections[i]].description;
             }
 
@@ -365,7 +366,7 @@ public class ControllerConnect : MonoBehaviour
             PlayerLock playerLock = cbIconList[i];
             Vector3 iconScale = playerLock.LockBackground.transform.localScale;
 
-            if (Input.GetKey("joystick " + (0 + 1) + " button 0") || Input.GetKey(KeyCode.L))
+            if (Input.GetKey("joystick " + (i + 1) + " button 0") || Input.GetKey(KeyCode.L))
             {
                 if (!playerLock.IsLocked)
                 {
