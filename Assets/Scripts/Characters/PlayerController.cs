@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void Update () {
+		if (unconscious) return;
 
         // detect melee
         if(Input.GetButtonDown("Joy" + PID + "_MeleeAttack"))
@@ -87,15 +88,19 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (!useKeyboard)
-        {
-            velocity.x = Input.GetAxis("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED;
-            velocity.y = Input.GetAxis("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED;
-        }
+		velocity.Set (0, 0);
+		if (!useKeyboard) {
+			if (!unconscious) {
+				velocity.x = Input.GetAxis ("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED;
+				velocity.y = Input.GetAxis ("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED;
+			}
+		}
         else
         {
-            velocity.x = Input.GetAxis("kb_horizontal") * PLAYER_SPEED;
-            velocity.y = Input.GetAxis("kb_vertical") * PLAYER_SPEED;
+			if (!unconscious) {
+				velocity.x = Input.GetAxis ("kb_horizontal") * PLAYER_SPEED;
+				velocity.y = Input.GetAxis ("kb_vertical") * PLAYER_SPEED;
+			}
         }
 
         // add knockback velocity
