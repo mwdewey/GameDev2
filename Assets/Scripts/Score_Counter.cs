@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Score_Counter : MonoBehaviour {
 
-	int score;
+	public int score;
 	Transform t;
 	public bool in_portal;
 	float portal_progress;
@@ -25,6 +26,8 @@ public class Score_Counter : MonoBehaviour {
 
 			if (Vector3.Distance(t.position, other.transform.position) <= 0.5 && other.GetComponent<Renderer>().enabled){
                 score += 1;
+				string pid = GetComponent<PlayerController> ().PID;
+				GameObject.Find ("Player " + pid + " UI").transform.Find("Coin Text").gameObject.GetComponent<Text>().text = score.ToString();
                 other.GetComponent<Renderer>().enabled = false;
                 Destroy(other);
                 Manager.coins_remaining -= 1;
