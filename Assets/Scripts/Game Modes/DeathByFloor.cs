@@ -22,11 +22,9 @@ public class DeathByFloor : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.gameObject.tag == "Player") {
 			//You can do whatever you want to the player who just collided by using c.gameObject.whatever. 
-			original_sprite = c.gameObject.GetComponent<SpriteRenderer>().sprite;
-			  //save sprite info so it can be restored later
-			c.gameObject.GetComponent<SpriteRenderer> ().sprite = dead;//switch sprite
-			c.gameObject.GetComponent<PlayerMovementTest> ().enabled = false;//stop movement
-			c.gameObject.GetComponent<Attacks> ().enabled = false;//stop attacks
+			//death time!
+			c.gameObject.GetComponent<Animator>().SetInteger("PlayerState",1);
+			c.gameObject.GetComponent<PlayerController> ().unconscious = true;//stop movement
 			c.gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			  //make sure they don't just keep moving on the velocity they already had
 			StartCoroutine (RespawnCountdown( c.gameObject, original_sprite )); 
@@ -50,9 +48,8 @@ public class DeathByFloor : MonoBehaviour {
 		}
 
 		if (all_respawn_pts.Count>0) g.transform.position = new Vector3(closest_spawn_pt.transform.position.x, closest_spawn_pt.transform.position.y+.6f, closest_spawn_pt.transform.position.z);
-		g.GetComponent<PlayerMovementTest> ().enabled = true;
-		g.GetComponent<Attacks> ().enabled = true;
-		g.GetComponent<SpriteRenderer> ().sprite = original;
+		g.GetComponent<PlayerController> ().unconscious = false;
+		g.GetComponent<Animator>().SetInteger("PlayerState",2);
 		//  ^put stuff back the way it was
 
 	}

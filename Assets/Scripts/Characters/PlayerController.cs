@@ -89,6 +89,9 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate()
     {
 		velocity.Set (0, 0);
+
+		if (anim.GetInteger("PlayerState")==1) return;
+
 		if (!useKeyboard) {
 			if (!unconscious) {
 				velocity.x = Input.GetAxis ("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED;
@@ -141,6 +144,7 @@ public class PlayerController : MonoBehaviour {
     public void setKnockBack(Knockback knockback)
     {
         playerKnockback = knockback;
+		if (anim.GetInteger ("PlayerState") == 1) playerKnockback=null;
     }
 
     private void rangeAttack()
