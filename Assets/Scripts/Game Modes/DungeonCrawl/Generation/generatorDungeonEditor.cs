@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(generateDungeon))] 	
@@ -17,5 +18,9 @@ public class generateDungeonEditor : Editor {
 			realscript.ClearOldDungeon(true);
 			realscript.Generate();
 		}
+		if(GUILayout.Button("Clear for Play")) {
+			realscript.ClearOldDungeon(true);
+		}
 	}
 }
+#endif
