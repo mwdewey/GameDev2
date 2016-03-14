@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour {
         menuItems.Add(transform.Find("Dungeon").gameObject);
         menuItems.Add(transform.Find("Arena").gameObject);
         menuItems.Add(transform.Find("Oddball").gameObject);
-        menuItems.Add(transform.Find("Barracks").gameObject);
+        menuItems.Add(transform.Find("Network").gameObject);
         menuItems.Add(transform.Find("Credits").gameObject);
 
         selectIcon = menuItems[0].transform.Find("Image").gameObject;

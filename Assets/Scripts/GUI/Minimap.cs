@@ -38,9 +38,6 @@ public class Minimap : MonoBehaviour {
         icons.Add(P4_icon);
 		players = new List<GameObject>();
 
-       
-
-
         map_width = GetComponent<RectTransform>().rect.width;
         map_height = GetComponent<RectTransform>().rect.height;
 

@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class PlayerController : MonoBehaviour {
+public class N_PlayerController : NetworkBehaviour
+{
 
     // Configurable options
+    [HideInInspector]
     public string PID; // Joystick Number of a player
     public float MELEE_DAMAGE = 20;
     public float PROJECTILE_SPEED = 12;
@@ -66,6 +69,8 @@ public class PlayerController : MonoBehaviour {
     }
 
 	void Update () {
+
+        if (!isLocalPlayer) return;
 		if (unconscious) return;
 
         // detect melee
@@ -92,6 +97,8 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (!isLocalPlayer) return;
+
 		velocity.Set (0, 0);
 
 		if (anim.GetInteger("PlayerState")==1) return;
