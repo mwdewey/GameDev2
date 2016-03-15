@@ -134,8 +134,6 @@ public class ControllerConnect : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
-	    detectControllers();
         moveSelections();
 
         if (Input.GetKeyDown(KeyCode.S)) test1();
@@ -207,83 +205,6 @@ public class ControllerConnect : MonoBehaviour
             }
 
         }
-    }
-
-
-    void detectControllers()
-    {
-
-        if (Input.anyKeyDown)
-        {
-            foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
-            {
-                if (Input.GetKeyDown(kcode))
-                {
-                    String buttonString = kcode.ToString();
-
-                    Match match = joystickRegex.Match(buttonString);
-
-                    // if a key is pressed on a controller/joystick
-                    if (match.Success)
-                    {
-                        int controllerId = Int32.Parse(match.Groups[1].Value);
-                        int controllerInput = Int32.Parse(match.Groups[2].Value);
-
-                        controllerDetected(controllerId, controllerInput);
-                        Debug.logger.Log(controllerId + " " + controllerInput);
-                    }
-
-                    else Debug.logger.Log(buttonString);
-
-                }
-            }
-        }
-
-
-    }
-
-
-    void controllerDetected(int controllerId,int buttonId)
-    {
-        // 0 is a, 1 is b for Xbox controller
-        switch (buttonId)
-        {
-            case 0 : addController(controllerId); break;
-            case 1 : removeController(controllerId); break;
-        }
-
-
-    }
-
-    void addController(int controllerId)
-    {
-
-        // only add new controller if it doesn't exist and player count is < MAX_PLAYERS
-        if (!controllerIds.Contains(controllerId) && controllerIds.Count < MAX_PLAYERS)
-        {
-            controllerIds.Add(controllerId);
-            Debug.logger.Log("Player " + getPlayerIndex(controllerId) + " added");
-            updateUI();
-        }
-
-
-    }
-
-    void removeController(int controllerId)
-    {
-        // only remove if it exists
-        if (controllerIds.Contains(controllerId))
-        {
-            Debug.logger.Log("Player " + getPlayerIndex(controllerId) + " removed");
-            controllerIds.Remove(controllerId);
-            updateUI();
-        }
-
-    }
-
-    int getPlayerIndex(int controllerId)
-    {
-        return controllerIds.IndexOf(controllerId);
     }
 
     void updateUI()

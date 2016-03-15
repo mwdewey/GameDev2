@@ -35,7 +35,6 @@ public class Credits : MonoBehaviour {
 
     public void ButtonClicked()
     {
-        Debug.logger.Log("Credits started");
         gameObject.SetActive(true);
         mainMenu.SetActive(false);
     }

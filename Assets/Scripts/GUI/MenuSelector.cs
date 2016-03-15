@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour {
+public class MenuSelector : MonoBehaviour {
 
-    private List<GameObject> menuItems;
-    private GameObject selectIcon;
+    public List<GameObject> menuItems;
+    public GameObject selectIcon;
 
     private int currentSelected;
     private readonly float TIME_ACTION = 0.2f;
@@ -19,15 +19,6 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-        menuItems = new List<GameObject>();
-        menuItems.Add(transform.Find("Dungeon").gameObject);
-        menuItems.Add(transform.Find("Arena").gameObject);
-        menuItems.Add(transform.Find("Oddball").gameObject);
-        menuItems.Add(transform.Find("Network").gameObject);
-        menuItems.Add(transform.Find("Credits").gameObject);
-
-        selectIcon = menuItems[0].transform.Find("Image").gameObject;
 
         currentSelected = 0;
         timeSinceAction = 0;
@@ -59,14 +50,14 @@ public class MainMenu : MonoBehaviour {
             int tempSelected = currentSelected;
 
             // move down
-            if (Input.GetAxis("Vertical") < -0.5f || Input.GetKeyDown(KeyCode.S))
+            if (Input.GetAxis("Vertical") < -0.5f || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 if (currentSelected == (menuItems.Count - 1)) currentSelected = 0;
                 else currentSelected++;
             }
 
             // move up
-            else if (Input.GetAxis("Vertical") > 0.5f || Input.GetKeyDown(KeyCode.W))
+            else if (Input.GetAxis("Vertical") > 0.5f || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if (currentSelected == 0) currentSelected = (menuItems.Count - 1);
                 else currentSelected--;
