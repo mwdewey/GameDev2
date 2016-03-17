@@ -89,6 +89,16 @@ public class MenuSelector : MonoBehaviour {
 
     }
 
+    void checkMouse()
+    {
+        if (Input.mousePresent)
+        {
+
+
+
+        }
+    }
+
     void updateUI()
     {
         GameObject menuItem = menuItems[currentSelected];
@@ -102,7 +112,7 @@ public class MenuSelector : MonoBehaviour {
 
     void animate()
     {
-        if (timeSinceAction < TIME_ACTION && Time.fixedTime > 1)
+        if (timeSinceAction < TIME_ACTION && Time.time > 1)
         {
             float scale = (timeSinceAction / TIME_ACTION)/2 + 0.5f;
             selectIcon.transform.localScale = new Vector3(scale, scale, 1);
