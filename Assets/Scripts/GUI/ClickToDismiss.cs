@@ -1,16 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public class Credits : MonoBehaviour {
+public class ClickToDismiss : MonoBehaviour
+{
 
-    public GameObject mainMenu;
+    public GameObject prevMenu;
     private bool isBackPressed;
     private Curtain curtain;
 
 	// Use this for initialization
 	void Start () {
         isBackPressed = false;
-        curtain = transform.Find("Curtain").gameObject.GetComponent<Curtain>();
+
+        try
+        {
+            curtain = transform.Find("Curtain").gameObject.GetComponent<Curtain>();
+        }
+        catch(Exception e){}
 	}
 	
 	// Update is called once per frame
@@ -18,15 +25,16 @@ public class Credits : MonoBehaviour {
 	    if (Input.anyKeyDown && !isBackPressed)
 	    {
 	        isBackPressed = true;
-	        curtain.close();
+            if (curtain != null) curtain.close();
 	    }
 
 	    if (isBackPressed && !curtain.isRunning)
 	    {
 	        isBackPressed = false;
+            prevMenu.SetActive(true);
+            print(prevMenu.name);
 	        gameObject.SetActive(false);
-            mainMenu.SetActive(true);
-            curtain.instantOpen();
+            if (curtain != null) curtain.instantOpen();
 	    }
 
 	    
@@ -36,6 +44,6 @@ public class Credits : MonoBehaviour {
     public void ButtonClicked()
     {
         gameObject.SetActive(true);
-        mainMenu.SetActive(false);
+        prevMenu.SetActive(false);
     }
 }

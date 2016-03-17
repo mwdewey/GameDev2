@@ -11,7 +11,7 @@ public class N_InfoMenu : MonoBehaviour {
     public GameObject textObject;
     private Text textArea;
 
-    string testStatus = "Testing network connection capabilities.";
+    string testStatus = "Test Running";
     string testMessage = "Test in progress";
     string shouldEnableNatMessage = "";
     bool doneTesting = false;
@@ -19,6 +19,7 @@ public class N_InfoMenu : MonoBehaviour {
     int serverPort = 9999;
     bool useNat;
     float timer = 0;
+    string publicIp = "";
 
     ConnectionTesterStatus connectionTestResult = ConnectionTesterStatus.Undetermined;
 
@@ -26,6 +27,13 @@ public class N_InfoMenu : MonoBehaviour {
 	void Start () {
         textArea = textObject.GetComponent<Text>();
         netp = Network.player;
+
+        string url = "https://api.ipify.org/";
+        WWW www = new WWW(url);
+
+        while (!www.isDone) ;
+        publicIp = www.text;
+        
 	}
 	
 	// Update is called once per frame
@@ -42,18 +50,18 @@ public class N_InfoMenu : MonoBehaviour {
     void UpdateUI()
     {
         string displayText = "";
-        displayText += "External IP Address: " + netp.externalIP + "\n";
+        displayText += "External IP Address: " + publicIp + "\n";
         displayText += "External Port: " + netp.externalPort + "\n";
         displayText += "Internal IP Address: " + netp.ipAddress + "\n";
         displayText += "Internal Port: " + netp.port + "\n";
         displayText += "\n";
         displayText += "Connection Status: " + testStatus + "\n";
-        displayText += "Connection Test: " + testMessage + "\n";
-        displayText += "Should Enable Test: " + shouldEnableNatMessage + "\n";
-        displayText += "IPTest: " + "\n";
+        displayText += "NAT: " + testMessage + "\n";
+        displayText += "Enable NAT Punch: " + shouldEnableNatMessage + "\n";
 
         textArea.text = displayText;
     }
+
 
     void TestConnection()
     {
@@ -63,12 +71,12 @@ public class N_InfoMenu : MonoBehaviour {
         switch (connectionTestResult)
         {
             case ConnectionTesterStatus.Error:
-                testMessage = "Problem determining NAT capabilities";
+                testMessage = "Problem";
                 doneTesting = true;
                 break;
 
             case ConnectionTesterStatus.Undetermined:
-                testMessage = "Undetermined NAT capabilities";
+                testMessage = "Undetermined";
                 doneTesting = false;
                 break;
 
