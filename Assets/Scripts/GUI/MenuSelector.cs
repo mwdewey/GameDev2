@@ -7,12 +7,11 @@ public class MenuSelector : MonoBehaviour {
 
     public List<GameObject> menuItems;
     public GameObject selectIcon;
+    public bool useCurtain = true;
 
     private int currentSelected;
     private readonly float TIME_ACTION = 0.2f;
-
     private float timeSinceAction;
-
     private bool isMove;
     private Button.ButtonClickedEvent eventToFire;
     private Curtain curtain;
@@ -76,14 +75,21 @@ public class MenuSelector : MonoBehaviour {
         {
             isMove = true;
             eventToFire = selectIcon.transform.parent.gameObject.GetComponent<Button>().onClick;
-            curtain.close();
+            if (useCurtain) curtain.close();
+            timeSinceAction = 0;
         }
 
         if (isMove && !curtain.isRunning)
         {
             isMove = false;
             eventToFire.Invoke();
-            curtain.instantOpen();
+            if (useCurtain) curtain.instantOpen();
+        }
+
+        if (isMove && !useCurtain)
+        {
+            isMove = false;
+            eventToFire.Invoke();
         }
 
 
