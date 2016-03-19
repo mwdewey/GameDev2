@@ -125,7 +125,7 @@ public class MenuSelector : MonoBehaviour {
 
             scale = (timeSinceAction / TIME_ACTION);
 
-            if (scale < 0.5f)
+            /*if (scale < 0.5f)
             {
                 selectIcon.transform.parent.Find("Text").localPosition = new Vector3(-scale * 20, 0, 0);
             }
@@ -133,7 +133,7 @@ public class MenuSelector : MonoBehaviour {
             else
             {
                 selectIcon.transform.parent.Find("Text").localPosition = new Vector3(-(1-scale) * 20, 0, 0);
-            }
+            }*/
 
         }
 
