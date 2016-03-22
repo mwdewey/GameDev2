@@ -75,9 +75,11 @@ public class N_Search : MonoBehaviour
         {
             Debug.Log("Join match succeeded");
             Utility.SetAccessTokenForNetwork(matchJoin.networkId, new NetworkAccessToken(matchJoin.accessTokenString));
-            NetworkClient myClient = new NetworkClient();
-            myClient.RegisterHandler(MsgType.Connect, OnConnected);
-            myClient.Connect(new MatchInfo(matchJoin));
+            NetworkManager.singleton.StartClient(new MatchInfo(matchJoin));
+
+            // update match info
+            GameObject m_info_obj = GameObject.FindGameObjectWithTag("Match Info");
+            m_info_obj.GetComponent<N_MatchInfo>().updateConnected(true);
         }
         else
         {
@@ -90,8 +92,14 @@ public class N_Search : MonoBehaviour
         Debug.Log("Connected!");
     }
 
+    public void OnError(NetworkMessage msg)
+    {
+        print("Network error: " + msg.reader.ReadString());
+    }
+
     public void buttonClicked(MatchDesc desc)
     {
         networkMatch.JoinMatch(desc.networkId, "", OnMatchJoined);
+
     }
 }

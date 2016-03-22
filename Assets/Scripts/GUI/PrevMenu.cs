@@ -24,7 +24,7 @@ public class PrevMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton1) && !isBackPressed)
+        if ((Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Backspace)) && !isBackPressed)
         {
             isBackPressed = true;
             if (curtain != null) curtain.close();

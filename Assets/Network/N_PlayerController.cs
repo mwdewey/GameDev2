@@ -9,7 +9,7 @@ public class N_PlayerController : NetworkBehaviour
 
     // Configurable options
     [HideInInspector]
-    public string PID; // Joystick Number of a player
+    public string PID = "1"; // Joystick Number of a player
     public float MELEE_DAMAGE = 20;
     public float PROJECTILE_SPEED = 12;
     public float PLAYER_SPEED = 0.0f;
@@ -32,10 +32,22 @@ public class N_PlayerController : NetworkBehaviour
     private SpriteRenderer ring;
     private Animator anim;
 
+    // adding velocity since 2d rigidbody is not syncing
+    private Vector2 velocity_local;
+    private Vector2 prev_position_local;
+
     void Start()
     {
 		rb = GetComponent<Rigidbody2D>();
         velocity = rb.velocity;
+        velocity_local = new Vector2(0, 0);
+        prev_position_local = transform.position;
+
+        // set PID to the count of players in scene
+        PID = GameObject.FindGameObjectsWithTag("Player").Length.ToString();
+
+        // if local player, set camera to focus
+        if (isLocalPlayer) gameObject.AddComponent<N_CameraController>();
 
         //ignore all collisions between players
         List<GameObject> all_players = GameObject.FindGameObjectsWithTag("Player").ToList();
@@ -73,14 +85,15 @@ public class N_PlayerController : NetworkBehaviour
         if (!isLocalPlayer) return;
 		if (unconscious) return;
 
+        
         // detect melee
-        if(Input.GetButtonDown("Joy" + PID + "_MeleeAttack"))
+        if(Input.GetButtonDown("Joy" + PID + "_MeleeAttack") || Input.GetKeyDown(KeyCode.J))
         {
             meleeAttack();
         }
 
         // detect range attack
-        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack"))
+        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") || Input.GetKeyDown(KeyCode.K))
         {
             rangeAttack();
         }
@@ -89,48 +102,59 @@ public class N_PlayerController : NetworkBehaviour
 			GetComponent<Score_Counter> ().progress_portal ();
 		}
 
-        //if (PID.Equals("1")) print(rb.velocity);
-
-
         //debugger();
 	}
 
     void FixedUpdate()
     {
-        if (!isLocalPlayer) return;
 
-		velocity.Set (0, 0);
+        velocity_local.x = (transform.position.x - prev_position_local.x) / Time.fixedDeltaTime;
+        velocity_local.y = (transform.position.y - prev_position_local.y) / Time.fixedDeltaTime;
 
-		if (anim.GetInteger("PlayerState")==1) return;
+        prev_position_local.Set(transform.position.x, transform.position.y);
 
-		if (!useKeyboard) {
-			if (!unconscious) {
-				velocity.x = Input.GetAxis ("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED;
-				velocity.y = Input.GetAxis ("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED;
-			}
-		}
-        else
+        if (isLocalPlayer)
         {
-			if (!unconscious) {
-				velocity.x = Input.GetAxis ("kb_horizontal") * PLAYER_SPEED;
-				velocity.y = Input.GetAxis ("kb_vertical") * PLAYER_SPEED;
-			}
+
+            velocity.Set(0, 0);
+
+            if (anim.GetInteger("PlayerState") == 1) return;
+
+            if (!useKeyboard)
+            {
+                if (!unconscious)
+                {
+                    velocity.x = Input.GetAxis("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED;
+                    velocity.y = Input.GetAxis("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED;
+                }
+            }
+            else
+            {
+                if (!unconscious)
+                {
+                    velocity.x = Input.GetAxis("kb_horizontal") * PLAYER_SPEED;
+                    velocity.y = Input.GetAxis("kb_vertical") * PLAYER_SPEED;
+                }
+            }
+
+            // add knockback velocity
+            if (playerKnockback != null)
+            {
+                playerKnockback.timeRemaining -= Time.fixedDeltaTime;
+                if (playerKnockback.timeRemaining < 0) playerKnockback.isActing = false;
+                if (playerKnockback.isActing) velocity += playerKnockback.force;
+            }
+
+            rb.velocity = velocity;
+
         }
 
-        // add knockback velocity
-        if (playerKnockback != null)
-        {
-            playerKnockback.timeRemaining -= Time.fixedDeltaTime;
-            if (playerKnockback.timeRemaining < 0) playerKnockback.isActing = false;
-            if (playerKnockback.isActing) velocity += playerKnockback.force;
-        }
-
-        rb.velocity = velocity;
+        if (!isLocalPlayer) print(velocity.magnitude);
 
         // only change angle if moving
-        if (velocity.magnitude > 0.5)
+        if (velocity_local.magnitude > 0.5)
         {
-            float angle = Mathf.Atan2(velocity.x, velocity.y) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(velocity_local.x, velocity_local.y) * Mathf.Rad2Deg;
             if (angle >= -45 && angle <= 45)   anim.SetInteger("DirectionState", 2); // up
             if (angle <= -135 || angle >= 135) anim.SetInteger("DirectionState", 3); // down
             if (angle < -45 && angle > -135)   anim.SetInteger("DirectionState", 0); // left
@@ -196,11 +220,30 @@ public class N_PlayerController : NetworkBehaviour
             case 3: direction.Set(0, -1); angle = Quaternion.Euler(0, 0, 90); break; // Down
         }
 
-        GameObject melee = (GameObject) Instantiate(melee_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
-        melee.transform.parent = gameObject.transform;
+        // preforms melee attack network wide
+        Cmd_MeleeAttack(direction,angle);
 
         // preform animation
         anim.SetTrigger("Melee");
+    }
+
+    [Command]
+    void Cmd_MeleeAttack(Vector2 direction, Quaternion angle)
+    {
+        GameObject melee = (GameObject)Instantiate(melee_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
+        melee.transform.parent = gameObject.transform;
+
+        NetworkServer.Spawn(melee);
+
+        Destroy(melee, 3.0f);
+    }
+
+    [Command]
+    void Cmd_RangedAttack(GameObject ranged)
+    {
+        NetworkServer.Spawn(ranged);
+
+        Destroy(ranged, 2.0f);
     }
 
     void debugger()

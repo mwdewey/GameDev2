@@ -52,7 +52,14 @@ public class N_Create : MonoBehaviour
             successObject.SetActive(true);
             matchCreated = true;
             Utility.SetAccessTokenForNetwork(matchResponse.networkId, new NetworkAccessToken(matchResponse.accessTokenString));
-            NetworkServer.Listen(new MatchInfo(matchResponse), 9000);
+            NetworkManager.singleton.StartClient(new MatchInfo(matchResponse));
+
+
+            // update match info
+            GameObject m_info_obj = GameObject.FindGameObjectWithTag("Match Info");
+            m_info_obj.GetComponent<N_MatchInfo>().updateConnected(true);
+
+
         }
         else print("Match create error!");
     }
