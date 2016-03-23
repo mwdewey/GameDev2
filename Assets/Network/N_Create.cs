@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Types;
 using UnityEngine.Networking.Match;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class N_Create : MonoBehaviour
@@ -59,6 +60,8 @@ public class N_Create : MonoBehaviour
             GameObject m_info_obj = GameObject.FindGameObjectWithTag("Match Info");
             m_info_obj.GetComponent<N_MatchInfo>().updateConnected(true);
 
+            //SceneManager.LoadScene("network_test");
+           
 
         }
         else print("Match create error!");

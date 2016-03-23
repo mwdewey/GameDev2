@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Types;
 using UnityEngine.Networking.Match;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class N_Search : MonoBehaviour
@@ -80,6 +81,8 @@ public class N_Search : MonoBehaviour
             // update match info
             GameObject m_info_obj = GameObject.FindGameObjectWithTag("Match Info");
             m_info_obj.GetComponent<N_MatchInfo>().updateConnected(true);
+
+            //SceneManager.LoadScene("network_test");
         }
         else
         {
