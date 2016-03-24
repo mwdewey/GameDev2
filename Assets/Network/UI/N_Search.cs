@@ -15,10 +15,14 @@ public class N_Search : MonoBehaviour
     private List<MatchDesc> matchList = new List<MatchDesc>();
     private NetworkMatch networkMatch;
     private MenuSelector menuSelector;
+    private NetworkManager nm;
 
     void Awake()
     {
-        networkMatch = gameObject.AddComponent<NetworkMatch>();
+        nm = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>();
+        if (nm.matchMaker == null) nm.StartMatchMaker();
+        networkMatch = nm.matchMaker.GetComponent<NetworkMatch>();
+
         menuSelector = GetComponent<MenuSelector>();
 
         networkMatch.ListMatches(0, 20, "", OnMatchList);
@@ -76,7 +80,8 @@ public class N_Search : MonoBehaviour
         {
             Debug.Log("Join match succeeded");
             Utility.SetAccessTokenForNetwork(matchJoin.networkId, new NetworkAccessToken(matchJoin.accessTokenString));
-            NetworkManager.singleton.StartClient(new MatchInfo(matchJoin));
+            NetworkClient nc = nm.StartClient(new MatchInfo(matchJoin));
+            nc.RegisterHandler(MsgType.Connect, OnConnected);
 
             // update match info
             GameObject m_info_obj = GameObject.FindGameObjectWithTag("Match Info");
@@ -92,7 +97,14 @@ public class N_Search : MonoBehaviour
 
     public void OnConnected(NetworkMessage msg)
     {
-        Debug.Log("Connected!");
+        NetworkServer.SpawnObjects();
+        ClientScene.Ready(msg.conn);
+
+        int id = 3;
+        N_LobbyManager lm = GameObject.FindGameObjectWithTag("LobbyManager").GetComponent<N_LobbyManager>();
+        lm.addPlayer(id);
+
+        print("Client connected");
     }
 
     public void OnError(NetworkMessage msg)

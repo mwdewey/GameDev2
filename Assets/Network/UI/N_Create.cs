@@ -13,6 +13,9 @@ public class N_Create : MonoBehaviour
     public GameObject publicObject;
     public GameObject successObject;
 
+    public GameObject lobbyManagerObject;
+    private N_LobbyManager lobbyManager;
+
     private Text nameText;
     private Text sizeText;
     private Text publicText;
@@ -21,6 +24,7 @@ public class N_Create : MonoBehaviour
     private bool matchCreated;
     private NetworkMatch networkMatch;
     private CreateMatchRequest create;
+    private NetworkManager nm;
 
 
 
@@ -31,7 +35,10 @@ public class N_Create : MonoBehaviour
         sizeText = sizeObject.GetComponent<Text>();
         publicText = publicObject.GetComponent<Text>();
 
-        networkMatch = gameObject.AddComponent<NetworkMatch>();
+        nm = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>();
+        if (nm.matchMaker == null) nm.StartMatchMaker();
+        networkMatch = nm.matchMaker.GetComponent<NetworkMatch>();
+
 
     }
 
@@ -52,14 +59,9 @@ public class N_Create : MonoBehaviour
             successObject.SetActive(true);
             matchCreated = true;
             Utility.SetAccessTokenForNetwork(matchResponse.networkId, new NetworkAccessToken(matchResponse.accessTokenString));
-            NetworkManager nm = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>();
-            NetworkClient nc = nm.StartClient(new MatchInfo(matchResponse));
-            nc.RegisterHandler(MsgType.Connect, OnConnected);
 
-
-            int id = 5;
-            //N_LobbyManager lm = GameObject.FindGameObjectWithTag("LobbyManager").GetComponent<N_LobbyManager>();
-            //lm.addPlayer(id);
+            NetworkClient nc = nm.StartHost(new MatchInfo(matchResponse));
+            nc.RegisterHandler(MsgType.Connect,OnConnected);
 
             // update match info
             GameObject m_info_obj = GameObject.FindGameObjectWithTag("Match Info");
@@ -74,6 +76,13 @@ public class N_Create : MonoBehaviour
 
     public void OnConnected(NetworkMessage msg)
     {
-        Debug.Log("Connected!");
+        ClientScene.Ready(msg.conn);
+
+        int id = 5;
+        N_LobbyManager lm = GameObject.FindGameObjectWithTag("LobbyManager").GetComponent<N_LobbyManager>();
+        lm.addPlayer(id);
+
+        print("Host connected");
     }
+
 }

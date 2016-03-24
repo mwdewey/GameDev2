@@ -10,13 +10,15 @@ public class N_MatchInfo : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        label = transform.Find("Text").gameObject.GetComponent<Text>();
+        label = transform.Find("ConnectText").gameObject.GetComponent<Text>();
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        if (label != null) label.text = "Connected: " + isConnected.ToString();
+
 	}
 
 

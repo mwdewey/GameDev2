@@ -16,13 +16,16 @@ public class N_Join : MonoBehaviour
     private bool matchFound = false;
     private List<MatchDesc> matchList = new List<MatchDesc>();
     private NetworkMatch networkMatch;
+    private NetworkManager nm;
 
     void Awake()
     {
 
         nameText = nameObject.GetComponent<Text>();
 
-        networkMatch = gameObject.AddComponent<NetworkMatch>();
+        nm = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>();
+        if(nm.matchMaker == null) nm.StartMatchMaker();
+        networkMatch = nm.matchMaker.GetComponent<NetworkMatch>();
     }
 
     public void joinMatch()
@@ -54,9 +57,9 @@ public class N_Join : MonoBehaviour
             print("Match found");
             joinSuccessObject.SetActive(true);
             Utility.SetAccessTokenForNetwork(matchJoin.networkId, new NetworkAccessToken(matchJoin.accessTokenString));
-            NetworkClient myClient = new NetworkClient();
-            myClient.RegisterHandler(MsgType.Connect, OnConnected);
-            myClient.Connect(new MatchInfo(matchJoin));
+            NetworkClient nc = nm.StartClient(new MatchInfo(matchJoin));
+            nc.RegisterHandler(MsgType.Connect, OnConnected);
+
         }
         else
         {
