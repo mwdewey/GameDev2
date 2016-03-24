@@ -42,7 +42,6 @@ public class N_Create : MonoBehaviour
         create.size = uint.Parse(sizeText.text);
         create.advertise = publicText.Equals("Yes");
         create.password = "";
-
         networkMatch.CreateMatch(create, OnMatchCreate);
     }
 
@@ -53,8 +52,14 @@ public class N_Create : MonoBehaviour
             successObject.SetActive(true);
             matchCreated = true;
             Utility.SetAccessTokenForNetwork(matchResponse.networkId, new NetworkAccessToken(matchResponse.accessTokenString));
-            NetworkManager.singleton.StartClient(new MatchInfo(matchResponse));
+            NetworkManager nm = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>();
+            NetworkClient nc = nm.StartClient(new MatchInfo(matchResponse));
+            nc.RegisterHandler(MsgType.Connect, OnConnected);
 
+
+            int id = 5;
+            //N_LobbyManager lm = GameObject.FindGameObjectWithTag("LobbyManager").GetComponent<N_LobbyManager>();
+            //lm.addPlayer(id);
 
             // update match info
             GameObject m_info_obj = GameObject.FindGameObjectWithTag("Match Info");
@@ -67,4 +72,8 @@ public class N_Create : MonoBehaviour
         else print("Match create error!");
     }
 
+    public void OnConnected(NetworkMessage msg)
+    {
+        Debug.Log("Connected!");
+    }
 }
