@@ -62,25 +62,15 @@ public class N_Create : MonoBehaviour
 
             NetworkClient nc = nm.StartHost(new MatchInfo(matchResponse));
             nc.RegisterHandler(MsgType.Connect,OnConnected);
-
-            // update match info
-            GameObject m_info_obj = GameObject.FindGameObjectWithTag("Match Info");
-            m_info_obj.GetComponent<N_MatchInfo>().updateConnected(true);
-
-            //SceneManager.LoadScene("network_test");
-           
-
+          
         }
         else print("Match create error!");
     }
 
     public void OnConnected(NetworkMessage msg)
     {
-        ClientScene.Ready(msg.conn);
 
-        int id = 5;
-        N_LobbyManager lm = GameObject.FindGameObjectWithTag("LobbyManager").GetComponent<N_LobbyManager>();
-        lm.addPlayer(id);
+        SceneManager.LoadScene("network_test");
 
         print("Host connected");
     }

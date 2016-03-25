@@ -8,7 +8,7 @@ public class CustomNetworkManager : NetworkManager {
         base.OnServerReady(conn);
 
 
-
+        //NetworkServer.SpawnObjects();
     }
 
 }

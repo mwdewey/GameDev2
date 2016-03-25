@@ -11,6 +11,7 @@ public class N_Search : MonoBehaviour
 
     public GameObject searchParent;
     public GameObject matchObject;
+    public GameObject lobbyManagerObject;
 
     private List<MatchDesc> matchList = new List<MatchDesc>();
     private NetworkMatch networkMatch;
@@ -82,12 +83,6 @@ public class N_Search : MonoBehaviour
             Utility.SetAccessTokenForNetwork(matchJoin.networkId, new NetworkAccessToken(matchJoin.accessTokenString));
             NetworkClient nc = nm.StartClient(new MatchInfo(matchJoin));
             nc.RegisterHandler(MsgType.Connect, OnConnected);
-
-            // update match info
-            GameObject m_info_obj = GameObject.FindGameObjectWithTag("Match Info");
-            m_info_obj.GetComponent<N_MatchInfo>().updateConnected(true);
-
-            //SceneManager.LoadScene("network_test");
         }
         else
         {
@@ -97,12 +92,7 @@ public class N_Search : MonoBehaviour
 
     public void OnConnected(NetworkMessage msg)
     {
-        NetworkServer.SpawnObjects();
-        ClientScene.Ready(msg.conn);
-
-        int id = 3;
-        N_LobbyManager lm = GameObject.FindGameObjectWithTag("LobbyManager").GetComponent<N_LobbyManager>();
-        lm.addPlayer(id);
+        SceneManager.LoadScene("network_test");
 
         print("Client connected");
     }
