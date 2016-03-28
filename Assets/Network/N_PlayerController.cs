@@ -119,22 +119,13 @@ public class N_PlayerController : NetworkBehaviour
             velocity.Set(0, 0);
 
             if (anim.GetInteger("PlayerState") == 1) return;
+            if (!unconscious)
+            {
+                if (Input.GetAxis("kb_horizontal") == 0) velocity.x = Input.GetAxis("Joy" + 1 + "_LeftStickHorizontal") * PLAYER_SPEED;
+                else velocity.x = Input.GetAxis("kb_horizontal") * PLAYER_SPEED;
 
-            if (!useKeyboard)
-            {
-                if (!unconscious)
-                {
-                    velocity.x = Input.GetAxis("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED;
-                    velocity.y = Input.GetAxis("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED;
-                }
-            }
-            else
-            {
-                if (!unconscious)
-                {
-                    velocity.x = Input.GetAxis("kb_horizontal") * PLAYER_SPEED;
-                    velocity.y = Input.GetAxis("kb_vertical") * PLAYER_SPEED;
-                }
+                if (Input.GetAxis("kb_vertical") == 0) velocity.y = Input.GetAxis("Joy" + 1 + "_LeftStickVertical") * PLAYER_SPEED;
+                else velocity.y = Input.GetAxis("kb_vertical") * PLAYER_SPEED;
             }
 
             // add knockback velocity
