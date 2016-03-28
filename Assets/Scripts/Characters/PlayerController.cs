@@ -128,7 +128,14 @@ public class PlayerController : MonoBehaviour {
             if (angle <= -135 || angle >= 135) anim.SetInteger("DirectionState", 3); // down
             if (angle < -45 && angle > -135)   anim.SetInteger("DirectionState", 0); // left
             if (angle > 45 && angle < 135)     anim.SetInteger("DirectionState", 1); // right
+
+            // if not moving and anim is walking, make anim idle
+            if (anim.GetInteger("PlayerState") == 2) anim.SetInteger("PlayerState", 3);
         }
+
+        // if moving and anim is idle, make anim moving
+        else if (anim.GetInteger("PlayerState") == 3) anim.SetInteger("PlayerState", 2);
+
     }
 
 	bool isAwake() {
