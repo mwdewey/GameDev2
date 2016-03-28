@@ -16,9 +16,9 @@ public class Minimap : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        icons = new List<Image>(); for (int i = 0; i < 4; i++)
+        icons = new List<Image>(); for (int i = 0; i < 16; i++)
         {
-            GameObject obj = (GameObject)Instantiate(dotObject);
+            GameObject obj = (GameObject)Instantiate(dotObject,Vector3.zero,Quaternion.identity);
             obj.transform.SetParent(transform);
             obj.transform.localPosition = Vector3.zero;
             obj.transform.localScale = new Vector3(0.1f,0.1f,1f);
@@ -44,14 +44,17 @@ public class Minimap : MonoBehaviour {
     void updateMiniMap()
     {
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerObject");
 
         print(players.Length);
 
         for (var i = 0; i < players.Length; i++ )
         {
             GameObject player = players[i];
+            PlayerController pController = player.GetComponent<PlayerController>();
             Image icon = icons[i];
+
+            print(player.name);
 
             if (Mathf.Abs(player.transform.position.x - main_player.transform.position.x) < x_dist &&
                         Mathf.Abs(player.transform.position.y - main_player.transform.position.y) < y_dist)
@@ -65,12 +68,13 @@ public class Minimap : MonoBehaviour {
 
                 Vector3 pos = icon.transform.localPosition;
 
-                pos.x = mapped_x-50;
-                pos.y = mapped_y-50;
+                pos.x = mapped_x;
+                pos.y = mapped_y;
 
-                print(pos.x + " " + pos.y);
+                //print(pos.x + " " + pos.y);
 
                 icon.transform.localPosition = pos;
+                icon.color = pController.playerColor;
             }
 
             else if (icon.enabled) icon.enabled = false;

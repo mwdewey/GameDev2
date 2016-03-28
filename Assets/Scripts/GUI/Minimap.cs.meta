@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: d48151f7efe357e4ab6de93ccfd677c5
-timeCreated: 1456597974
-licenseType: Free
+timeCreated: 1459200295
+licenseType: Pro
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dotObject: {fileID: 182974, guid: fa4f33395d44a114d9f551134b44228b, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

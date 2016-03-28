@@ -27,7 +27,6 @@ public class UIAnimation : MonoBehaviour {
         {
             if (!name.Equals(rend.sprite.name))
             {
-                anim.SetFloat("animSpeed", 2f);
                 img.sprite = rend.sprite;
                 name = rend.sprite.name;
             }

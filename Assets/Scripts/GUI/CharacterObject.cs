@@ -12,6 +12,7 @@ public class CharacterObject : MonoBehaviour
     public String name;
     public String description;
     public RuntimeAnimatorController portrait;
+    public float port_speed = 1;
 
 	// Use this for initialization
 	void Start ()
