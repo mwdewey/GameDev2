@@ -35,7 +35,7 @@ public class CauseDamage : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D c){
-		//print ("I hit "+c.gameObject.name);
+		print ("I hit "+c.gameObject.name);
 		if (c.gameObject.tag == "PlayerObject" && !dontdamage.Contains(c.gameObject.name)) {
 			//if what we hit is a player and isn't the player who made us...
 			c.gameObject.SendMessage ("TakeDamage", DAMAGE);

@@ -21,7 +21,7 @@ public class Consciousness : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (healthBar.health <= 0) {
+		if (healthBar.health <= 0 && !GetComponent<PlayerController>().unconscious) {
 			GetComponent<Animator> ().SetInteger ("PlayerState", 0);
 			GetComponent<PlayerController>().unconscious = true;
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
