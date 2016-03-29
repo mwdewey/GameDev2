@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public float PROJECTILE_SPEED = 12;
     public float PLAYER_SPEED = 0.0f;
     public bool useKeyboard;
+    public Color32 playerColor = new Color32(244, 67, 54, 255);
 
     // Public required objects
     public GameObject melee_hitbox;
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour {
         velocity = rb.velocity;
 
         //ignore all collisions between players
-        List<GameObject> all_players = GameObject.FindGameObjectsWithTag("Player").ToList();
+        List<GameObject> all_players = GameObject.FindGameObjectsWithTag("PlayerObject").ToList();
         for (int i = 0; i < all_players.Count; i++)
         {
             for (int j = 0; j < all_players.Count; j++)
@@ -49,13 +50,7 @@ public class PlayerController : MonoBehaviour {
 
         // Color ring around players
         ring = transform.Find("Ring").gameObject.GetComponent<SpriteRenderer>();
-        switch (PID)
-        {
-            case "1": ring.color = new Color32(244, 67, 54, 255); break;
-            case "2": ring.color = new Color32(33, 150, 243, 255); break;
-            case "3": ring.color = new Color32(76, 175, 80, 255); break;
-            case "4": ring.color = new Color32(255, 235, 59, 255); break;
-        }
+        ring.color = playerColor;
 
         anim = GetComponent<Animator>();
         anim.SetFloat("rangeSpeed", 3);
@@ -128,7 +123,14 @@ public class PlayerController : MonoBehaviour {
             if (angle <= -135 || angle >= 135) anim.SetInteger("DirectionState", 3); // down
             if (angle < -45 && angle > -135)   anim.SetInteger("DirectionState", 0); // left
             if (angle > 45 && angle < 135)     anim.SetInteger("DirectionState", 1); // right
+
+            // if not moving and anim is walking, make anim idle
+            if (anim.GetInteger("PlayerState") == 2) anim.SetInteger("PlayerState", 3);
         }
+
+        // if moving and anim is idle, make anim moving
+        else if (anim.GetInteger("PlayerState") == 3) anim.SetInteger("PlayerState", 2);
+
     }
 
 	bool isAwake() {

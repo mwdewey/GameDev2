@@ -190,13 +190,15 @@ public class ControllerConnect : MonoBehaviour
             Image portraitImg = pb.transform.Find("Image").gameObject.GetComponent<Image>();
             Text charDescription = db.transform.Find("text").gameObject.GetComponent<Text>();
             Animator portraitAnim = portraitImg.GetComponent<Animator>();
+            CharacterObject charObj = charList[playerSelections[i]];
 
             if (controllerCount > i)
             {
                 pbImage.color = playerColors[i];
                 dbImage.color = playerColors[i];
-                portraitAnim.runtimeAnimatorController = charList[playerSelections[i]].portrait;
-                charDescription.text = charList[playerSelections[i]].description;
+                portraitAnim.runtimeAnimatorController = charObj.portrait;
+                charDescription.text = charObj.description;
+                portraitAnim.SetFloat("animSpeed", charObj.port_speed);
             }
 
             else {
