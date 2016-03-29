@@ -4,6 +4,7 @@ using System.Collections;
 public class movement : MonoBehaviour {
 
 	Transform t;
+	public bool trapped;
 	public int health;
 
 	// Use this for initialization
@@ -14,6 +15,9 @@ public class movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (trapped) {
+			return;
+		}
 		if (Input.GetKey (KeyCode.D)) {
 			t.position += new Vector3 (0.2f, 0.0f, 0.0f);
 		}
