@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     public bool useKeyboard;
     public Color32 playerColor = new Color32(244, 67, 54, 255);
 
+	public string character;
+
     // Public required objects
     public GameObject melee_hitbox;
     public GameObject ranged_hitbox;
