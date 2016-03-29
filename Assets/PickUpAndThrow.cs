@@ -53,37 +53,6 @@ public class PickUpAndThrow : MonoBehaviour {
 			Physics2D.IgnoreCollision(GetComponentInChildren<PolygonCollider2D>(), heldPlayer.GetComponentInChildren<PolygonCollider2D>(), false);
 			heldPlayer = null;
 		}
-		if (heldPlayer != null) {
-			//keep the captured player with me
-			print ("holding " + heldPlayer.name);
-			float x_offset = 0;
-			float y_offset = 0;
-
-			SpriteRenderer hp_sprite= heldPlayer.GetComponent<SpriteRenderer>();
-			switch (dir_string) {
-			case "Left":
-				hp_sprite.sortingOrder = 3;
-				x_offset = -.2f;
-				y_offset = .3f;
-				break;
-			case "Right":
-				hp_sprite.sortingOrder = 3;
-				x_offset = .2f;
-				y_offset = .3f;
-				break;
-			case "Up":
-				hp_sprite.sortingOrder = -1;
-				x_offset = 0;
-				y_offset = .4f; 
-				break;
-			case "Down":
-				hp_sprite.sortingOrder = 3;
-				x_offset = 0;
-				y_offset = .3f;
-				break;
-			}
-			heldPlayer.transform.position = new Vector2(gameObject.transform.position.x + x_offset, gameObject.transform.position.y + y_offset);
-		}
 		if (heldPlayer != null && heldPlayer.GetComponent<PlayerController>().unconscious==false){
 			//my victim is awake!
 			Physics2D.IgnoreCollision(GetComponentInChildren<PolygonCollider2D>(), heldPlayer.GetComponentInChildren<PolygonCollider2D>(), false);
@@ -129,5 +98,39 @@ public class PickUpAndThrow : MonoBehaviour {
 		case 3: direction.Set(0, -1); return "Down"; // Down
 		}
 		return "";
+	}
+
+	void FixedUpdate(){
+		if (heldPlayer != null) {
+			//keep the captured player with me
+			print ("holding " + heldPlayer.name);
+			float x_offset = 0;
+			float y_offset = 0;
+
+			SpriteRenderer hp_sprite= heldPlayer.GetComponent<SpriteRenderer>();
+			switch (dir_string) {
+			case "Left":
+				hp_sprite.sortingOrder = 3;
+				x_offset = -.2f;
+				y_offset = .3f;
+				break;
+			case "Right":
+				hp_sprite.sortingOrder = 3;
+				x_offset = .2f;
+				y_offset = .3f;
+				break;
+			case "Up":
+				hp_sprite.sortingOrder = -1;
+				x_offset = 0;
+				y_offset = .4f; 
+				break;
+			case "Down":
+				hp_sprite.sortingOrder = 3;
+				x_offset = 0;
+				y_offset = .3f;
+				break;
+			}
+			heldPlayer.transform.position = new Vector2(gameObject.transform.position.x + x_offset, gameObject.transform.position.y + y_offset);
+		}
 	}
 }
