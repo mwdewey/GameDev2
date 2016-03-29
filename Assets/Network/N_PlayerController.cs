@@ -232,7 +232,7 @@ public class N_PlayerController : NetworkBehaviour
     {
         GameObject melee = (GameObject)Instantiate(melee_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
         melee.transform.parent = gameObject.transform;
-        melee.GetComponent<CauseDamage>().my_parent_name = name;
+		melee.GetComponent<CauseDamage>().dontdamage.Add(name);
 
         NetworkServer.Spawn(melee);
 
