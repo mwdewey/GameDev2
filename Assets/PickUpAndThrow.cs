@@ -31,7 +31,7 @@ public class PickUpAndThrow : MonoBehaviour {
 
 		dir_string = getDirection (ref direction);
 
-		if (Input.GetKeyDown (KeyCode.L) && heldPlayer==null) {
+		if ((Input.GetKeyDown (KeyCode.L) || Input.GetKeyDown(KeyCode.JoystickButton2)) && heldPlayer==null) {
 			//pick up an unconscious player
 			Collider2D[] hitColliders = Physics2D.OverlapCircleAll (transform.position, 1);
 			foreach (Collider2D c in hitColliders) {
@@ -43,7 +43,8 @@ public class PickUpAndThrow : MonoBehaviour {
 				}
 			}
 		}
-		else if (Input.GetKeyDown (KeyCode.L) && heldPlayer != null) {
+        else if ((Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.JoystickButton2)) && heldPlayer != null)
+        {
 			//throw the captured player
 			print ("tossed " + heldPlayer.name);
 			launched = heldPlayer;
