@@ -46,7 +46,6 @@ public class Minimap : MonoBehaviour {
 
         GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerObject");
 
-        print(players.Length);
 
         for (var i = 0; i < players.Length; i++ )
         {
@@ -54,7 +53,6 @@ public class Minimap : MonoBehaviour {
             PlayerController pController = player.GetComponent<PlayerController>();
             Image icon = icons[i];
 
-            print(player.name);
 
             if (Mathf.Abs(player.transform.position.x - main_player.transform.position.x) < x_dist &&
                         Mathf.Abs(player.transform.position.y - main_player.transform.position.y) < y_dist)

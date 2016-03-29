@@ -31,7 +31,7 @@ public class PickUpAndThrow : MonoBehaviour {
 
 		dir_string = getDirection (ref direction);
 
-		if (Input.GetKeyDown (KeyCode.L) && heldPlayer==null) {
+		if ((Input.GetKeyDown (KeyCode.L) || Input.GetKeyDown(KeyCode.JoystickButton2)) && heldPlayer==null) {
 			//pick up an unconscious player
 			Collider2D[] hitColliders = Physics2D.OverlapCircleAll (transform.position, 1);
 			foreach (Collider2D c in hitColliders) {
@@ -43,7 +43,8 @@ public class PickUpAndThrow : MonoBehaviour {
 				}
 			}
 		}
-		else if (Input.GetKeyDown (KeyCode.L) && heldPlayer != null) {
+        else if ((Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.JoystickButton2)) && heldPlayer != null)
+        {
 			//throw the captured player
 			print ("tossed " + heldPlayer.name);
 			launched = heldPlayer;
@@ -51,37 +52,6 @@ public class PickUpAndThrow : MonoBehaviour {
 			//enable Collision again
 			Physics2D.IgnoreCollision(GetComponentInChildren<PolygonCollider2D>(), heldPlayer.GetComponentInChildren<PolygonCollider2D>(), false);
 			heldPlayer = null;
-		}
-		if (heldPlayer != null) {
-			//keep the captured player with me
-			print ("holding " + heldPlayer.name);
-			float x_offset = 0;
-			float y_offset = 0;
-
-			SpriteRenderer hp_sprite= heldPlayer.GetComponent<SpriteRenderer>();
-			switch (dir_string) {
-			case "Left":
-				hp_sprite.sortingOrder = 3;
-				x_offset = -.2f;
-				y_offset = .3f;
-				break;
-			case "Right":
-				hp_sprite.sortingOrder = 3;
-				x_offset = .2f;
-				y_offset = .3f;
-				break;
-			case "Up":
-				hp_sprite.sortingOrder = -1;
-				x_offset = 0;
-				y_offset = .4f; 
-				break;
-			case "Down":
-				hp_sprite.sortingOrder = 3;
-				x_offset = 0;
-				y_offset = .3f;
-				break;
-			}
-			heldPlayer.transform.position = new Vector2(gameObject.transform.position.x + x_offset, gameObject.transform.position.y + y_offset);
 		}
 		if (heldPlayer != null && heldPlayer.GetComponent<PlayerController>().unconscious==false){
 			//my victim is awake!
@@ -128,5 +98,39 @@ public class PickUpAndThrow : MonoBehaviour {
 		case 3: direction.Set(0, -1); return "Down"; // Down
 		}
 		return "";
+	}
+
+	void FixedUpdate(){
+		if (heldPlayer != null) {
+			//keep the captured player with me
+			print ("holding " + heldPlayer.name);
+			float x_offset = 0;
+			float y_offset = 0;
+
+			SpriteRenderer hp_sprite= heldPlayer.GetComponent<SpriteRenderer>();
+			switch (dir_string) {
+			case "Left":
+				hp_sprite.sortingOrder = 3;
+				x_offset = -.2f;
+				y_offset = .3f;
+				break;
+			case "Right":
+				hp_sprite.sortingOrder = 3;
+				x_offset = .2f;
+				y_offset = .3f;
+				break;
+			case "Up":
+				hp_sprite.sortingOrder = -1;
+				x_offset = 0;
+				y_offset = .4f; 
+				break;
+			case "Down":
+				hp_sprite.sortingOrder = 3;
+				x_offset = 0;
+				y_offset = .3f;
+				break;
+			}
+			heldPlayer.transform.position = new Vector2(gameObject.transform.position.x + x_offset, gameObject.transform.position.y + y_offset);
+		}
 	}
 }

@@ -15,13 +15,13 @@ public class Consciousness : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		string pid = GetComponent<PlayerController> ().PID;
-		healthBar = (Healthbar) GameObject.Find ("Player " + pid + " UI").transform.FindChild ("Healthbar").gameObject.GetComponent<Healthbar>();
+        healthBar = (Healthbar) transform.Find("Player 1 UI").Find("Healthbar").gameObject.GetComponent<Healthbar>();
 		initial_health = healthBar.health;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (healthBar.health <= 0) {
+		if (healthBar.health <= 0 && !GetComponent<PlayerController>().unconscious) {
 			GetComponent<Animator> ().SetInteger ("PlayerState", 0);
 			GetComponent<PlayerController>().unconscious = true;
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
