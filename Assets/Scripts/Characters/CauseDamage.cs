@@ -45,7 +45,7 @@ public class CauseDamage : MonoBehaviour {
 			if (launched_player) {
 				print ("BLAM!");
 				GameObject pow_icon = (GameObject) Instantiate(blam, transform.position, Quaternion.identity);
-				Debug.Break();
+				//Debug.Break();
 				pow_icon.GetComponent<SpriteRenderer> ().sortingOrder = 3;
 			}
 		}
