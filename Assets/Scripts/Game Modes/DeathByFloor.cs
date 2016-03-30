@@ -49,6 +49,7 @@ public class DeathByFloor : MonoBehaviour {
 
 		if (all_respawn_pts.Count>0) g.transform.position = new Vector3(closest_spawn_pt.transform.position.x, closest_spawn_pt.transform.position.y+.6f, closest_spawn_pt.transform.position.z);
 		g.GetComponent<PlayerController> ().unconscious = false;
+		g.GetComponent<Consciousness> ().Revive ();
 		g.GetComponent<Animator>().SetInteger("PlayerState",2);
 		//  ^put stuff back the way it was
 
