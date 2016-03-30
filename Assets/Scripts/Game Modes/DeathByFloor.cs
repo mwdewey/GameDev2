@@ -20,7 +20,7 @@ public class DeathByFloor : MonoBehaviour {
 	public Sprite dead;		//this is the dead version of the player. Code can be added to pick which sprite that is later on
 
 	void OnTriggerEnter2D(Collider2D c){
-		if (c.gameObject.tag == "Player") {
+		if (c.gameObject.tag == "PlayerObject") {
 			//You can do whatever you want to the player who just collided by using c.gameObject.whatever. 
 			//death time!
 			c.gameObject.GetComponent<Animator>().SetInteger("PlayerState",1);

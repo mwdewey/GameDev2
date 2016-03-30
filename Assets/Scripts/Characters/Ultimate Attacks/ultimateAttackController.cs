@@ -14,8 +14,7 @@ public class ultimateAttackController : MonoBehaviour {
      */
 
 	public int power = 0;
-	private string character;
-
+	private CharCodes character;
 
 	void Start () {
 		character = gameObject.GetComponent<PlayerController>().character;
@@ -26,8 +25,15 @@ public class ultimateAttackController : MonoBehaviour {
 	}
 
     public void handleUltimateInput() {
-        if (power >= 100) {
-			//gameObject.GetComponent (character + "_Ultimate").ultimate();
+        if (power >= 0) {
+			switch (character) {
+			case CharCodes.MissQ:
+				gameObject.GetComponent<MissQ_Ultimate> ().ultimate ();
+				break;
+			case CharCodes.Shifter:
+				gameObject.GetComponent<Shifter_Ultimate> ().ultimate ();
+				break;
+			}
         }
     }
 

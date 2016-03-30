@@ -12,4 +12,8 @@ public class MissQ_Ultimate : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void ultimate() {
+		Debug.Log ("MissQ ultimate!");
+	}
 }

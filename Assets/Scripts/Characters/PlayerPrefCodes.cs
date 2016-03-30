@@ -6,6 +6,4 @@ public enum PlayerPrefCodes {
     Player2CharSelect,
     Player3CharSelect,
     Player4CharSelect
-
 }
-

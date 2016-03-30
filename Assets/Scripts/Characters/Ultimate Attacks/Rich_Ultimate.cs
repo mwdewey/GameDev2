@@ -12,4 +12,8 @@ public class Rich_Ultimate : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void ultimate() {
+
+	}
 }

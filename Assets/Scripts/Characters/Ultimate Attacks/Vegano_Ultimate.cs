@@ -12,4 +12,8 @@ public class Vegano_Ultimate : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void ultimate () {
+
+	}
 }
