@@ -11,12 +11,14 @@ public class Consciousness : MonoBehaviour {
 	private GameObject myHealthBar;
 	private Healthbar healthBar;
 	private float initial_health;
+	GameObject coin;
 
 	// Use this for initialization
 	void Start () {
 		string pid = GetComponent<PlayerController> ().PID;
 		healthBar = (Healthbar) transform.Find("Player 1 UI").Find("Healthbar").gameObject.GetComponent<Healthbar>();
 		initial_health = healthBar.health;
+		coin = (GameObject)Resources.Load ("Prefabs/Environment/Coin");
 	}
 	
 	// Update is called once per frame
@@ -26,6 +28,12 @@ public class Consciousness : MonoBehaviour {
 			GetComponent<PlayerController>().unconscious = true;
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
 			GetComponent<Attacks>().unconscious = true;
+			int coins_lost = GetComponent<Score_Counter> ().score / 2;
+			GetComponent<Score_Counter> ().score /= 2;
+			Manager.coins_remaining += coins_lost;
+			for (int x = 0; x < coins_lost; x++) {
+				Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
+			}
 			StartCoroutine(GetUp());
 		}
 	}
