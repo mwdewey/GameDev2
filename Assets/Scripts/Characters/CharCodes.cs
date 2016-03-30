@@ -3,9 +3,9 @@ using System.Collections;
 
 public enum CharCodes {
 
-        Shifter,
-        MissQ,
-        Vegano,
-        Rich
+        Shifter = "Shifter",
+        MissQ = "MissQ",
+        Vegano = "Vegano",
+        Rich = "Rich"
 
 }
