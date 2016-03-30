@@ -20,14 +20,14 @@ public class Item : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "PlayerObject") {
-			other.GetComponent<movement> ().item_list.Add (this);
+			other.GetComponent<PlayerController> ().item_list.Add (this);
 			ring.enabled = true;
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D other){
 		if (other.tag == "PlayerObject") {
-			other.GetComponent<movement> ().item_list.Remove (this);
+			other.GetComponent<PlayerController> ().item_list.Remove (this);
 			ring.enabled = false;
 		}
 	}

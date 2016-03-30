@@ -178,7 +178,7 @@ public class ControllerConnect : MonoBehaviour
 
     void generatePlayerUI()
     {
-        for (var i = 0; i < controllerCount; i++)
+		for (var i = 0; i < controllerCount; i++)
         {
             GameObject pb = pbList[i];
             GameObject db = dbList[i];
