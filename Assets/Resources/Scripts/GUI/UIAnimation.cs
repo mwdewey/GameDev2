@@ -25,7 +25,7 @@ public class UIAnimation : MonoBehaviour {
 
         if (rend.sprite != null)
         {
-            if (!name.Equals(rend.sprite.name))
+            if (!name.Equals(rend.sprite.name) || true)
             {
                 img.sprite = rend.sprite;
                 name = rend.sprite.name;

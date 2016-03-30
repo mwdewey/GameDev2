@@ -11,13 +11,17 @@ public class PlayerItemIconHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         pc = transform.parent.parent.parent.GetComponent<PlayerController>();
-        if (pc.held_item != null) heldSprite = pc.held_item.GetComponent<SpriteRenderer>().sprite;
-        iconImage.sprite = heldSprite;
+        iconImage = GetComponent<Image>();
+        if (pc.held_item != null)
+        {
+            heldSprite = pc.held_item.GetComponent<SpriteRenderer>().sprite;
+            iconImage.sprite = heldSprite;
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (pc.held_item == null) return;
+        if (pc.held_item == null || heldSprite == null) return;
 
         Sprite currentSprite = pc.held_item.GetComponent<SpriteRenderer>().sprite;
         if (currentSprite.name != heldSprite.name)

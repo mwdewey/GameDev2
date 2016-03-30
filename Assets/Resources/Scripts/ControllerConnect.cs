@@ -128,6 +128,12 @@ public class ControllerConnect : MonoBehaviour
 	    generatePlayerUI();
 
 	    updateUI();
+
+        setCharSelect(0, 0);
+        setCharSelect(1, 0);
+        setCharSelect(2, 0);
+        setCharSelect(3, 0);
+
 	}
 	
 	// Update is called once per frame

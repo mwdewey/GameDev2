@@ -15,7 +15,7 @@ public class Consciousness : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		string pid = GetComponent<PlayerController> ().PID;
-		healthBar = (Healthbar) transform.Find("Player " + pid + " UI").Find("Healthbar").gameObject.GetComponent<Healthbar>();
+		healthBar = (Healthbar) transform.Find("Player 1 UI").Find("Healthbar").gameObject.GetComponent<Healthbar>();
 		initial_health = healthBar.health;
 	}
 	
