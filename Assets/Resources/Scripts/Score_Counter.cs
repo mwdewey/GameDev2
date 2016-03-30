@@ -21,7 +21,7 @@ public class Score_Counter : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other){
-        if (other.tag == "Coin"){
+		if (other.tag == "Coin" && !GetComponent<PlayerController>().unconscious){
             other.GetComponent<Rigidbody2D>().velocity = Vector3.Scale((t.position - other.transform.position).normalized, new Vector3(3f, 3f, 0));
 
 			if (Vector3.Distance(t.position, other.transform.position) <= 0.5 && other.GetComponent<Renderer>().enabled){
