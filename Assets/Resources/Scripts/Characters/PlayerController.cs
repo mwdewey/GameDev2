@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     public float MELEE_DAMAGE = 20;
     public float PROJECTILE_SPEED = 12;
     public float PLAYER_SPEED = 0.0f;
+    public float POWER_RECHARGE_RATE = 10f;
     public bool useKeyboard;
     public Color32 playerColor = new Color32(244, 67, 54, 255);
 
@@ -32,9 +33,11 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer ring;
     private Animator anim;
 
-	Item held_item;
+	public Item held_item;
 	public List<Item> item_list;
 	public float health;
+    public float power;
+    private float POWER_MAX = 100;
 
     void Start()
     {
@@ -69,6 +72,10 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 		if (unconscious) return;
+
+        // gain power of time
+        power += Time.deltaTime * POWER_RECHARGE_RATE;
+        if (power > POWER_MAX) power = POWER_MAX;
 
         // detect melee
         if(Input.GetButtonDown("Joy" + PID + "_MeleeAttack"))
