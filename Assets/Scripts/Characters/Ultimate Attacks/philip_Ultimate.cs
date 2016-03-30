@@ -3,15 +3,12 @@ using System.Collections;
 
 public class testUltimate : MonoBehaviour {
 
-	public Animation anim;
-	public ParticleSystem particles;
+	public int power = 0;
 
-	// Use this for initialization
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}

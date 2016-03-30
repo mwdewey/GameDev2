@@ -13,9 +13,7 @@ public class ultimateAttackController : MonoBehaviour {
      *     and execute it appropriately.
      */
 
-    public GameObject ultimatePrefab;
-	private int power = 0;
-	public MonoBehaviour Script;
+	public int power = 0;
 	private string character;
 
 
