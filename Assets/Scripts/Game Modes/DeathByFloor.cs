@@ -26,6 +26,7 @@ public class DeathByFloor : MonoBehaviour {
 			c.gameObject.GetComponent<Animator>().SetInteger("PlayerState",1);
 			c.gameObject.GetComponent<PlayerController> ().unconscious = true;//stop movement
 			c.gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			c.gameObject.GetComponent<PlayerController> ().setKnockBack (null);
 			  //make sure they don't just keep moving on the velocity they already had
 			StartCoroutine (RespawnCountdown( c.gameObject, original_sprite )); 
 			  //countdown to respawn

@@ -32,6 +32,7 @@ public class PickUpAndThrow : MonoBehaviour {
 		dir_string = getDirection (ref direction);
 
 		if ((Input.GetKeyDown (KeyCode.L) || Input.GetKeyDown(KeyCode.JoystickButton2)) && heldPlayer==null) {
+			print ("called pick up");
 			//pick up an unconscious player
 			Collider2D[] hitColliders = Physics2D.OverlapCircleAll (transform.position, 1);
 			foreach (Collider2D c in hitColliders) {
@@ -43,7 +44,7 @@ public class PickUpAndThrow : MonoBehaviour {
 					break;
 				}
 			}
-			Destroy (heldPlayer.transform.Find ("THIS IS THE FLYING GUY'S HITBOX").gameObject);
+			//Destroy (heldPlayer.transform.Find ("THIS IS THE FLYING GUY'S HITBOX").gameObject);
 		}
         else if ((Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.JoystickButton2)) && heldPlayer != null)
         {
