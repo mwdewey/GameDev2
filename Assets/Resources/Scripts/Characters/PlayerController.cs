@@ -83,11 +83,11 @@ public class PlayerController : MonoBehaviour {
         }
 
 		if (Input.GetButtonDown ("Joy" + PID + "_UltimateAttack")) {
-			GetComponent<Score_Counter> ().progress_portal ();
 			ultimateAttack();
 		}
 
 		if (Input.GetButtonDown ("Joy" + PID + "_Pickup") || Input.GetKeyDown(KeyCode.L)) {
+			GetComponent<Score_Counter> ().progress_portal ();
 			if (held_item == null && item_list.Count > 0) {
 				held_item = item_list [0];
 				item_list.Remove (held_item);
