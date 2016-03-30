@@ -8,8 +8,7 @@ public class init_spawner : MonoBehaviour {
 
 	public GameObject template;
 	private CharCodes character;
-	public RuntimeAnimatorController missq;
-	public RuntimeAnimatorController shifter;
+	public RuntimeAnimatorController missq, shifter, rich, vegano;
 
     public bool isDebug = false;
 
@@ -67,13 +66,20 @@ public class init_spawner : MonoBehaviour {
 			switch(character) {
 			case CharCodes.MissQ:
 				p.AddComponent<MissQ_Ultimate> ();
-				p.GetComponent<Animator> ().runtimeAnimatorController = missq; //(RuntimeAnimatorController) Resources.Load("Characters/Miss Q Linity/MissQ_Controller");
+				p.GetComponent<Animator> ().runtimeAnimatorController = missq;
 				break;
 			case CharCodes.Shifter:
 				p.AddComponent<Shifter_Ultimate> ();
-				p.GetComponent<Animator> ().runtimeAnimatorController = shifter;//(RuntimeAnimatorController) Resources.Load("Characters/Shifter/Shifter_Controller");
+				p.GetComponent<Animator> ().runtimeAnimatorController = shifter;
 				break;
-
+			case CharCodes.Rich:
+				p.AddComponent<Rich_Ultimate> ();
+				p.GetComponent<Animator> ().runtimeAnimatorController = rich;
+				break;
+			case CharCodes.Vegano:
+				p.AddComponent<Vegano_Ultimate> ();
+				p.GetComponent<Animator> ().runtimeAnimatorController = vegano;
+				break;
 			}
 		}
 	}
