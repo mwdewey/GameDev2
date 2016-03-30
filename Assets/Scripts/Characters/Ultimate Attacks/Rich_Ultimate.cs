@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ultimateAttack : MonoBehaviour {
+public class Rich_Ultimate : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -11,9 +11,5 @@ public class ultimateAttack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-	}
-
-	void ultimate() {
-		Debug.Log ("ULTIMATE ATTACK!");
 	}
 }
