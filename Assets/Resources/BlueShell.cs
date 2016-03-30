@@ -17,10 +17,11 @@ public class BlueShell : Item {
 		int highest_score = -1;
 		target = null;
 		foreach (GameObject person in players){
-			if (person == holder) {
+            if (person == holder || person == null || person.GetComponent<Score_Counter>() == null)
+            {
 				continue;
 			}
-			Debug.Log (highest_score + " " + target + " " + person.GetComponent<Score_Counter>().score);
+			//Debug.Log (highest_score + " " + target + " " + person.GetComponent<Score_Counter>().score);
 			if (target == null || person.GetComponent<Score_Counter> ().score > highest_score) {
 				highest_score = person.GetComponent<Score_Counter> ().score;
 				target = person;
@@ -61,7 +62,7 @@ public class BlueShell : Item {
 	}
 
 	void Update(){
-		if (activated) {
+		if (activated && target != null) {
 			velocity += DynamicSeek ();
 			velocity.z = 0;
 			t.position += velocity;

@@ -19,6 +19,7 @@ public class Item : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
+        if (activated) return;
 		if (other.tag == "PlayerObject") {
 			other.GetComponent<PlayerController> ().item_list.Add (this);
 			ring.enabled = true;
@@ -26,6 +27,7 @@ public class Item : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D other){
+        if (activated) return;
 		if (other.tag == "PlayerObject") {
 			other.GetComponent<PlayerController> ().item_list.Remove (this);
 			ring.enabled = false;

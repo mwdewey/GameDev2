@@ -31,31 +31,35 @@ public class PickUpAndThrow : MonoBehaviour {
 
 		dir_string = getDirection (ref direction);
 
-		if ((Input.GetKeyDown (KeyCode.L) || Input.GetKeyDown(KeyCode.JoystickButton2)) && heldPlayer==null) {
-			print ("called pick up");
-			//pick up an unconscious player
-			Collider2D[] hitColliders = Physics2D.OverlapCircleAll (transform.position, 1);
-			foreach (Collider2D c in hitColliders) {
-				if (c.gameObject.tag=="PlayerObject" && c.gameObject.name != name && c.gameObject.GetComponent<PlayerController> ().unconscious) {
-					heldPlayer = c.gameObject;
-					c.gameObject.GetComponent<SpriteRenderer> ().sortingOrder = 3;
-					Physics2D.IgnoreCollision(GetComponentInChildren<PolygonCollider2D>(), c.gameObject.GetComponentInChildren<PolygonCollider2D>(), true);
-					print ("picked up " + c.gameObject.name);
-					break;
-				}
-			}
-			//Destroy (heldPlayer.transform.Find ("THIS IS THE FLYING GUY'S HITBOX").gameObject);
-		}
-        else if ((Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.JoystickButton2)) && heldPlayer != null)
-        {
-			//throw the captured player
-			print ("tossed " + heldPlayer.name);
-			launched = heldPlayer;
-			heldPlayer.GetComponent<SpriteRenderer> ().sortingOrder = 0;
-			//enable Collision again
-			Physics2D.IgnoreCollision(GetComponentInChildren<PolygonCollider2D>(), heldPlayer.GetComponentInChildren<PolygonCollider2D>(), false);
-			heldPlayer = null;
-		}
+        if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Joy" + GetComponent<PlayerController>().PID + "_Pickup")) && heldPlayer == null)
+            {
+                print("called pick up");
+                //pick up an unconscious player
+                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1);
+                foreach (Collider2D c in hitColliders)
+                {
+                    if (c.gameObject.tag == "PlayerObject" && c.gameObject.name != name && c.gameObject.GetComponent<PlayerController>().unconscious)
+                    {
+                        heldPlayer = c.gameObject;
+                        c.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+                        Physics2D.IgnoreCollision(GetComponentInChildren<PolygonCollider2D>(), c.gameObject.GetComponentInChildren<PolygonCollider2D>(), true);
+                        print("picked up " + c.gameObject.name);
+                        break;
+                    }
+                }
+                //Destroy (heldPlayer.transform.Find ("THIS IS THE FLYING GUY'S HITBOX").gameObject);
+            }
+        else if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Joy" + GetComponent<PlayerController>().PID + "_Pickup")) && heldPlayer != null)
+            {
+                //throw the captured player
+                print("tossed " + heldPlayer.name);
+                launched = heldPlayer;
+                heldPlayer.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                //enable Collision again
+                Physics2D.IgnoreCollision(GetComponentInChildren<PolygonCollider2D>(), heldPlayer.GetComponentInChildren<PolygonCollider2D>(), false);
+                heldPlayer = null;
+            }
+        
 		if (heldPlayer != null && heldPlayer.GetComponent<PlayerController>().unconscious==false){
 			//my victim is awake!
 			Physics2D.IgnoreCollision(GetComponentInChildren<PolygonCollider2D>(), heldPlayer.GetComponentInChildren<PolygonCollider2D>(), false);
