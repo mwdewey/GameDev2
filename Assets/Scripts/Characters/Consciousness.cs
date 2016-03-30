@@ -15,7 +15,7 @@ public class Consciousness : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		string pid = GetComponent<PlayerController> ().PID;
-        healthBar = (Healthbar) transform.Find("Player 1 UI").Find("Healthbar").gameObject.GetComponent<Healthbar>();
+		healthBar = (Healthbar) transform.Find("Player " + pid + " UI").Find("Healthbar").gameObject.GetComponent<Healthbar>();
 		initial_health = healthBar.health;
 	}
 	
@@ -31,8 +31,14 @@ public class Consciousness : MonoBehaviour {
 	}
 
 	public void TakeDamage(int damage){
-		healthBar.health -= damage;
+		if (!GetComponent<PlayerController> ().unconscious) {
+			healthBar.health -= damage;
+		}
 		//print ("ouch! consciousness at "+(((float)healthBar.health)/healthBar.max_health)*100+"%");
+	}
+
+	public void Revive(){
+		healthBar.health = initial_health;
 	}
 
 	IEnumerator GetUp(){
