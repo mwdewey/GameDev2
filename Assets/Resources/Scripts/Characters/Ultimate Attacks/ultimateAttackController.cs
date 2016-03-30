@@ -33,6 +33,12 @@ public class ultimateAttackController : MonoBehaviour {
 			case CharCodes.Shifter:
 				gameObject.GetComponent<Shifter_Ultimate> ().ultimate ();
 				break;
+			case CharCodes.Rich:
+				gameObject.GetComponent<Rich_Ultimate> ().ultimate ();
+				break;
+			case CharCodes.Vegano:
+				gameObject.GetComponent<Vegano_Ultimate> ().ultimate ();
+				break;
 			}
         }
     }
