@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PortalScript : MonoBehaviour {
@@ -45,6 +46,9 @@ public class PortalScript : MonoBehaviour {
 					players [i].GetComponent<PlayerController> ().enabled = false;
 					vortex = true;
 				}
+
+                // ends the game 10 seconds after the vortex is active
+                Invoke("endGame", 10);
 			}
 		}
 		if (vortex) {
@@ -53,4 +57,15 @@ public class PortalScript : MonoBehaviour {
 			}
 		}
 	}
+
+    void endGame()
+    {
+        players = GameObject.FindGameObjectsWithTag("PlayerObject");
+        for (int i = 0; i < players.Length; i++)
+        {
+            PlayerPrefs.SetInt("p" + i + "score", players[i].GetComponent<Score_Counter>().score);
+        }
+
+        SceneManager.LoadScene("end_scene");
+    }
 }
