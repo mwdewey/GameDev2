@@ -20,12 +20,12 @@ public class BlueShell : Item {
 			if (person == holder) {
 				continue;
 			}
-			Debug.Log (highest_score + " " + target + " " + person.GetComponent<movement>().score);
-			if (target == null || person.GetComponent<movement> ().score > highest_score) {
-				highest_score = person.GetComponent<movement> ().score;
+			Debug.Log (highest_score + " " + target + " " + person.GetComponent<Score_Counter>().score);
+			if (target == null || person.GetComponent<Score_Counter> ().score > highest_score) {
+				highest_score = person.GetComponent<Score_Counter> ().score;
 				target = person;
 			}
-			else if (person.GetComponent<movement>().score == highest_score && (person.transform.position - t.position).sqrMagnitude < (target.transform.position - t.position).sqrMagnitude){
+			else if (person.GetComponent<Score_Counter>().score == highest_score && (person.transform.position - t.position).sqrMagnitude < (target.transform.position - t.position).sqrMagnitude){
 				target = person;
 			}
 		}
@@ -48,7 +48,7 @@ public class BlueShell : Item {
 		desired_velocity *= speed;
 
 		if (target_distance < 0.3f) {
-			target.GetComponent<movement> ().TakeDamage (3);
+			target.GetComponent<Consciousness> ().TakeDamage (3);
 			Debug.Log ("BOOM HEADSHOT");
 			activated = false;
 			Destroy (gameObject);

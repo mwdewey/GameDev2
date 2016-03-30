@@ -6,7 +6,7 @@ public class Cage : MonoBehaviour {
 	bool active;
 	bool locked;
 	float locked_timer;
-	movement victim;
+	PlayerController victim;
 	public Sprite unlocked_sprite;
 
 	// Use this for initialization
@@ -23,8 +23,8 @@ public class Cage : MonoBehaviour {
 		if (other.tag == "PlayerObject") {
 			//Debug.Log ("MWAHAHA, YOU HAVE BEEN TRAPPED, MORTAL");
 			locked = true;
-			victim = other.GetComponent<movement> ();
-			victim.trapped = true;
+			victim = other.GetComponent<PlayerController> ();
+			victim.unconscious = true;
 			other.transform.position = transform.position;
 			GetComponentsInChildren<SpriteRenderer>()[1].sprite = unlocked_sprite;
 		}
@@ -38,7 +38,7 @@ public class Cage : MonoBehaviour {
 				//Debug.Log ("Okay, you can go now. I got bored");
 				locked = false;
 				active = false;
-				victim.trapped = false;
+				victim.unconscious = false;
 			}
 		}
 	}

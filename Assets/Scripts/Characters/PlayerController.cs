@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer ring;
     private Animator anim;
 
+	Item held_item;
+	public List<Item> item_list;
+	public float health;
+
     void Start()
     {
 		rb = GetComponent<Rigidbody2D>();
@@ -59,7 +63,8 @@ public class PlayerController : MonoBehaviour {
         anim.SetFloat("meleeSpeed", 3);
         playerKnockback = null;
         
-
+		held_item = null;
+		item_list = new List<Item> ();
     }
 
 	void Update () {
@@ -80,6 +85,24 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown ("Joy" + PID + "_UltimateAttack")) {
 			GetComponent<Score_Counter> ().progress_portal ();
 			ultimateAttack();
+		}
+
+		if (Input.GetButtonDown ("Joy" + PID + "_Pickup") || Input.GetKeyDown(KeyCode.L)) {
+			if (held_item == null && item_list.Count > 0) {
+				held_item = item_list [0];
+				item_list.Remove (held_item);
+				held_item.Picked_Up ();
+				held_item.holder = gameObject;
+				Debug.Log ("Picked up item: " + held_item.name);
+			} 
+			else if (held_item != null) {
+				held_item.Activate ();
+				held_item = null;
+			}
+		}
+		if (Input.GetKeyDown (KeyCode.P) && held_item != null) {
+			held_item.Drop ();
+			held_item = null;
 		}
 
         //if (PID.Equals("1")) print(rb.velocity);
