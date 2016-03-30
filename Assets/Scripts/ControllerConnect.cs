@@ -58,6 +58,7 @@ public class ControllerConnect : MonoBehaviour
         joystickRegex = new Regex(@"Joystick([0-9]+)Button([0-9]+)");
         controllerIds = new List<int>();
         controllerCount = Input.GetJoystickNames().Length;
+        controllerCount = 4;
 
         playerColors = new List<Color32>();
         playerColors.Add(P1_Color);
@@ -178,7 +179,7 @@ public class ControllerConnect : MonoBehaviour
 
     void generatePlayerUI()
     {
-        for (var i = 0; i < controllerCount; i++)
+        for (var i = 0; i < 4; i++)
         {
             GameObject pb = pbList[i];
             GameObject db = dbList[i];

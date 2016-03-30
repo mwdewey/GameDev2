@@ -11,10 +11,20 @@ public class init_spawner : MonoBehaviour {
 	public RuntimeAnimatorController missq;
 	public RuntimeAnimatorController shifter;
 
+    public bool isDebug = false;
+
 	// Use this for initialization
 	void Start () {
+        int controllerCount = Input.GetJoystickNames().Length;
 
-		for (int i = 0; i < Input.GetJoystickNames().Length; i++) {
+        if (isDebug)
+        {
+            PlayerPrefs.SetInt(PlayerPrefCodes.Player1CharSelect.ToString(),(int) CharCodes.Shifter);
+            controllerCount = 1;
+        }
+
+        for (int i = 0; i < controllerCount; i++)
+        {
 			
 			GameObject p = (GameObject) Instantiate (template, transform.position, Quaternion.identity);
 			p.AddComponent<ultimateAttackController> ();
