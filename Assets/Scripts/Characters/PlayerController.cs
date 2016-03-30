@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour {
 
 		if (Input.GetButtonDown ("Joy" + PID + "_UltimateAttack")) {
 			GetComponent<Score_Counter> ().progress_portal ();
+			ultimateAttack();
 		}
 
         //if (PID.Equals("1")) print(rb.velocity);
@@ -199,6 +200,15 @@ public class PlayerController : MonoBehaviour {
         // preform animation
         anim.SetTrigger("Melee");
     }
+
+	private void ultimateAttack()
+	{
+		gameObject.GetComponent<ultimateAttackController>().handleUltimateInput();
+		//	TODO: hook in ultimate animation
+		//int directionState = anim.GetInteger("DirectionState");
+		// perform animation
+		//anim.SetTrigger("Melee");
+	}
 
     void debugger()
     {

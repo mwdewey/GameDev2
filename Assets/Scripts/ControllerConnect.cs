@@ -247,6 +247,7 @@ public class ControllerConnect : MonoBehaviour
                     playerSelections[i] = currentPosition;
                     characterSelections[currentPosition].Add(i);
 
+                    setCharSelect(i,currentPosition);
                     generateCharacterUI();
                     generatePlayerUI();
 
@@ -270,6 +271,33 @@ public class ControllerConnect : MonoBehaviour
     {
         gameObject.SetActive(false);
         mainMenu.SetActive(true);
+    }
+
+    void setCharSelect(int PID,int CharID)
+    {
+        PlayerPrefCodes playerCode = 0;
+        CharCodes charCode = 0;
+
+        switch (PID)
+        {
+            case 0: playerCode = PlayerPrefCodes.Player1CharSelect; break;
+            case 1: playerCode = PlayerPrefCodes.Player2CharSelect; break;
+            case 2: playerCode = PlayerPrefCodes.Player3CharSelect; break;
+            case 3: playerCode = PlayerPrefCodes.Player4CharSelect; break;
+        }
+
+        string charName = charList[CharID].name;
+
+        switch (charName)
+        {
+            case "Shifter": charCode = CharCodes.Shifter; break;
+            case "Miss Q": charCode = CharCodes.MissQ; break;
+            case "Vegano": charCode = CharCodes.Vegano; break;
+            case "Rich": charCode = CharCodes.Rich; break;
+        }
+
+        PlayerPrefs.SetInt(playerCode.ToString(), (int) charCode);
+
     }
 
     void animateTest()
