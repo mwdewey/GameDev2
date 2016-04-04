@@ -202,7 +202,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         GameObject projectile = (GameObject)Instantiate(ranged_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
-        projectile.GetComponent<Rigidbody2D>().velocity = direction * PROJECTILE_SPEED;
+        projectile.GetComponent<Rigidbody2D>().velocity = direction * PROJECTILE_SPEED + GetComponent<Rigidbody2D>().velocity;
         projectile.GetComponent<CauseKnockback>().my_parent_name = name; //tell it who made it
 
         // preform animation
