@@ -8,7 +8,7 @@ public class Fountain : MonoBehaviour {
 	public class FountainObject {
 		public GameObject item;
 		public int max_instances;//make this negative for infinite items
-		[Range (0,1)]
+		[Range (0,.1f)]
 		public float ChanceOfAppearanceInFrame; //0 to 1 value of how frequent it ought to be
 	}
 
@@ -24,7 +24,9 @@ public class Fountain : MonoBehaviour {
 		foreach (FountainObject obj in items) {
 			float roll_for_success = Random.Range (0f, 1f);
 			if (roll_for_success < obj.ChanceOfAppearanceInFrame){
-				int pos = Random.Range (0, 8);
+				GetComponent<FountainObjFlight> ().SpawnObject (obj.item);
+
+				/*int pos = Random.Range (0, 8);
 				int x_offset = 0;
 				int y_offset = 0;
 				switch (pos) {
@@ -64,14 +66,16 @@ public class Fountain : MonoBehaviour {
 				float x_rand_modifier = Random.Range (-.4f, .4f);
 				float y_rand_modifier = Random.Range (-.4f, .4f);
 				GameObject produced = (GameObject)Instantiate (obj.item, new Vector2 (transform.position.x+x_offset+x_rand_modifier, transform.position.y+y_offset+y_rand_modifier), Quaternion.identity);
-				Manager.coins_remaining += 1;
+				*/
+
+				if (obj.item.tag == "Coin")	Manager.coins_remaining += 1;
 				obj.max_instances--;
 				if (obj.max_instances == 0) {
 					items.Remove (obj);
 				}
 				if (items.Count == 0) {
-					Destroy (gameObject);
-					//print ("Fountain: *cough*");
+					gameObject.GetComponent<Animator> ().SetBool ("dead", true);
+					print ("Fountain: *cough*");
 					return;
 				}
 			}
