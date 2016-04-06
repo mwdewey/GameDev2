@@ -1,0 +1,291 @@
+fileFormatVersion: 2
+guid: d1c49e7b7e2701145824851809b140c9
+timeCreated: 1459902841
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Fountain_0
+    21300002: Fountain_1
+    21300004: Fountain_2
+    21300006: Fountain_3
+    21300008: Fountain_4
+    21300010: Fountain_5
+    21300012: Fountain_6
+    21300014: Fountain_7
+    21300016: Fountain_8
+    21300018: Fountain_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Fountain_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 48}
+        - {x: -36, y: 31}
+        - {x: -36, y: -36}
+        - {x: -24, y: -45}
+        - {x: 36, y: -45}
+        - {x: 36, y: 40}
+        - {x: 18, y: 48}
+    - name: Fountain_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 48}
+        - {x: -15, y: 48}
+        - {x: -36, y: 39}
+        - {x: -36, y: -45}
+        - {x: 36, y: -45}
+        - {x: 36, y: 30}
+    - name: Fountain_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 50}
+        - {x: -36, y: 50}
+        - {x: -36, y: -34}
+        - {x: -29, y: -45}
+        - {x: 29, y: -45}
+        - {x: 36, y: -22}
+        - {x: 36, y: 39}
+        - {x: 27, y: 46}
+    - name: Fountain_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 36, y: -18}
+        - {x: 36, y: 31}
+        - {x: 10, y: 50}
+        - {x: -16, y: 50}
+        - {x: -36, y: 38}
+        - {x: -36, y: -45}
+        - {x: 20, y: -45}
+        - {x: 22, y: -40}
+        - {x: 21, y: -24}
+        - {x: 33, y: -21}
+    - name: Fountain_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: -16}
+        - {x: 33, y: -21}
+        - {x: 36, y: -18}
+        - {x: 36, y: 25}
+        - {x: 23, y: 47}
+        - {x: 12, y: 50}
+        - {x: -15, y: 50}
+        - {x: -36, y: 25}
+        - {x: -36, y: -31}
+        - {x: -31, y: -45}
+        - {x: 10, y: -45}
+        - {x: 25, y: -41}
+        - {x: 21, y: -22}
+        - {x: 17, y: -22}
+        - {x: 14, y: -23}
+      - - {x: -19, y: 44}
+        - {x: -18, y: 41}
+        - {x: -15, y: 41}
+        - {x: -13, y: 43}
+        - {x: -14, y: 46}
+        - {x: -17, y: 46}
+    - name: Fountain_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: -16}
+        - {x: 33, y: -25}
+        - {x: 36, y: -18}
+        - {x: 36, y: 26}
+        - {x: 29, y: 50}
+        - {x: -34, y: 50}
+        - {x: -36, y: 43}
+        - {x: -36, y: -29}
+        - {x: -23, y: -45}
+        - {x: 19, y: -45}
+        - {x: 25, y: -41}
+        - {x: 21, y: -22}
+        - {x: 17, y: -22}
+        - {x: 14, y: -23}
+    - name: Fountain_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 50}
+        - {x: 12, y: 44}
+        - {x: 13, y: 42}
+        - {x: 2, y: 50}
+        - {x: -9, y: 50}
+        - {x: -36, y: 37}
+        - {x: -36, y: -38}
+        - {x: -34, y: -45}
+        - {x: 21, y: -45}
+        - {x: 36, y: -38}
+        - {x: 36, y: 31}
+        - {x: 29, y: 50}
+    - name: Fountain_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 50}
+        - {x: -36, y: 35}
+        - {x: -36, y: -15}
+        - {x: -27, y: -42}
+        - {x: -20, y: -45}
+        - {x: 19, y: -45}
+        - {x: 36, y: -34}
+        - {x: 36, y: 28}
+        - {x: 17, y: 50}
+    - name: Fountain_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 20, y: 41}
+        - {x: 17, y: 40}
+        - {x: 3, y: 50}
+        - {x: -11, y: 50}
+        - {x: -36, y: 39}
+        - {x: -36, y: -45}
+        - {x: 23, y: -45}
+        - {x: 36, y: -34}
+        - {x: 36, y: 30}
+        - {x: 23, y: 40}
+    - name: Fountain_9
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 50}
+        - {x: -36, y: 33}
+        - {x: -36, y: -45}
+        - {x: 28, y: -45}
+        - {x: 36, y: -37}
+        - {x: 36, y: 32}
+        - {x: 7, y: 50}
+      - - {x: 16, y: -26}
+        - {x: 19, y: -25}
+        - {x: 19, y: -22}
+        - {x: 16, y: -21}
+        - {x: 14, y: -23}
+      - - {x: -14, y: -25}
+        - {x: -11, y: -24}
+        - {x: -11, y: -21}
+        - {x: -14, y: -20}
+        - {x: -16, y: -22}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
