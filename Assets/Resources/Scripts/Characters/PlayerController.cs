@@ -84,9 +84,15 @@ public class PlayerController : MonoBehaviour {
         }
 
         // detect range attack
-        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack"))
+        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && !Input.GetButton("Joy" + PID + "_MeleeAttack"))
         {
             rangeAttack();
+        }
+
+        // proto super
+        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && Input.GetButton("Joy" + PID + "_MeleeAttack"))
+        {
+            rangeAttackUltra();
         }
 
 		if (Input.GetButtonDown ("Joy" + PID + "_UltimateAttack")) {
@@ -202,8 +208,28 @@ public class PlayerController : MonoBehaviour {
         }
 
         GameObject projectile = (GameObject)Instantiate(ranged_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
-        projectile.GetComponent<Rigidbody2D>().velocity = direction * PROJECTILE_SPEED;
+        projectile.GetComponent<Rigidbody2D>().velocity = direction * PROJECTILE_SPEED + GetComponent<Rigidbody2D>().velocity;
         projectile.GetComponent<CauseKnockback>().my_parent_name = name; //tell it who made it
+
+        // preform animation
+        anim.SetTrigger("Range");
+    }
+
+    private void rangeAttackUltra()
+    {
+        float num_of_particles = 30;
+        for (float i = 0; i < num_of_particles; i++)
+        {
+            float z_angle = i / num_of_particles * 360f;
+            Vector2 direction = new Vector2(Mathf.Sin(Mathf.Deg2Rad * z_angle), Mathf.Cos(Mathf.Deg2Rad * z_angle));
+            float correction = 360f * (num_of_particles - i) / num_of_particles;
+            Quaternion angle = Quaternion.EulerAngles(0, 0, correction);
+            GameObject projectile = (GameObject)Instantiate(ranged_hitbox, transform.position + new Vector3(direction.x,direction.y,0)* 2, angle);
+            projectile.transform.localEulerAngles = new Vector3(0, 0, correction);
+            projectile.GetComponent<Rigidbody2D>().velocity = direction * PROJECTILE_SPEED + GetComponent<Rigidbody2D>().velocity;
+            projectile.GetComponent<CauseKnockback>().my_parent_name = name;
+        }
+
 
         // preform animation
         anim.SetTrigger("Range");
