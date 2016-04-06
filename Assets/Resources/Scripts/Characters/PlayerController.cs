@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
     // Public non editor objects
     [HideInInspector]
     public bool unconscious;
+	public bool locked;
 
     private bool awake = true;
     private Vector2 velocity;
@@ -68,6 +69,8 @@ public class PlayerController : MonoBehaviour {
         
 		held_item = null;
 		item_list = new List<Item> ();
+
+		locked = false;
     }
 
 	void Update () {
@@ -106,7 +109,7 @@ public class PlayerController : MonoBehaviour {
 				item_list.Remove (held_item);
 				held_item.Picked_Up ();
 				held_item.holder = gameObject;
-				Debug.Log ("Picked up item: " + held_item.name);
+				//Debug.Log ("Picked up item: " + held_item.name);
 			} 
 			else if (held_item != null) {
 				held_item.Activate ();

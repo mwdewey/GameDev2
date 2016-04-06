@@ -58,7 +58,7 @@ public class ControllerConnect : MonoBehaviour
         joystickRegex = new Regex(@"Joystick([0-9]+)Button([0-9]+)");
         controllerIds = new List<int>();
         controllerCount = Input.GetJoystickNames().Length;
-        controllerCount = 4;
+        //controllerCount = 2;
 
         playerColors = new List<Color32>();
         playerColors.Add(P1_Color);
@@ -233,14 +233,14 @@ public class ControllerConnect : MonoBehaviour
                 int prevPosition = currentPosition;
 
                 // move down
-                if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") < -0.5f)
+				if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") < -0.5f && !cbIconList[i].IsLocked)
                 {
                     if (currentPosition == (characterCount - 1)) currentPosition = 0;
                     else currentPosition++;
                 }
 
                 // move up
-                else if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") > 0.5f)
+				else if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") > 0.5f && !cbIconList[i].IsLocked)
                 {
                     if (currentPosition == 0) currentPosition = (characterCount - 1);
                     else currentPosition--;

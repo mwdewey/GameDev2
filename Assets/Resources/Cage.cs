@@ -13,7 +13,7 @@ public class Cage : MonoBehaviour {
 	void Start () {
 		active = true;
 		locked = false;
-		locked_timer = 10;
+		locked_timer = 5;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -25,6 +25,8 @@ public class Cage : MonoBehaviour {
 			locked = true;
 			victim = other.GetComponent<PlayerController> ();
 			victim.unconscious = true;
+			victim.setKnockBack (null);
+			victim.locked = true;
 			other.transform.position = transform.position;
 			GetComponentsInChildren<SpriteRenderer>()[1].sprite = unlocked_sprite;
 		}
@@ -38,6 +40,7 @@ public class Cage : MonoBehaviour {
 				//Debug.Log ("Okay, you can go now. I got bored");
 				locked = false;
 				active = false;
+				victim.locked = false;
 				victim.unconscious = false;
 			}
 		}

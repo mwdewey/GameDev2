@@ -71,7 +71,7 @@ public class Fountain : MonoBehaviour {
 				}
 				if (items.Count == 0) {
 					Destroy (gameObject);
-					print ("Fountain: *cough*");
+					//print ("Fountain: *cough*");
 					return;
 				}
 			}
