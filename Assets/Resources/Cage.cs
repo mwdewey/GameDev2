@@ -17,7 +17,7 @@ public class Cage : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (!active) {
+		if (!active || locked) {
 			return;
 		}
 		if (other.tag == "PlayerObject") {
