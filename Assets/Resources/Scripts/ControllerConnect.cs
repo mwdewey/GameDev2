@@ -142,10 +142,6 @@ public class ControllerConnect : MonoBehaviour
 	{
         moveSelections();
 
-        if (Input.GetKeyDown(KeyCode.S)) test1();
-        if (Input.GetKeyDown(KeyCode.D)) test2();
-
-
         if (Input.GetKeyDown(KeyCode.JoystickButton1) && !isBackPressed)
 	    {
 	        isBackPressed = true;
@@ -297,9 +293,9 @@ public class ControllerConnect : MonoBehaviour
         switch (charName)
         {
             case "Shifter": charCode = CharCodes.Shifter; break;
-            case "Miss Q": charCode = CharCodes.MissQ; break;
-            case "Vegano": charCode = CharCodes.Vegano; break;
-            case "Rich": charCode = CharCodes.Rich; break;
+            case "Miss Q":  charCode = CharCodes.MissQ;   break;
+            case "Vegano":  charCode = CharCodes.Vegano;  break;
+            case "Rich":    charCode = CharCodes.Rich;    break;
         }
 
         PlayerPrefs.SetInt(playerCode.ToString(), (int) charCode);
@@ -406,47 +402,13 @@ public class ControllerConnect : MonoBehaviour
 
     }
 
-    void test1()
-    {
-        if (timeSinceLastMovement[0] > TIME_TO_MOVE)
-        {
-            int currentPosition = playerSelections[0];
-            int prevPosition = currentPosition;
+}
 
-            if (currentPosition == (characterCount - 1)) currentPosition = 0;
-            else currentPosition++;
+public class Player
+{
+    String PID;
+    PlayerLock playerLock;
 
-            characterSelections[prevPosition].Remove(0);
-            playerSelections[0] = currentPosition;
-            characterSelections[currentPosition].Add(0);
-
-            generateCharacterUI();
-            generatePlayerUI();
-
-            timeSinceLastMovement[0] = 0;
-        }
-    }
-
-    void test2()
-    {
-        if (timeSinceLastMovement[1] > TIME_TO_MOVE)
-        {
-            int currentPosition = playerSelections[1];
-            int prevPosition = currentPosition;
-
-            if (currentPosition == (characterCount - 1)) currentPosition = 0;
-            else currentPosition++;
-
-            characterSelections[prevPosition].Remove(1);
-            playerSelections[1] = currentPosition;
-            characterSelections[currentPosition].Add(1);
-
-            generateCharacterUI();
-            generatePlayerUI();
-
-            timeSinceLastMovement[1] = 0;
-        }
-    }
 
 
 }
