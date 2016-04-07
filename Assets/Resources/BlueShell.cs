@@ -11,7 +11,7 @@ public class BlueShell : Item {
 	public override void Activate(){
 		t = GetComponent<Transform> ();
 		t.position = holder.transform.position;
-		Debug.Log ("YOU HAVE SENT OUT A BLUE SHELL");
+		//Debug.Log ("YOU HAVE SENT OUT A BLUE SHELL");
 		activated = true;
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("PlayerObject");
 		int highest_score = -1;
@@ -31,14 +31,14 @@ public class BlueShell : Item {
 			}
 		}
 		if (target == null) {
-			Debug.Log ("FOUND NO TARGET, SELF DESTRUCTING");
+			//Debug.Log ("FOUND NO TARGET, SELF DESTRUCTING");
 			activated = false;
 			Destroy (gameObject);
 		} 
 		else {
 			velocity = Vector3.zero;
 			rendy.enabled = true;
-			speed = 0.1f;
+			speed = 0.08f;
 		}
 	}
 
@@ -49,8 +49,8 @@ public class BlueShell : Item {
 		desired_velocity *= speed;
 
 		if (target_distance < 0.3f) {
-			target.GetComponent<Consciousness> ().TakeDamage (3);
-			Debug.Log ("BOOM HEADSHOT");
+			target.GetComponent<Consciousness> ().TakeDamage (50);
+			//Debug.Log ("BOOM HEADSHOT");
 			activated = false;
 			Destroy (gameObject);
 		}

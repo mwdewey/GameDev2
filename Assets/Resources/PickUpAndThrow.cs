@@ -33,12 +33,12 @@ public class PickUpAndThrow : MonoBehaviour {
 
         if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Joy" + GetComponent<PlayerController>().PID + "_Pickup")) && heldPlayer == null)
             {
-                print("called pick up");
+                //print("called pick up");
                 //pick up an unconscious player
                 Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1);
                 foreach (Collider2D c in hitColliders)
                 {
-                    if (c.gameObject.tag == "PlayerObject" && c.gameObject.name != name && c.gameObject.GetComponent<PlayerController>().unconscious)
+				if (c.gameObject.tag == "PlayerObject" && c.gameObject.name != name && c.gameObject.GetComponent<PlayerController>().unconscious && c.gameObject.GetComponent<Animator>().GetInteger("PlayerState") != 1)
                     {
                         heldPlayer = c.gameObject;
                         c.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
@@ -52,7 +52,7 @@ public class PickUpAndThrow : MonoBehaviour {
         else if ((Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Joy" + GetComponent<PlayerController>().PID + "_Pickup")) && heldPlayer != null)
             {
                 //throw the captured player
-                print("tossed " + heldPlayer.name);
+                //print("tossed " + heldPlayer.name);
                 launched = heldPlayer;
                 heldPlayer.GetComponent<SpriteRenderer>().sortingOrder = 0;
                 //enable Collision again
@@ -77,7 +77,7 @@ public class PickUpAndThrow : MonoBehaviour {
 			case "Down": launched.transform.position = new Vector2(launched.transform.position.x, launched.transform.position.y - .5f); break; // Down
 			}
 				
-			print ("launched!");
+			//print ("launched!");
 			launched.GetComponent<PlayerController> ().setKnockBack (new Knockback (FLIGHT_TIME, direction * LAUNCH_SPEED));
 
 			//give the launched player a damaging hitbox
@@ -111,7 +111,7 @@ public class PickUpAndThrow : MonoBehaviour {
 	void FixedUpdate(){
 		if (heldPlayer != null) {
 			//keep the captured player with me
-			print ("holding " + heldPlayer.name);
+			//print ("holding " + heldPlayer.name);
 			float x_offset = 0;
 			float y_offset = 0;
 

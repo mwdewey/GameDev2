@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Consciousness : MonoBehaviour {
@@ -28,12 +29,17 @@ public class Consciousness : MonoBehaviour {
 			GetComponent<PlayerController>().unconscious = true;
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
 			GetComponent<Attacks>().unconscious = true;
+
 			int coins_lost = GetComponent<Score_Counter> ().score / 2;
 			GetComponent<Score_Counter> ().score /= 2;
+
+			transform.Find ("Player 1 UI").transform.Find("Coin Text").gameObject.GetComponent<Text>().text = GetComponent<Score_Counter> ().score.ToString();
+
 			Manager.coins_remaining += coins_lost;
 			for (int x = 0; x < coins_lost; x++) {
 				Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
 			}
+
 			StartCoroutine(GetUp());
 		}
 	}
@@ -42,7 +48,6 @@ public class Consciousness : MonoBehaviour {
 		if (!GetComponent<PlayerController> ().unconscious) {
 			healthBar.health -= damage;
 		}
-		//print ("ouch! consciousness at "+(((float)healthBar.health)/healthBar.max_health)*100+"%");
 	}
 
 	public void Revive(){
@@ -51,9 +56,12 @@ public class Consciousness : MonoBehaviour {
 
 	IEnumerator GetUp(){
 		yield return new WaitForSeconds (5);
-		GetComponent<Animator> ().SetInteger ("PlayerState", 2);
-		GetComponent<PlayerController> ().unconscious = false;
-		GetComponent<Attacks> ().unconscious = false;
-		healthBar.health = initial_health;
+		if (GetComponent<Animator> ().GetInteger ("PlayerState") != 1) { 
+			GetComponent<Animator> ().SetInteger ("PlayerState", 2);
+			healthBar.health = initial_health;
+			if (!GetComponent<PlayerController> ().locked) {
+				GetComponent<PlayerController> ().unconscious = false;
+			}
+		}
 	}
 }
