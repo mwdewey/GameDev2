@@ -43,13 +43,13 @@ public class Minimap : MonoBehaviour {
 
     void updateMiniMap()
     {
+        List<GameObject> objects = new List<GameObject>();
+        objects.AddRange(GameObject.FindGameObjectsWithTag("PlayerObject"));
+        objects.AddRange(GameObject.FindGameObjectsWithTag("Fountain"));
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerObject");
-
-
-        for (var i = 0; i < players.Length; i++ )
+        for (var i = 0; i < objects.Count; i++)
         {
-            GameObject player = players[i];
+            GameObject player = objects[i];
             PlayerController pController = player.GetComponent<PlayerController>();
             Image icon = icons[i];
 
@@ -69,10 +69,9 @@ public class Minimap : MonoBehaviour {
                 pos.x = mapped_x;
                 pos.y = mapped_y;
 
-                //print(pos.x + " " + pos.y);
-
                 icon.transform.localPosition = pos;
-                icon.color = pController.playerColor;
+                if (pController != null) icon.color = pController.playerColor;
+                else icon.color = new Color32(100,100,100,255);
             }
 
             else if (icon.enabled) icon.enabled = false;

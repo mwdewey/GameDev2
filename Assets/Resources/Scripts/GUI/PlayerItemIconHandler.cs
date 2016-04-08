@@ -17,11 +17,13 @@ public class PlayerItemIconHandler : MonoBehaviour {
 	void Update () {
 		if (pc.held_item == null && iconImage.sprite != null) {
 			iconImage.sprite = null;
+            iconImage.color = Color.black;
 			return;
 		}
 		if (pc.held_item != null && iconImage.sprite == null) {
 			Sprite currentSprite = pc.held_item.GetComponent<SpriteRenderer> ().sprite;
 			iconImage.sprite = currentSprite;
+            iconImage.color = Color.white;
 		}
 
 	}
