@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour {
 			ultimateAttack();
 		}
 
-		if (Input.GetButtonDown ("Joy" + PID + "_Pickup") || Input.GetKeyDown(KeyCode.L)) {
+		if (Input.GetButtonDown ("Joy" + PID + "_Item") || Input.GetKeyDown(KeyCode.L)) {
 			GetComponent<Score_Counter> ().progress_portal ();
 			if (held_item == null && item_list.Count > 0) {
 				held_item = item_list [0];
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour {
 				held_item = null;
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.P) && held_item != null) {
+		if (Input.GetButtonDown("Joy" + PID + "_Drop") && held_item != null) {
 			held_item.Drop ();
 			held_item = null;
 		}

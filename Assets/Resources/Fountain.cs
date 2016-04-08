@@ -75,7 +75,7 @@ public class Fountain : MonoBehaviour {
 				}
 				if (items.Count == 0) {
 					gameObject.GetComponent<Animator> ().SetBool ("dead", true);
-					print ("Fountain: *cough*");
+					//print ("Fountain: *cough*");
 					return;
 				}
 			}
