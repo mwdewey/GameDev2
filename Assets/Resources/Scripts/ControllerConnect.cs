@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ControllerConnect : MonoBehaviour
 {
-    public GameObject mainMenu;
+    public GameObject prevMenu;
 
     private Regex joystickRegex;
     private List<int> controllerIds;
@@ -58,7 +59,7 @@ public class ControllerConnect : MonoBehaviour
         joystickRegex = new Regex(@"Joystick([0-9]+)Button([0-9]+)");
         controllerIds = new List<int>();
         controllerCount = Input.GetJoystickNames().Length;
-        //controllerCount = 2;
+        print(controllerCount);
 
         playerColors = new List<Color32>();
         playerColors.Add(P1_Color);
@@ -67,7 +68,8 @@ public class ControllerConnect : MonoBehaviour
         playerColors.Add(P4_Color);
 
         charList = new List<CharacterObject>();
-        for (var i = 1; i < 5; i++) charList.Add(transform.Find("Char " + i).gameObject.GetComponent<CharacterObject>());
+        foreach(CharacterObject charObject in GameObject.FindObjectsOfType<CharacterObject>())
+            charList.Add(charObject);
 
         csList = new List<GameObject>();
 	    for (var i = 0; i < characterCount; i++)
@@ -128,8 +130,6 @@ public class ControllerConnect : MonoBehaviour
         generateCharacterUI();
 	    generatePlayerUI();
 
-	    updateUI();
-
         setCharSelect(0, 0);
         setCharSelect(1, 0);
         setCharSelect(2, 0);
@@ -137,26 +137,18 @@ public class ControllerConnect : MonoBehaviour
 
 	}
 	
-	// Update is called once per frame
 	void Update ()
 	{
         moveSelections();
-
-        if (Input.GetKeyDown(KeyCode.JoystickButton1) && !isBackPressed)
-	    {
-	        isBackPressed = true;
-            curtain.close();
-	    }
-
-	    if (isBackPressed && !curtain.isRunning)
-	    {
-	        isBackPressed = false;
-	        gotoMainMenu();
-            curtain.instantOpen();
-	    }
-
+        checkBackPressed();
         animateTest();
 
+        if (isBackPressed && !curtain.isRunning)
+        {
+            isBackPressed = false;
+            gotoMainMenu();
+            curtain.instantOpen();
+        }
 	}
 
     void generateCharacterUI()
@@ -181,7 +173,7 @@ public class ControllerConnect : MonoBehaviour
 
     void generatePlayerUI()
     {
-		for (var i = 0; i < controllerCount; i++)
+		for (var i = 0; i < 4; i++)
         {
             GameObject pb = pbList[i];
             GameObject db = dbList[i];
@@ -192,10 +184,10 @@ public class ControllerConnect : MonoBehaviour
             Image portraitImg = pb.transform.Find("Image").gameObject.GetComponent<Image>();
             Text charDescription = db.transform.Find("text").gameObject.GetComponent<Text>();
             Animator portraitAnim = portraitImg.GetComponent<Animator>();
-            CharacterObject charObj = charList[playerSelections[i]];
 
             if (controllerCount > i)
             {
+                CharacterObject charObj = charList[playerSelections[i]];
                 pbImage.color = playerColors[i];
                 dbImage.color = playerColors[i];
                 portraitAnim.runtimeAnimatorController = charObj.portrait;
@@ -204,17 +196,52 @@ public class ControllerConnect : MonoBehaviour
             }
 
             else {
-                pbImage.color = new Color32(33, 33, 33, 255);
-                dbImage.color = new Color32(33, 33, 33, 255);
+
+                GameObject cb = transform.Find("CB").gameObject;
+                GameObject cb_p = cb.transform.Find("P" + (i + 1)).gameObject;
+                GameObject cb_check = cb.transform.Find("P" + (i + 1) + " Check").gameObject;
+
+                pb.SetActive(false);
+                db.SetActive(false);
+                cb_p.SetActive(false);
+                cb_check.SetActive(false);
             }
 
         }
     }
 
-    void updateUI()
+    void checkBackPressed()
     {
 
-        Debug.logger.Log("Count: " + controllerIds.Count);
+        for (var i = 0; i < controllerCount; i++)
+        {
+
+            if (Input.GetKeyDown("joystick " + (i + 1) + " button 1"))
+            {
+                // normal back
+                if (!cbIconList[i].IsLocked)
+                {
+                    isBackPressed = true;
+                    curtain.close();
+                }
+
+                // free player lock
+                else
+                {
+                    PlayerLock playerLock = cbIconList[i];
+
+                    playerLock.IsLocked = false;
+                    playerLock.LockTime = 0;
+
+                    // if start is initiated, reverse it
+                    if (start_initiated)
+                    {
+                        start_initiated = false;
+                        cb_ready.SetActive(false);
+                    }
+                }
+            }
+        }
     }
 
     void moveSelections()
@@ -229,20 +256,24 @@ public class ControllerConnect : MonoBehaviour
                 int prevPosition = currentPosition;
 
                 // move down
-				if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") < -0.5f && !cbIconList[i].IsLocked)
+				if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") < -0.5f && 
+                    !cbIconList[i].IsLocked &&
+                    !Input.GetKey("joystick " + (i + 1) + " button 0"))
                 {
                     if (currentPosition == (characterCount - 1)) currentPosition = 0;
                     else currentPosition++;
                 }
 
                 // move up
-				else if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") > 0.5f && !cbIconList[i].IsLocked)
+				else if (Input.GetAxis("Joy" + (i + 1) + "_LeftStickVertical") > 0.5f &&
+                    !cbIconList[i].IsLocked &&
+                    !Input.GetKey("joystick " + (i + 1) + " button 0"))
                 {
                     if (currentPosition == 0) currentPosition = (characterCount - 1);
                     else currentPosition--;
                 }
 
-                // if position changed, 
+                // if position changed
                 if (prevPosition != currentPosition)
                 {
                     characterSelections[prevPosition].Remove(i);
@@ -266,13 +297,13 @@ public class ControllerConnect : MonoBehaviour
     public void onClick(String gameMode)
     {
         gameObject.SetActive(true);
-        mainMenu.SetActive(false);
+        prevMenu.SetActive(false);
     }
 
     void gotoMainMenu()
     {
         gameObject.SetActive(false);
-        mainMenu.SetActive(true);
+        prevMenu.SetActive(true);
     }
 
     void setCharSelect(int PID,int CharID)
@@ -319,7 +350,7 @@ public class ControllerConnect : MonoBehaviour
             PlayerLock playerLock = cbIconList[i];
             Vector3 iconScale = playerLock.LockBackground.transform.localScale;
 
-            if (Input.GetKey("joystick " + (i + 1) + " button 0") || Input.GetKey(KeyCode.L))
+            if (Input.GetKey("joystick " + (i + 1) + " button 0"))
             {
                 if (!playerLock.IsLocked)
                 {
@@ -362,7 +393,7 @@ public class ControllerConnect : MonoBehaviour
             if (isAllLocked)
             {
                 start_initiated = true;
-                cb_ready.active = true;
+                cb_ready.SetActive(true);
                 cb_ready_time = 0;
                 currentStartSecond = (int)(START_TIME - cb_ready_time) + 1;
                 cb_ready_text.text = "Starting in " + currentStartSecond;
@@ -375,7 +406,7 @@ public class ControllerConnect : MonoBehaviour
             {
                 // start dungeon
                 cb_ready_text.text = "Starting...";
-                Application.LoadLevel("split_screen_test");
+                SceneManager.LoadScene("split_screen_test");
                 curtain.instantOpen();
             }
 

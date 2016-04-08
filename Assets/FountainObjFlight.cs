@@ -35,8 +35,9 @@ public class FountainObjFlight : MonoBehaviour {
 			Rigidbody2D r = obj.GetComponent<Rigidbody2D> ();
 			r.velocity = new Vector2(r.velocity.x, r.velocity.y - 9.8f * Time.deltaTime);
 			if (Vector2.Distance(obj.transform.position, transform.position)> (2+Random.Range(-.5f,.5f)) && obj.transform.position.y<transform.position.y-.8f){     //obj.transform.position.y < ground) {
-				remove_from_moving_objs.Add (obj); 
-				Destroy (r); //remove the rigidbody
+				remove_from_moving_objs.Add (obj);
+                r.velocity = Vector2.zero;
+				//Destroy (r); //remove the rigidbody
 				///coin.tag = "Coin";
 				//now it's just a normal coin
 			}
