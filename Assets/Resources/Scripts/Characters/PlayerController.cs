@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool unconscious;
 	public bool locked;
+	public float speed_boost;
 
     private bool awake = true;
     private Vector2 velocity;
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour {
 		item_list = new List<Item> ();
 
 		locked = false;
+		speed_boost = 1.0f;
     }
 
 	void Update () {
@@ -135,15 +137,15 @@ public class PlayerController : MonoBehaviour {
 
 		if (!useKeyboard) {
 			if (!unconscious) {
-				velocity.x = Input.GetAxis ("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED;
-				velocity.y = Input.GetAxis ("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED;
+				velocity.x = Input.GetAxis ("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED * speed_boost;
+				velocity.y = Input.GetAxis ("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED * speed_boost;
 			}
 		}
         else
         {
 			if (!unconscious) {
-				velocity.x = Input.GetAxis ("kb_horizontal") * PLAYER_SPEED;
-				velocity.y = Input.GetAxis ("kb_vertical") * PLAYER_SPEED;
+				velocity.x = Input.GetAxis ("kb_horizontal") * PLAYER_SPEED * speed_boost;
+				velocity.y = Input.GetAxis ("kb_vertical") * PLAYER_SPEED * speed_boost;
 			}
         }
 
@@ -268,6 +270,7 @@ public class PlayerController : MonoBehaviour {
 		// perform animation
 		//anim.SetTrigger("Melee");
 	}
+		
 
     void debugger()
     {
