@@ -13,11 +13,11 @@ public class Fountain : MonoBehaviour {
 	}
 
 	public List<FountainObject> items;
+	List<FountainObject> removeFromItems = new List<FountainObject>();
 
 	// Use this for initialization
 	void Start () {
-
-	}
+		}
 	
 	// Update is called once per frame
 	void Update () {
@@ -69,9 +69,11 @@ public class Fountain : MonoBehaviour {
 				*/
 
 				if (obj.item.tag == "Coin")	Manager.coins_remaining += 1;
+
 				obj.max_instances--;
-				if (obj.max_instances == 0) {
-					items.Remove (obj);
+				if (obj.max_instances <= 0) {
+					print ("spawned all the " + obj.item + "s");
+					removeFromItems.Add (obj);
 				}
 				if (items.Count == 0) {
 					gameObject.GetComponent<Animator> ().SetBool ("dead", true);
@@ -80,5 +82,13 @@ public class Fountain : MonoBehaviour {
 				}
 			}
 		}
+
+		//why is this here?
+		//It's bad practice to remove from a list as you're 
+		//looping through 
+		foreach (FountainObject o in removeFromItems) {
+			items.Remove (o);
+		}
+		removeFromItems.Clear ();
 	}
 }

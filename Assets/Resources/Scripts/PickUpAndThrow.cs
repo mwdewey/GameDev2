@@ -6,7 +6,7 @@ public class PickUpAndThrow : MonoBehaviour {
 	GameObject heldPlayer=null; 
 	GameObject launched = null;
 	int LAUNCH_SPEED = 15;
-	float FLIGHT_TIME = 2f;
+	float FLIGHT_TIME = .33f;
 	public GameObject melee_hitbox;
 	private Vector2 direction = new Vector2 (0, 0);
 	private string dir_string="";
@@ -38,7 +38,7 @@ public class PickUpAndThrow : MonoBehaviour {
                 Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1);
                 foreach (Collider2D c in hitColliders)
                 {
-				if (c.gameObject.tag == "PlayerObject" && c.gameObject.name != name && c.gameObject.GetComponent<PlayerController>().unconscious && c.gameObject.GetComponent<Animator>().GetInteger("PlayerState") != 1)
+				if (c.gameObject.tag == "PlayerObject" && c.gameObject.name != name && c.gameObject.GetComponent<PlayerController>().unconscious && c.gameObject.GetComponent<Animator>().GetInteger("PlayerState") != 1 && !c.gameObject.GetComponent<PlayerController>().locked)
                     {
                         heldPlayer = c.gameObject;
                         c.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
