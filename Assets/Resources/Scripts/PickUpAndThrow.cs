@@ -43,7 +43,7 @@ public class PickUpAndThrow : MonoBehaviour {
                         heldPlayer = c.gameObject;
                         c.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
                         Physics2D.IgnoreCollision(GetComponentInChildren<PolygonCollider2D>(), c.gameObject.GetComponentInChildren<PolygonCollider2D>(), true);
-                        print("picked up " + c.gameObject.name);
+                        //print("picked up " + c.gameObject.name);
                         break;
                     }
                 }

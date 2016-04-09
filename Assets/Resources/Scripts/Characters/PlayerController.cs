@@ -68,8 +68,6 @@ public class PlayerController : MonoBehaviour {
         ring.color = playerColor;
 
         anim = GetComponent<Animator>();
-        anim.SetFloat("rangeSpeed", 3);
-        anim.SetFloat("meleeSpeed", 3);
         playerKnockback = null;
         
 		held_item = null;
