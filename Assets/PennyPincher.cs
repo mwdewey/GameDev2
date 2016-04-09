@@ -8,6 +8,7 @@ public class PennyPincher: Item {
 	bool reverse = false;
 	int lock_out = 11;
 	Vector3 player_stays_here;
+	public AudioClip grabber_sound;
 
 	public override void Activate(){
 		holder.GetComponent<PlayerController> ().held_item = null;
@@ -24,6 +25,8 @@ public class PennyPincher: Item {
 		case 2: spr.transform.Rotate(new Vector3(0f, 0f, -90f)); break;// Up
 		case 3: spr.transform.Rotate(new Vector3(0f, 0f, 90f)); break;// Down
 		}
+		GetComponent<AudioSource> ().clip = grabber_sound;
+		GetComponent<AudioSource> ().Play ();
 	}
 		
 

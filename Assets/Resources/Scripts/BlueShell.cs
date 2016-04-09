@@ -8,7 +8,6 @@ public class BlueShell : Item {
 	Vector3 velocity;
 	float speed;
 	public AudioClip blue_shell_sound;
-	public AudioSource audiomanager;
 	
 	public override void Activate(){
 		holder.GetComponent<PlayerController> ().held_item = null;

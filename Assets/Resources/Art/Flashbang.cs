@@ -12,6 +12,7 @@ public class Flashbang : Item {
 	List<SpriteRenderer> blinders;
 	float flash_duration;
 	public Sprite blam;
+	public AudioClip flashbang_sound;
 
 	public override void Activate(){
 		holder.GetComponent<PlayerController> ().held_item = null;
@@ -50,6 +51,8 @@ public class Flashbang : Item {
 			if (!blinding) {
 				t.position += velocity;
 				if ((t.position - target).magnitude <= 0.1f) {
+					GetComponent<AudioSource> ().clip = flashbang_sound;
+					GetComponent<AudioSource> ().Play();
 					rendy.sprite = blam;
 					GameObject[] players = GameObject.FindGameObjectsWithTag ("PlayerObject");
 					foreach (GameObject player in players) {

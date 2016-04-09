@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour {
 	AudioSource Audio;
 	public AudioClip melee_sound;
 	public AudioClip ranged_sound;
+	public AudioClip pickup_item_sound;
 
     void Start()
     {
@@ -121,6 +122,8 @@ public class PlayerController : MonoBehaviour {
 				item_list.Remove (held_item);
 				held_item.Picked_Up ();
 				held_item.holder = gameObject;
+				GetComponent<AudioSource> ().clip = pickup_item_sound;
+				GetComponent<AudioSource> ().Play ();
 				//Debug.Log ("Picked up item: " + held_item.name);
 			} 
 			else if (held_item != null) {
