@@ -263,6 +263,7 @@ public class generateDungeon : MonoBehaviour {
 			for (int i = 0; i < 10; i++) {
 				for (int j = 0; j < rooms.Count; j++) {
 					Room room = rooms[j];
+                    int plsno = 0;
 					while (true) {
 						Room old_position = new Room();
 						
@@ -283,6 +284,12 @@ public class generateDungeon : MonoBehaviour {
 							room.y = old_position.y;
 							break;
 						}
+
+                        plsno += 1;
+
+                        if (plsno > 10000) {
+                            break;
+                        }
 					}
 				}
 			}
@@ -461,6 +468,15 @@ public class generateDungeon : MonoBehaviour {
 						break;
 					}
 				}
+                //THIS DOESN'T WORK FIX THIS DON'T FORGET 
+                /*
+                 * 
+                 * 8=D SO HAPPY
+                 * 
+                 * PHIL
+                 * 
+                 */
+                objectCountToSpawn--;
 			}
 		}
 	}

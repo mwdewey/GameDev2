@@ -1,0 +1,172 @@
+Initialize engine version: 5.3.3f1 (910d71450a97)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA NVS 5200M (ID=0x1140)
+    Vendor:   NVIDIA
+    VRAM:     973 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.047 seconds
+Platform assembly: C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Mikes Gaming\Desktop\GIT\GD2\AcceptedStudents_Data\Managed\System.dll (this message is harmless)
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI.Hid> Failed to create device file:
+ 2 The system cannot find the file specified.
+
+ 
+(Filename:  Line: 54)
+
+<RI.Hid> Failed to create device file:
+ 2 The system cannot find the file specified.
+
+ 
+(Filename:  Line: 54)
+
+<RI.Hid> Failed to create device file:
+ 2 The system cannot find the file specified.
+
+ 
+(Filename:  Line: 54)
+
+<RI.Hid> Failed to create device file:
+ 2 The system cannot find the file specified.
+
+ 
+(Filename:  Line: 54)
+
+<RI.Hid> Failed to create device file:
+ 2 The system cannot find the file specified.
+
+ 
+(Filename:  Line: 54)
+
+<RI.Hid> Failed to create device file:
+ 2 The system cannot find the file specified.
+
+ 
+(Filename:  Line: 54)
+
+<RI.Hid> Failed to create device file:
+ 2 The system cannot find the file specified.
+
+ 
+(Filename:  Line: 54)
+
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.757355 ms
+Joystick connected ("Controller (Xbox One For Windows)").
+ 
+(Filename:  Line: 1353)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.828625 ms
+
+Unloading 40 unused Assets to reduce memory usage. Loaded Objects now: 3389.
+Total: 1.065606 ms (FindLiveObjects: 0.129529 ms CreateObjectMapping: 0.107233 ms MarkObjects: 0.699669 ms  DeleteObjects: 0.128821 ms)
+
+spawned all the Grabber (UnityEngine.GameObject)s
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Flashbang.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at PennyPincher.Activate () [0x00000] in <filename unknown>:0 
+  at PlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at PennyPincher.Activate () [0x00000] in <filename unknown>:0 
+  at PlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+spawned all the Coin (UnityEngine.GameObject)s
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Flashbang.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+THE PORTAL HAS OPENED
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.Renderer:set_enabled (bool)
+  at Item.Picked_Up () [0x00000] in <filename unknown>:0 
+  at PlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.Renderer:set_enabled (bool)
+  at Item.Picked_Up () [0x00000] in <filename unknown>:0 
+  at PlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Flashbang.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException
+  at (wrapper managed-to-native) UnityEngine.Renderer:set_enabled (bool)
+  at Item.Picked_Up () [0x00000] in <filename unknown>:0 
+  at PlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at PennyPincher.Activate () [0x00000] in <filename unknown>:0 
+  at PlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at PennyPincher.Activate () [0x00000] in <filename unknown>:0 
+  at PlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at PennyPincher.Activate () [0x00000] in <filename unknown>:0 
+  at PlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at PennyPincher.Activate () [0x00000] in <filename unknown>:0 
+  at PlayerController.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+The portal has been closed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.843892 ms
+
+Unloading 161 unused Assets to reduce memory usage. Loaded Objects now: 1027.
+Total: 1.758906 ms (FindLiveObjects: 0.092015 ms CreateObjectMapping: 0.057686 ms MarkObjects: 1.500201 ms  DeleteObjects: 0.107940 ms)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 20e0 -> priority: 1 

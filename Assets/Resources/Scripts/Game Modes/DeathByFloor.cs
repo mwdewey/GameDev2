@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using System.Linq;
 
 public class DeathByFloor : MonoBehaviour {
@@ -17,11 +18,17 @@ public class DeathByFloor : MonoBehaviour {
 	int closest_distance;
 
 	private List<Item> ilist;
+    GameObject coin;
 
 	Sprite original_sprite; //so we can set the original sprite back after they aren't dead anymore
 	public Sprite dead;		//this is the dead version of the player. Code can be added to pick which sprite that is later on
 
 	public AudioClip death_sound;
+
+    void Start()
+    {
+        coin = (GameObject)Resources.Load("Prefabs/Environment/Coin");
+    }
 
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.gameObject.tag == "Ring") {
@@ -35,6 +42,18 @@ public class DeathByFloor : MonoBehaviour {
 			c2.gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			c2.gameObject.GetComponent<PlayerController> ().setKnockBack (null);
 			ilist = c2.gameObject.GetComponent<PlayerController>().item_list;
+
+            int coins_lost = c2.GetComponent<Score_Counter>().score / 2;
+            c2.GetComponent<Score_Counter>().score /= 2;
+
+            c2.transform.Find("Player 1 UI").transform.Find("Coin Text").gameObject.GetComponent<Text>().text = c2.GetComponent<Score_Counter>().score.ToString();
+
+            Manager.coins_remaining += coins_lost;
+            for (int x = 0; x < coins_lost; x++)
+            {
+                Instantiate(coin, new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0) + c2.transform.position, Quaternion.identity);
+            }
+
 			  //make sure they don't just keep moving on the velocity they already had
 			StartCoroutine (RespawnCountdown( c2.gameObject, original_sprite )); 
 			  //countdown to respawn

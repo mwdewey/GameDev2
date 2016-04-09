@@ -106,13 +106,13 @@ public class PlayerController : MonoBehaviour {
         // proto super
         if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && Input.GetButton("Joy" + PID + "_MeleeAttack"))
         {
-            rangeAttackUltra();
-			Audio.clip = ranged_sound;
-			Audio.Play ();
+            //rangeAttackUltra();
+			//Audio.clip = ranged_sound;
+			//Audio.Play ();
         }
 
 		if (Input.GetButtonDown ("Joy" + PID + "_UltimateAttack")) {
-			ultimateAttack();
+			//ultimateAttack();
 		}
 
 		if (Input.GetButtonDown ("Joy" + PID + "_Item") || Input.GetKeyDown(KeyCode.L)) {

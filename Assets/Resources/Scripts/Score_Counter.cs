@@ -10,6 +10,7 @@ public class Score_Counter : MonoBehaviour {
 	float portal_progress;
 	private SpriteRenderer pp_sprite;
 	Color pp_color;
+    Text score_label;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,7 @@ public class Score_Counter : MonoBehaviour {
 		in_portal = false;
         pp_sprite = transform.Find("Portal Progress").gameObject.GetComponent<SpriteRenderer>();
 		pp_color = pp_sprite.color;
+        score_label = transform.Find("Player 1 UI").transform.Find("Coin Text").gameObject.GetComponent<Text>();
 	}
 
 	void OnTriggerStay2D(Collider2D other){
@@ -49,6 +51,7 @@ public class Score_Counter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        score_label.text = score.ToString();
 		if (Input.GetKey (KeyCode.Space)) {
 			Debug.Log ("Your score: " + score);
 		}
@@ -64,6 +67,7 @@ public class Score_Counter : MonoBehaviour {
 				pp_sprite.enabled = false;
 				Destroy (pp_sprite.gameObject);
 				Debug.Log ("Player has escaped with " + score + " coins!");
+                PlayerPrefs.SetInt("p" + GetComponent<PlayerController>().PID + "score", score);
 			}
 		} 
 		else if (pp_sprite.color.a > 0f) {

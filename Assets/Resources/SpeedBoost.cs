@@ -23,6 +23,12 @@ public class SpeedBoost : Item {
 
 	void Update(){
 		if (activated) {
+
+            if (t==null || holder==null || holder_t == null) {
+                Destroy(gameObject);
+                return;
+            }
+
 			active_lifetime -= Time.deltaTime;
 			t.position = holder_t.position;
 			if (active_lifetime <= 0) {
