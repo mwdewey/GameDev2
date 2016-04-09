@@ -14,6 +14,7 @@ public class Flashbang : Item {
 	public Sprite blam;
 
 	public override void Activate(){
+		holder.GetComponent<PlayerController> ().held_item = null;
 		activated = true;
 		blinding = false;
 		t = GetComponent<Transform> ();

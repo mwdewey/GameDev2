@@ -9,6 +9,7 @@ public class BlueShell : Item {
 	float speed;
 	
 	public override void Activate(){
+		holder.GetComponent<PlayerController> ().held_item = null;
 		t = GetComponent<Transform> ();
 		t.position = holder.transform.position;
 		//Debug.Log ("YOU HAVE SENT OUT A BLUE SHELL");

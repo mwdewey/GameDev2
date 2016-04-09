@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 38bc39ac5d1a0be48a8a78812dbefc78
+timeCreated: 1460169720
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ring: {instanceID: 0}
+  - rendy: {instanceID: 0}
+  - collidy: {instanceID: 0}
+  - holder: {instanceID: 0}
+  - fire: {fileID: 110420, guid: f9ec1bce9de86024fa70be86b9ebc8f1, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
