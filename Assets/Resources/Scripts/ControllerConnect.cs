@@ -59,7 +59,7 @@ public class ControllerConnect : MonoBehaviour
         joystickRegex = new Regex(@"Joystick([0-9]+)Button([0-9]+)");
         controllerIds = new List<int>();
         controllerCount = Input.GetJoystickNames().Length;
-        print(controllerCount);
+        //print(controllerCount);
 
         playerColors = new List<Color32>();
         playerColors.Add(P1_Color);
