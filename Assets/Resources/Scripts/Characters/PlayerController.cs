@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector]
     public bool unconscious;
 	public bool locked;
+	public float speed_boost;
 
     private bool awake = true;
     private Vector2 velocity;
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour {
 		item_list = new List<Item> ();
 
 		locked = false;
+		speed_boost = 1.0f;
     }
 
 	void Update () {
@@ -113,7 +115,7 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-		if (Input.GetButtonDown ("Joy" + PID + "_Pickup") || Input.GetKeyDown(KeyCode.L)) {
+		if (Input.GetButtonDown ("Joy" + PID + "_Item") || Input.GetKeyDown(KeyCode.L)) {
 			GetComponent<Score_Counter> ().progress_portal ();
 			if (held_item == null && item_list.Count > 0) {
 				held_item = item_list [0];
@@ -124,10 +126,9 @@ public class PlayerController : MonoBehaviour {
 			} 
 			else if (held_item != null) {
 				held_item.Activate ();
-				held_item = null;
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.P) && held_item != null) {
+		if (Input.GetButtonDown("Joy" + PID + "_Drop") && held_item != null) {
 			held_item.Drop ();
 			held_item = null;
 		}
@@ -146,15 +147,15 @@ public class PlayerController : MonoBehaviour {
 
 		if (!useKeyboard) {
 			if (!unconscious) {
-				velocity.x = Input.GetAxis ("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED;
-				velocity.y = Input.GetAxis ("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED;
+				velocity.x = Input.GetAxis ("Joy" + PID + "_LeftStickHorizontal") * PLAYER_SPEED * speed_boost;
+				velocity.y = Input.GetAxis ("Joy" + PID + "_LeftStickVertical") * PLAYER_SPEED * speed_boost;
 			}
 		}
         else
         {
 			if (!unconscious) {
-				velocity.x = Input.GetAxis ("kb_horizontal") * PLAYER_SPEED;
-				velocity.y = Input.GetAxis ("kb_vertical") * PLAYER_SPEED;
+				velocity.x = Input.GetAxis ("kb_horizontal") * PLAYER_SPEED * speed_boost;
+				velocity.y = Input.GetAxis ("kb_vertical") * PLAYER_SPEED * speed_boost;
 			}
         }
 
@@ -275,6 +276,7 @@ public class PlayerController : MonoBehaviour {
 		// perform animation
 		//anim.SetTrigger("Melee");
 	}
+		
 
     void debugger()
     {

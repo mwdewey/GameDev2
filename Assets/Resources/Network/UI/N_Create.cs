@@ -69,7 +69,6 @@ public class N_Create : MonoBehaviour
 
     public void OnConnected(NetworkMessage msg)
     {
-
         SceneManager.LoadScene("network_test");
 
         print("Host connected");
