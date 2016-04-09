@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour {
     public float power;
     private float POWER_MAX = 100;
 
+	AudioSource Audio;
+	public AudioClip melee_sound;
+	public AudioClip ranged_sound;
+
     void Start()
     {
 		rb = GetComponent<Rigidbody2D>();
@@ -73,6 +77,8 @@ public class PlayerController : MonoBehaviour {
 
 		locked = false;
 		speed_boost = 1.0f;
+
+		Audio = GetComponent<AudioSource> ();
     }
 
 	void Update () {
@@ -86,18 +92,24 @@ public class PlayerController : MonoBehaviour {
         if(Input.GetButtonDown("Joy" + PID + "_MeleeAttack"))
         {
             meleeAttack();
+			Audio.clip = melee_sound;
+			Audio.Play ();
         }
 
         // detect range attack
         if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && !Input.GetButton("Joy" + PID + "_MeleeAttack"))
         {
             rangeAttack();
+			Audio.clip = ranged_sound;
+			Audio.Play ();
         }
 
         // proto super
         if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && Input.GetButton("Joy" + PID + "_MeleeAttack"))
         {
             rangeAttackUltra();
+			Audio.clip = ranged_sound;
+			Audio.Play ();
         }
 
 		if (Input.GetButtonDown ("Joy" + PID + "_UltimateAttack")) {

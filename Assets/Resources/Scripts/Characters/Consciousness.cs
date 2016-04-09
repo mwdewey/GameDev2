@@ -14,6 +14,8 @@ public class Consciousness : MonoBehaviour {
 	private float initial_health;
 	GameObject coin;
 
+	public AudioClip unconscious_sound;
+
 	// Use this for initialization
 	void Start () {
 		string pid = GetComponent<PlayerController> ().PID;
@@ -29,6 +31,8 @@ public class Consciousness : MonoBehaviour {
 			GetComponent<PlayerController>().unconscious = true;
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
 			GetComponent<Attacks>().unconscious = true;
+			GetComponent<AudioSource> ().clip = unconscious_sound;
+			GetComponent<AudioSource> ().Play ();
 
 			int coins_lost = GetComponent<Score_Counter> ().score / 2;
 			GetComponent<Score_Counter> ().score /= 2;
