@@ -7,11 +7,13 @@ public class SpeedBoost : Item {
 	Transform t;
 	Transform holder_t;
 	bool dontSpam = true;
-
+	public AudioClip speed_sound; 
 
 
 	public override void Activate (){
 		GetComponent<ParticleSystem> ().Play ();
+		GetComponent<AudioSource> ().clip = speed_sound;
+		GetComponent<AudioSource> ().Play ();
 		holder.GetComponent<PlayerController> ().held_item = null; 	
 		holder.GetComponent<PlayerController> ().speed_boost = 1.5f;
 		active_lifetime = 20f;

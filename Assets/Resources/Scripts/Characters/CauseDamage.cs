@@ -18,6 +18,7 @@ public class CauseDamage : MonoBehaviour {
 	public List<string> dontdamage;
 	public bool launched_player = false;
 	public GameObject blam; 
+	public AudioClip thrown_player_hit_sound;
 
 	// Use this for initialization
 	void Start () {
@@ -47,6 +48,8 @@ public class CauseDamage : MonoBehaviour {
 				GameObject pow_icon = (GameObject) Instantiate(blam, transform.position, Quaternion.identity);
 				//Debug.Break();
 				pow_icon.GetComponent<SpriteRenderer> ().sortingOrder = 3;
+				GetComponent<AudioSource> ().clip = thrown_player_hit_sound;
+				GetComponent<AudioSource> ().Play ();
 			}
 		}
 		if (die_on_contact && !dontdamage.Contains(c.gameObject.name)){ 

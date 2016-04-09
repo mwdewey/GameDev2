@@ -10,6 +10,7 @@ public class Score_Counter : MonoBehaviour {
 	float portal_progress;
 	private SpriteRenderer pp_sprite;
 	Color pp_color;
+	public AudioClip coin_collect_sound;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +32,8 @@ public class Score_Counter : MonoBehaviour {
                 other.GetComponent<Renderer>().enabled = false;
                 Destroy(other);
                 Manager.coins_remaining -= 1;
+				GetComponent<AudioSource> ().clip = coin_collect_sound;
+				GetComponent<AudioSource> ().Play ();
             }
         }
 	}

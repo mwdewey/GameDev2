@@ -11,6 +11,8 @@ public class PortalScript : MonoBehaviour {
 	int total_players;
 	GameObject[] players;
 
+	public AudioClip portal_open_sound;
+
 	// Use this for initialization
 	void Start () {
 		opened = false;
@@ -46,6 +48,8 @@ public class PortalScript : MonoBehaviour {
 					players [i].GetComponent<PlayerController> ().enabled = false;
 					vortex = true;
 				}
+				GetComponent<AudioSource> ().clip = portal_open_sound;
+				GetComponent<AudioSource> ().Play ();
 
                 // ends the game 10 seconds after the vortex is active
                 Invoke("endGame", 10);

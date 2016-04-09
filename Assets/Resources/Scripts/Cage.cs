@@ -8,6 +8,7 @@ public class Cage : MonoBehaviour {
 	float locked_timer;
 	PlayerController victim;
 	public Sprite unlocked_sprite;
+	public AudioClip cage_sound;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,8 @@ public class Cage : MonoBehaviour {
 			victim.locked = true;
 			other.transform.position = transform.position;
 			GetComponentsInChildren<SpriteRenderer>()[1].sprite = unlocked_sprite;
+			GetComponent<AudioSource> ().clip = cage_sound;
+			GetComponent<AudioSource> ().Play ();
 		}
 	}
 	
