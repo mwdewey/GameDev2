@@ -9,7 +9,7 @@ public class Flashbang : Item {
 	Vector3 target;
 	Vector3 velocity;
 	bool blinding;
-	List<GameObject> blinders;
+	List<SpriteRenderer> blinders;
 	float flash_duration;
 	public Sprite blam;
 
@@ -20,7 +20,7 @@ public class Flashbang : Item {
 		direction = holder.GetComponent<Animator> ().GetInteger ("DirectionState");
 		t.position = holder.transform.position;
 		flash_duration = 2f;
-		blinders = new List<GameObject> ();
+		blinders = new List<SpriteRenderer> ();
 		rendy.enabled = true;
 		switch (direction)
 		{
@@ -56,7 +56,7 @@ public class Flashbang : Item {
 							blinding = true;
 							GameObject blinder = (GameObject)Instantiate (Resources.Load ("Prefabs/Environment/Blinder"), player.transform.position, Quaternion.identity);
 							blinder.layer = 9 + int.Parse (player.GetComponent<PlayerController> ().PID);
-							blinders.Add (blinder);
+							blinders.Add (blinder.GetComponent<SpriteRenderer>());
 						}
 					}
 					if (!blinding) {
@@ -68,10 +68,15 @@ public class Flashbang : Item {
 				flash_duration -= Time.deltaTime;
 				if (flash_duration <= 1.9f && rendy.enabled) {
 					rendy.enabled = false;
+				} 
+				else if (flash_duration <= 0.5f) {
+					foreach (SpriteRenderer blinder in blinders) {
+						blinder.color = new Color(blinder.color.r, blinder.color.g, blinder.color.g, flash_duration * 2);
+					}
 				}
-				if (flash_duration <= 0) {
-					foreach (GameObject blinder in blinders) {
-						Destroy (blinder);
+				else if (flash_duration <= 0) {
+					foreach (SpriteRenderer blinder in blinders) {
+						Destroy (blinder.gameObject);
 					}
 					Destroy (gameObject);
 				}
