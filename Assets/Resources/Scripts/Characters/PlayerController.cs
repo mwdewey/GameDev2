@@ -115,7 +115,6 @@ public class PlayerController : MonoBehaviour {
 			} 
 			else if (held_item != null) {
 				held_item.Activate ();
-				held_item = null;
 			}
 		}
 		if (Input.GetButtonDown("Joy" + PID + "_Drop") && held_item != null) {
