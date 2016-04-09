@@ -7,6 +7,8 @@ public class BlueShell : Item {
 	Transform t;
 	Vector3 velocity;
 	float speed;
+	public AudioClip blue_shell_sound;
+	public AudioSource audiomanager;
 	
 	public override void Activate(){
 		holder.GetComponent<PlayerController> ().held_item = null;
@@ -52,6 +54,8 @@ public class BlueShell : Item {
 		if (target_distance < 0.3f) {
 			target.GetComponent<Consciousness> ().TakeDamage (50);
 			//Debug.Log ("BOOM HEADSHOT");
+			target.GetComponent<AudioSource>().clip = blue_shell_sound;
+			target.GetComponent<AudioSource>().Play ();
 			activated = false;
 			Destroy (gameObject);
 		}

@@ -21,12 +21,16 @@ public class DeathByFloor : MonoBehaviour {
 	Sprite original_sprite; //so we can set the original sprite back after they aren't dead anymore
 	public Sprite dead;		//this is the dead version of the player. Code can be added to pick which sprite that is later on
 
+	public AudioClip death_sound;
+
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.gameObject.tag == "Ring") {
 			//You can do whatever you want to the player who just collided by using c.gameObject.whatever. 
 			//death time!
 			GameObject c2 = c.transform.parent.gameObject;
 			c2.gameObject.GetComponent<Animator>().SetInteger("PlayerState",1);
+			GetComponent<AudioSource> ().clip = death_sound;
+			GetComponent<AudioSource> ().Play ();
 			c2.gameObject.GetComponent<PlayerController> ().unconscious = true;//stop movement
 			c2.gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			c2.gameObject.GetComponent<PlayerController> ().setKnockBack (null);

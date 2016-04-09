@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour {
     public float POWER_RECHARGE_RATE = 10f;
     public bool useKeyboard;
     public Color32 playerColor = new Color32(244, 67, 54, 255);
-    public float ATTACK_DELAY = 0.5f;
 
 	public CharCodes character;
 
@@ -42,8 +41,10 @@ public class PlayerController : MonoBehaviour {
     public float power;
     private float POWER_MAX = 100;
 
-    private bool isAttacking = false;
-    
+	AudioSource Audio;
+	public AudioClip melee_sound;
+	public AudioClip ranged_sound;
+
     void Start()
     {
 		rb = GetComponent<Rigidbody2D>();
@@ -74,6 +75,8 @@ public class PlayerController : MonoBehaviour {
 
 		locked = false;
 		speed_boost = 1.0f;
+
+		Audio = GetComponent<AudioSource> ();
     }
 
 	void Update () {
@@ -84,36 +87,32 @@ public class PlayerController : MonoBehaviour {
         if (power > POWER_MAX) power = POWER_MAX;
 
         // detect melee
-        if (!isAttacking)
+        if(Input.GetButtonDown("Joy" + PID + "_MeleeAttack"))
         {
-            if (Input.GetButtonDown("Joy" + PID + "_MeleeAttack"))
-            {
-                // preform animation
-                anim.SetTrigger("Melee");
-                isAttacking = true;
-                Invoke("meleeAttack", ATTACK_DELAY);
-            }
-
-            // detect range attack
-            if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && !Input.GetButton("Joy" + PID + "_MeleeAttack"))
-            {
-                // preform animation
-                anim.SetTrigger("Range");
-                isAttacking = true;
-                Invoke("rangeAttack", ATTACK_DELAY);
-            }
-
-            // proto super
-            if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && Input.GetButton("Joy" + PID + "_MeleeAttack"))
-            {
-                rangeAttackUltra();
-            }
-
-            if (Input.GetButtonDown("Joy" + PID + "_UltimateAttack"))
-            {
-                ultimateAttack();
-            }
+            meleeAttack();
+			Audio.clip = melee_sound;
+			Audio.Play ();
         }
+
+        // detect range attack
+        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && !Input.GetButton("Joy" + PID + "_MeleeAttack"))
+        {
+            rangeAttack();
+			Audio.clip = ranged_sound;
+			Audio.Play ();
+        }
+
+        // proto super
+        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && Input.GetButton("Joy" + PID + "_MeleeAttack"))
+        {
+            rangeAttackUltra();
+			Audio.clip = ranged_sound;
+			Audio.Play ();
+        }
+
+		if (Input.GetButtonDown ("Joy" + PID + "_UltimateAttack")) {
+			ultimateAttack();
+		}
 
 		if (Input.GetButtonDown ("Joy" + PID + "_Item") || Input.GetKeyDown(KeyCode.L)) {
 			GetComponent<Score_Counter> ().progress_portal ();
@@ -226,7 +225,8 @@ public class PlayerController : MonoBehaviour {
         projectile.GetComponent<Rigidbody2D>().velocity = direction * PROJECTILE_SPEED + GetComponent<Rigidbody2D>().velocity;
         projectile.GetComponent<CauseKnockback>().my_parent_name = name; //tell it who made it
 
-        isAttacking = false;
+        // preform animation
+        anim.SetTrigger("Range");
     }
 
     private void rangeAttackUltra()
@@ -244,7 +244,9 @@ public class PlayerController : MonoBehaviour {
             projectile.GetComponent<CauseKnockback>().my_parent_name = name;
         }
 
-        isAttacking = false;
+
+        // preform animation
+        anim.SetTrigger("Range");
     }
 
     private void meleeAttack()
@@ -265,7 +267,8 @@ public class PlayerController : MonoBehaviour {
         GameObject melee = (GameObject) Instantiate(melee_hitbox, new Vector3(transform.position.x + direction.x * (2f / 3), transform.position.y + direction.y * (2f / 3), 0), angle);
         melee.transform.parent = gameObject.transform;
 
-        isAttacking = false;
+        // preform animation
+        anim.SetTrigger("Melee");
     }
 
 	private void ultimateAttack()
