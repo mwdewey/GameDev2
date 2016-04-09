@@ -15,17 +15,7 @@ public class Minimap : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-        icons = new List<Image>(); for (int i = 0; i < 16; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(dotObject,Vector3.zero,Quaternion.identity);
-            obj.transform.SetParent(transform);
-            obj.transform.localPosition = Vector3.zero;
-            obj.transform.localScale = new Vector3(0.1f,0.1f,1f);
-            Image ico = obj.GetComponent<Image>();
-            ico.enabled = false;
-            icons.Add(ico);
-        }
+        icons = new List<Image>();
 
         map_width = GetComponent<RectTransform>().rect.width;
         map_height = GetComponent<RectTransform>().rect.height;
@@ -41,16 +31,31 @@ public class Minimap : MonoBehaviour {
 
 	}
 
+    void addIcon()
+    {
+        GameObject obj = (GameObject)Instantiate(dotObject, Vector3.zero, Quaternion.identity);
+        obj.transform.SetParent(transform);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
+        Image ico = obj.GetComponent<Image>();
+        ico.enabled = false;
+        icons.Add(ico);
+    }
+
     void updateMiniMap()
     {
         List<GameObject> objects = new List<GameObject>();
         objects.AddRange(GameObject.FindGameObjectsWithTag("PlayerObject"));
         objects.AddRange(GameObject.FindGameObjectsWithTag("Fountain"));
+        objects.AddRange(GameObject.FindGameObjectsWithTag("Wall"));
 
         for (var i = 0; i < objects.Count; i++)
         {
             GameObject player = objects[i];
             PlayerController pController = player.GetComponent<PlayerController>();
+
+
+            if (icons.Count < i + 1) addIcon();
             Image icon = icons[i];
 
 

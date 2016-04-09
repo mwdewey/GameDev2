@@ -67,11 +67,15 @@ public class init_spawner : MonoBehaviour {
 			case CharCodes.MissQ:
 				p.AddComponent<MissQ_Ultimate> ();
 				p.GetComponent<Animator> ().runtimeAnimatorController = missq;
+                p.GetComponent<Animator>().SetFloat("rangeSpeed", 0.5f);
+                p.GetComponent<Animator>().SetFloat("meleeSpeed", 0.5f);
 				break;
 			case CharCodes.Shifter:
 				p.AddComponent<Shifter_Ultimate> ();
 				p.GetComponent<Animator> ().runtimeAnimatorController = shifter;
-				break;
+                p.GetComponent<Animator>().SetFloat("rangeSpeed", 3);
+                p.GetComponent<Animator>().SetFloat("meleeSpeed", 3);
+                break;
 			case CharCodes.Rich:
 				p.AddComponent<Rich_Ultimate> ();
 				p.GetComponent<Animator> ().runtimeAnimatorController = rich;
