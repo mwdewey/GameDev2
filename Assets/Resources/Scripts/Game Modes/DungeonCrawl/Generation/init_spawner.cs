@@ -15,6 +15,7 @@ public class init_spawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         int controllerCount = Input.GetJoystickNames().Length;
+		//int controllerCount = 4;
 
         if (isDebug)
         {
