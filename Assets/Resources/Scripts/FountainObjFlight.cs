@@ -22,8 +22,10 @@ public class FountainObjFlight : MonoBehaviour {
 			GameObject new_obj = (GameObject) Instantiate(spawn_object, loc, Quaternion.identity);
 			///new_coin.tag = "Untagged";
 			Rigidbody2D rb;
-			if (new_obj.GetComponent<Rigidbody2D> () == null)
-				rb = new_obj.AddComponent <Rigidbody2D>();
+			if (new_obj.GetComponent<Rigidbody2D> () == null) {
+				rb = new_obj.AddComponent <Rigidbody2D> ();
+				rb.gravityScale = 0;
+			}
 			else
 				rb = new_obj.GetComponent<Rigidbody2D> ();
 			rb.velocity = new Vector2 (Random.Range (-.75f, .75f), 6);
