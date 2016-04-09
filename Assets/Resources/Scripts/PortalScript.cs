@@ -63,7 +63,7 @@ public class PortalScript : MonoBehaviour {
         players = GameObject.FindGameObjectsWithTag("PlayerObject");
         for (int i = 0; i < players.Length; i++)
         {
-            PlayerPrefs.SetInt("p" + i + "score", players[i].GetComponent<Score_Counter>().score);
+            PlayerPrefs.SetInt("p" + (i + 1) + "score", players[i].GetComponent<Score_Counter>().score);
         }
 
         SceneManager.LoadScene("end_scene");
