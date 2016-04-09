@@ -18,7 +18,7 @@ public class SpawnList {
 	public bool asDoor;
 	public bool spawnedObject;
 }
-	
+
 [System.Serializable] //Serializing = "Show this in the editor"
 public class SpawnOption {
 	public int minSpawnCount = 0;
@@ -32,7 +32,7 @@ public class MapTile {
 	public Room room = null;
 }
 
-public class generateDungeon : MonoBehaviour {
+public class dungeonGenerator : MonoBehaviour {
 	public GameObject startPrefab;
 	public GameObject exitPrefab;
 	public List<SpawnList> spawnedObjectLocations = new List<SpawnList>();
@@ -51,7 +51,7 @@ public class generateDungeon : MonoBehaviour {
 	public float tileScaling = 0.0f;
 	public List<SpawnOption> spawnOptions = new List<SpawnOption>();
 	int roomMargin = 3;
-	
+
 	class Dungeon {
 		public static int map_size;
 		public static MapTile[,] map;
@@ -62,7 +62,7 @@ public class generateDungeon : MonoBehaviour {
 
 		public int min_size = 0;
 		public int max_size = 0;
-		
+
 		public int maximumRoomCount = 0;
 		public int minimumRoomCount = 0;
 		public int roomMargin = 0;
@@ -71,7 +71,7 @@ public class generateDungeon : MonoBehaviour {
 		//tile types for ease
 		public static List<int> roomsandfloors = new List<int> { 1, 3 };
 		public static List<int> corners = new List<int> {4,5,6,7};
-		
+
 		public void Generate() {
 			int room_count = Random.Range(this.minimumRoomCount, this.maximumRoomCount);
 			int min_size = this.min_size;
@@ -87,7 +87,7 @@ public class generateDungeon : MonoBehaviour {
 				}
 			}
 			rooms = new List<Room> ();
-			
+
 			this.roomMarginTemp = this.roomMargin;
 			for (var i = 0; i < room_count; i++) {
 
@@ -120,7 +120,7 @@ public class generateDungeon : MonoBehaviour {
 				}
 
 				bool doesCollide =this.DoesCollide(room,0);
-				
+
 				if (doesCollide) {
 					i--;
 					this.roomMargin += 1;
@@ -129,7 +129,7 @@ public class generateDungeon : MonoBehaviour {
 					this.roomMargin = roomMarginTemp;
 					room.w--;
 					room.h--;
-					
+
 					rooms.Add(room);
 				}
 			}
@@ -147,13 +147,13 @@ public class generateDungeon : MonoBehaviour {
 					var pointA = new Room();
 					pointA.x = Random.Range(roomA.x, roomA.x + roomA.w);
 					pointA.y = Random.Range(roomA.y, roomA.y + roomA.h);
-					
+
 					var pointB = new Room();
 					pointB.x = Random.Range(roomB.x, roomB.x + roomB.w);
 					pointB.y = Random.Range(roomB.y, roomB.y + roomB.h);
-					
+
 					roomA.connectedTo = roomB;
-					
+
 					while ((pointB.x != pointA.x) || (pointB.y != pointA.y)) {
 						if (pointB.x != pointA.x) {
 							if (pointB.x > pointA.x) { 
@@ -176,7 +176,7 @@ public class generateDungeon : MonoBehaviour {
 					}
 				}
 			}
-			
+
 			//room making
 			for (int i = 0; i < rooms.Count; i++) {
 				Room room = rooms[i];
@@ -234,7 +234,7 @@ public class generateDungeon : MonoBehaviour {
 					} 
 				}
 			}
-			
+
 			//find far away room
 			goalRoom = rooms[rooms.Count -1 ];
 			if (goalRoom != null) {
@@ -265,10 +265,10 @@ public class generateDungeon : MonoBehaviour {
 					Room room = rooms[j];
 					while (true) {
 						Room old_position = new Room();
-						
+
 						old_position.x = room.x;
 						old_position.y = room.y;
-						
+
 						if (room.x > 1) { 
 							room.x--; 
 						}
@@ -291,13 +291,13 @@ public class generateDungeon : MonoBehaviour {
 		private float lineDistance( Room point1, Room point2 ) {
 			var xs = 0;
 			var ys = 0;
-			
+
 			xs = point2.x - point1.x;
 			xs = xs * xs;
-			
+
 			ys = point2.y - point1.y;
 			ys = ys * ys;
-			
+
 			return Mathf.Sqrt( xs + ys );
 		}
 	}
@@ -316,17 +316,17 @@ public class generateDungeon : MonoBehaviour {
 
 	public void Generate() {
 		Dungeon dungeon = new Dungeon ();
-		
+
 		dungeon.min_size = minRoomSize;
 		dungeon.max_size = maxRoomSize;
 		dungeon.minimumRoomCount = minimumRoomCount;
 		dungeon.maximumRoomCount = maximumRoomCount;
 		dungeon.roomMargin = roomMargin;
-		
+
 		dungeon.Generate ();
-		
+
 		//Dungeon.map = floodFill(Dungeon.map,1,1);
-		
+
 		for (var y = 0; y < Dungeon.map_size; y++) {
 			for (var x = 0; x < Dungeon.map_size; x++) {
 				int tile = Dungeon.map [x, y].type;
@@ -338,11 +338,11 @@ public class generateDungeon : MonoBehaviour {
 				if (tile == 1) {
 					created_tile = GameObject.Instantiate (floorPrefab, tile_location, Quaternion.identity) as GameObject;
 				}
-				
+
 				if (tile == 2) {
 					created_tile = GameObject.Instantiate (wallPrefab, tile_location, Quaternion.identity) as GameObject;
 				}
-				
+
 				if (tile == 3) {
 					created_tile = GameObject.Instantiate (floorPrefab, tile_location, Quaternion.identity) as GameObject;
 				}
@@ -358,7 +358,7 @@ public class generateDungeon : MonoBehaviour {
 						created_tile = GameObject.Instantiate (wallPrefab, tile_location, Quaternion.identity) as GameObject;
 					}
 				}
-				
+
 				if (created_tile) {
 					created_tile.transform.parent = transform;
 				}
@@ -372,7 +372,7 @@ public class generateDungeon : MonoBehaviour {
 
 		end_point.transform.parent = transform;
 		start_point.transform.parent = transform;
-		
+
 		//Spawn Objects;
 		List<SpawnList> spawnedObjectLocations = new List<SpawnList> ();
 
@@ -402,22 +402,22 @@ public class generateDungeon : MonoBehaviour {
 					location.x = x;
 					location.y = y;	
 					if ( (Dungeon.map [x + 1, y].type == 1 || Dungeon.map [x - 1, y].type == 1  ||  Dungeon.map [x, y + 1].type == 1 || Dungeon.map [x, y - 1].type == 1)
-					&& ( (Dungeon.map [x + 1, y].type == 2 && Dungeon.map [x - 1, y].type == 2) || (Dungeon.map [x, y + 1].type == 2 && Dungeon.map [x, y - 1].type == 2) ) ) {
-							location.byCorridor = true;
-							location.asDoor = true;
-							spawnedObjectLocations.Add (location);
+						&& ( (Dungeon.map [x + 1, y].type == 2 && Dungeon.map [x - 1, y].type == 2) || (Dungeon.map [x, y + 1].type == 2 && Dungeon.map [x, y - 1].type == 2) ) ) {
+						location.byCorridor = true;
+						location.asDoor = true;
+						spawnedObjectLocations.Add (location);
 					}
 				}
 			}
 		}
-		
+
 		for (int i = 0; i < spawnedObjectLocations.Count; i++) {
 			SpawnList temp = spawnedObjectLocations [i];
 			int randomIndex = Random.Range (i, spawnedObjectLocations.Count);
 			spawnedObjectLocations [i] = spawnedObjectLocations [randomIndex];
 			spawnedObjectLocations [randomIndex] = temp;
 		}
-		
+
 		int objectCountToSpawn = 0;
 
 		//DOORS
@@ -440,7 +440,7 @@ public class generateDungeon : MonoBehaviour {
 			while (objectCountToSpawn > 0){
 				for (int i = 0; i < spawnedObjectLocations.Count; i++){
 					bool createHere= false;
-					
+
 					if (!spawnedObjectLocations[i].spawnedObject && !spawnedObjectLocations[i].byCorridor){
 						if ( objectToSpawn.spawnByWall && spawnedObjectLocations[i].byWall ) {
 							createHere = true;
@@ -464,7 +464,7 @@ public class generateDungeon : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	void Start () {
 		if (generateOnLoad) {
 			ClearOldDungeon();
