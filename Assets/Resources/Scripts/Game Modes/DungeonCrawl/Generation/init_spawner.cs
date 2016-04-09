@@ -62,7 +62,7 @@ public class init_spawner : MonoBehaviour {
 				break;
 			}
 			p.GetComponent<PlayerController> ().character = character;
-			Debug.Log (character);
+			//Debug.Log (character);
 			switch(character) {
 			case CharCodes.MissQ:
 				p.AddComponent<MissQ_Ultimate> ();
