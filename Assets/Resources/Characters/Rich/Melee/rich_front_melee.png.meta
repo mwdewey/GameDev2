@@ -1,0 +1,225 @@
+fileFormatVersion: 2
+guid: 570fba185b3dec349aea8a3c3e8b79de
+timeCreated: 1460217634
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: rich_front_melee_0
+    21300002: rich_front_melee_1
+    21300004: rich_front_melee_2
+    21300006: rich_front_melee_3
+    21300008: rich_front_melee_4
+    21300010: rich_front_melee_5
+    21300012: rich_front_melee_6
+    21300014: rich_front_melee_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: rich_front_melee_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 56}
+        - {x: -47, y: 37}
+        - {x: -47, y: -3}
+        - {x: -31, y: -42}
+        - {x: 30, y: -42}
+        - {x: 47, y: -17}
+        - {x: 47, y: 30}
+        - {x: 32, y: 56}
+    - name: rich_front_melee_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 56}
+        - {x: -47, y: 37}
+        - {x: -47, y: -3}
+        - {x: -31, y: -42}
+        - {x: 30, y: -42}
+        - {x: 47, y: -17}
+        - {x: 47, y: 30}
+        - {x: 32, y: 56}
+    - name: rich_front_melee_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25, y: 56}
+        - {x: -23, y: 56}
+        - {x: -24, y: 54}
+        - {x: -23, y: 44}
+        - {x: -30, y: 38}
+        - {x: -47, y: 23}
+        - {x: -47, y: -1}
+        - {x: -22, y: -42}
+        - {x: 28, y: -42}
+        - {x: 47, y: -12}
+        - {x: 47, y: 24}
+        - {x: 32, y: 51}
+    - name: rich_front_melee_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25, y: 56}
+        - {x: -23, y: 56}
+        - {x: -24, y: 54}
+        - {x: -23, y: 44}
+        - {x: -30, y: 38}
+        - {x: -47, y: 23}
+        - {x: -47, y: -1}
+        - {x: -22, y: -42}
+        - {x: 28, y: -42}
+        - {x: 47, y: -12}
+        - {x: 47, y: 24}
+        - {x: 32, y: 51}
+    - name: rich_front_melee_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 56}
+        - {x: -47, y: 36}
+        - {x: -47, y: -4}
+        - {x: -31, y: -42}
+        - {x: 30, y: -42}
+        - {x: 47, y: -17}
+        - {x: 47, y: 30}
+        - {x: 32, y: 56}
+    - name: rich_front_melee_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 56}
+        - {x: -47, y: 36}
+        - {x: -47, y: -7}
+        - {x: -35, y: -42}
+        - {x: 29, y: -42}
+        - {x: 47, y: -13}
+        - {x: 47, y: 29}
+        - {x: 28, y: 56}
+    - name: rich_front_melee_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 56}
+        - {x: -47, y: 37}
+        - {x: -47, y: -3}
+        - {x: -31, y: -42}
+        - {x: 30, y: -42}
+        - {x: 47, y: -17}
+        - {x: 47, y: 30}
+        - {x: 32, y: 56}
+    - name: rich_front_melee_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -29, y: 56}
+        - {x: -47, y: 37}
+        - {x: -47, y: -3}
+        - {x: -31, y: -42}
+        - {x: 30, y: -42}
+        - {x: 47, y: -17}
+        - {x: 47, y: 30}
+        - {x: 32, y: 56}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
