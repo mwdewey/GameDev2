@@ -13,7 +13,7 @@ public class PrintScores : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        for (var i = 0; i < 4; i++)
+        for (var i = 0; i < 0; i++)
         {
             PlayerPrefs.SetInt("p" + (i + 1) + "score",i*4);
             PlayerPrefs.SetInt("Player" + (i + 1) + "CharSelect",(int)CharCodes.Shifter);

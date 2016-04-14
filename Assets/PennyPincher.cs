@@ -11,6 +11,12 @@ public class PennyPincher: Item {
 	public AudioClip grabber_sound;
 
 	public override void Activate(){
+
+        if (activated)
+        {
+            return;
+        }
+
 		holder.GetComponent<PlayerController> ().held_item = null;
 		activated = true;
 		spr = (GameObject) Instantiate (grabber, holder.transform.position, Quaternion.identity);
@@ -49,6 +55,7 @@ public class PennyPincher: Item {
 						spr.transform.localScale = new Vector3 (spr.transform.localScale.x - .02f, spr.transform.localScale.y, spr.transform.localScale.z);
 					} 
 					else {
+                        activated = false;
 						Destroy (gameObject);
 					}
 				}

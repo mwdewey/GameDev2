@@ -72,7 +72,7 @@ public class Fountain : MonoBehaviour {
 
 				obj.max_instances--;
 				if (obj.max_instances <= 0) {
-					print ("spawned all the " + obj.item + "s");
+					//print ("spawned all the " + obj.item + "s");
 					removeFromItems.Add (obj);
 				}
 				if (items.Count == 0) {

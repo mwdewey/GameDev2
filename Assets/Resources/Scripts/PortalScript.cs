@@ -44,9 +44,12 @@ public class PortalScript : MonoBehaviour {
 				total_players = players.Length;
 				for (int i = 0; i < players.Length; i++) {
 					players [i].GetComponent<Collider2D> ().enabled = false;
+                    players[i].GetComponent<PlayerController>().unconscious = true;
 					players [i].GetComponentInChildren<PolygonCollider2D> ().enabled = false;
 					players [i].GetComponent<PlayerController> ().enabled = false;
+                    players[i].GetComponent<Rigidbody2D>().isKinematic = true;
 					vortex = true;
+                    PlayerPrefs.SetInt("p" + players[i].GetComponent<PlayerController>().PID + "score", players[i].GetComponent<Score_Counter>().score);
 				}
 				GetComponent<AudioSource> ().clip = portal_open_sound;
 				GetComponent<AudioSource> ().Play ();
@@ -64,11 +67,6 @@ public class PortalScript : MonoBehaviour {
 
     void endGame()
     {
-        players = GameObject.FindGameObjectsWithTag("PlayerObject");
-        for (int i = 0; i < players.Length; i++)
-        {
-            PlayerPrefs.SetInt("p" + (i + 1) + "score", players[i].GetComponent<Score_Counter>().score);
-        }
 
         SceneManager.LoadScene("end_scene");
     }

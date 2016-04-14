@@ -35,14 +35,28 @@ public class Item : MonoBehaviour {
 	}
 
 	public void Picked_Up(){
-		ring.enabled = false;
-		rendy.enabled = false;
-		collidy.enabled = false;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerObject");
+        foreach (GameObject player in players)
+        {
+            player.GetComponent<PlayerController>().item_list.Remove(this);
+        }
+        ring.enabled = false;
+        rendy.enabled = false;
+        collidy.enabled = false;
 	}
 
 	public virtual void Activate(){
 		activated = true;
 	}
+
+    void OnDestroy()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerObject");
+        foreach (GameObject player in players)
+        {
+            player.GetComponent<PlayerController>().item_list.Remove(this);
+        }
+    }
 
 	public void Drop(){
 		//Debug.Log ("YOU HAVE DROPPED OUT A BLUE SHELL");

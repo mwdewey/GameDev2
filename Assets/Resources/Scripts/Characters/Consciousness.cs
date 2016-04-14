@@ -30,7 +30,6 @@ public class Consciousness : MonoBehaviour {
 			GetComponent<Animator> ().SetInteger ("PlayerState", 0);
 			GetComponent<PlayerController>().unconscious = true;
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
-			GetComponent<Attacks>().unconscious = true;
 			GetComponent<AudioSource> ().clip = unconscious_sound;
 			GetComponent<AudioSource> ().Play ();
 
