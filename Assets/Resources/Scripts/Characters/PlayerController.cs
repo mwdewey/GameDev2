@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
         if (power > POWER_MAX) power = POWER_MAX;
 
         // detect melee
-        if(Input.GetButtonDown("Joy" + PID + "_MeleeAttack"))
+		if(Input.GetButtonDown("Joy" + PID + "_MeleeAttack")  || Input.GetKeyDown(KeyCode.J))
         {
             meleeAttack();
 			Audio.clip = melee_sound;
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // detect range attack
-        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && !Input.GetButton("Joy" + PID + "_MeleeAttack"))
+		if ((Input.GetButtonDown("Joy" + PID + "_RangedAttack") && !Input.GetButton("Joy" + PID + "_MeleeAttack")) || Input.GetKeyDown(KeyCode.K))
         {
             rangeAttack();
 			Audio.clip = ranged_sound;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour {
         }
 
         // proto super
-        if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && Input.GetButton("Joy" + PID + "_MeleeAttack"))
+		if (Input.GetButtonDown("Joy" + PID + "_RangedAttack") && Input.GetButton("Joy" + PID + "_MeleeAttack"))
         {
             //rangeAttackUltra();
 			//Audio.clip = ranged_sound;
