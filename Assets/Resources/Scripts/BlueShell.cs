@@ -8,6 +8,7 @@ public class BlueShell : Item {
 	Vector3 velocity;
 	float speed;
 	public AudioClip blue_shell_sound;
+	public ParticleSystem blue_particles;
 	
 	public override void Activate(){
 		holder.GetComponent<PlayerController> ().held_item = null;
@@ -55,6 +56,7 @@ public class BlueShell : Item {
 			//Debug.Log ("BOOM HEADSHOT");
 			target.GetComponent<AudioSource>().clip = blue_shell_sound;
 			target.GetComponent<AudioSource>().Play ();
+			Instantiate (blue_particles, transform.position, Quaternion.identity);
 			activated = false;
 			Destroy (gameObject);
 		}
