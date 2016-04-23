@@ -1,10 +1,19 @@
 fileFormatVersion: 2
 guid: e35006be52b12224dae23a3e9d295235
-timeCreated: 1457473821
+timeCreated: 1461445746
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - template: {instanceID: 0}
+  - missq: {instanceID: 0}
+  - shifter: {instanceID: 0}
+  - rich: {instanceID: 0}
+  - vegano: {instanceID: 0}
+  - missq_ranged: {fileID: 190676, guid: 3244c08c7a587aa4bbccf9e9582f5d89, type: 2}
+  - shifter_ranged: {fileID: 192960, guid: 3914d264b059ea34a8e798aac2197363, type: 2}
+  - rich_ranged: {instanceID: 0}
+  - vegano_ranged: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
