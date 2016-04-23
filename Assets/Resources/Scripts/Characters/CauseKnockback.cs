@@ -38,7 +38,7 @@ public class CauseKnockback : MonoBehaviour {
 			//causing them to fly backward! In players, this function is in PlayerMovement.
 		}
 		//ADD EXCEPTIONS FOR DIE_ON_CONTACT object destroys here \/
-		if (die_on_contact && c.gameObject.name != my_parent_name && c.gameObject.name!="Ring" && c.tag != "Coin"){
+		if (die_on_contact && c.gameObject.name != my_parent_name && c.gameObject.name!="Ring" && c.tag != "Coin" && c.tag != "Item"){
 			//if we hit ANYTHING but the player we came from
             GameObject expl_temp = (GameObject) Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(expl_temp, expl_temp.GetComponent<ParticleSystem>().startLifetime);
