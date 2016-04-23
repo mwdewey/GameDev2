@@ -20,6 +20,7 @@ public class SpeedBoost : Item {
 		activated = true;
 		t = GetComponent<Transform> ();
 		holder_t = holder.GetComponent<Transform> ();
+		t.position = holder_t.position;
 		rendy.enabled = true;
 	}
 
