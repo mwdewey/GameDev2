@@ -34,6 +34,12 @@ public class FountainObjFlight : MonoBehaviour {
 		}
 
 		foreach (GameObject obj in moving_objs) {
+            if (obj == null)
+            {
+                remove_from_moving_objs.Add(obj);
+                continue;
+            }
+
 			Rigidbody2D r = obj.GetComponent<Rigidbody2D> ();
 			r.velocity = new Vector2(r.velocity.x, r.velocity.y - 9.8f * Time.deltaTime);
 			if (Vector2.Distance(obj.transform.position, transform.position)> (2+Random.Range(-.5f,.5f)) && obj.transform.position.y<transform.position.y-.8f){     //obj.transform.position.y < ground) {

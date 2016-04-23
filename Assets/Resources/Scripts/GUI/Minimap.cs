@@ -48,6 +48,7 @@ public class Minimap : MonoBehaviour {
         objects.AddRange(GameObject.FindGameObjectsWithTag("PlayerObject"));
         objects.AddRange(GameObject.FindGameObjectsWithTag("Fountain"));
         objects.AddRange(GameObject.FindGameObjectsWithTag("Wall"));
+        objects.AddRange(GameObject.FindGameObjectsWithTag("Portal"));
 
         for (var i = 0; i < objects.Count; i++)
         {
@@ -79,16 +80,20 @@ public class Minimap : MonoBehaviour {
                 switch(player.tag)
                 {
                     case "PlayerObject":
-                        icon.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+                        icon.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
                         icon.color = pController.playerColor;
                         break;
                     case "Fountain":
-                        icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                        icon.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
                         icon.color = new Color32(3, 169, 244, 255);
                         break;
                     case "Wall":
                         icon.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
                         icon.color = new Color32(100, 100, 100, 255);
+                        break;
+                    case "Portal":
+                        icon.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+                        icon.color = new Color32(230,0,255, 255);
                         break;
 
                 }
