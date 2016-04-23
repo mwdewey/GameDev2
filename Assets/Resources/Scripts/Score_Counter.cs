@@ -30,7 +30,7 @@ public class Score_Counter : MonoBehaviour {
 				string pid = GetComponent<PlayerController> ().PID;
 				transform.Find ("Player 1 UI").transform.Find("Coin Text").gameObject.GetComponent<Text>().text = score.ToString();
                 other.GetComponent<Renderer>().enabled = false;
-                Destroy(other);
+                Destroy(other.gameObject);
                 Manager.coins_remaining -= 1;
 				GetComponent<AudioSource> ().clip = coin_collect_sound;
 				GetComponent<AudioSource> ().Play ();
