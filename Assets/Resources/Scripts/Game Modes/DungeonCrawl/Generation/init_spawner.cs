@@ -92,6 +92,7 @@ public class init_spawner : MonoBehaviour {
 			case CharCodes.Vegano:
 				p.AddComponent<Vegano_Ultimate> ();
 				p.GetComponent<Animator> ().runtimeAnimatorController = vegano;
+				p.GetComponent<PlayerController> ().ranged_hitbox = vegano_ranged;
 				break;
 			}
 		}
