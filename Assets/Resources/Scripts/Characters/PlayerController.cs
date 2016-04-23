@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
 	public float speed_boost;
 
     private bool awake = true;
-    private Vector2 velocity;
+    public Vector2 velocity;
     private Rigidbody2D rb;
 
     private Knockback playerKnockback;

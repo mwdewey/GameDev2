@@ -43,6 +43,12 @@ public class Flashbang : Item {
 			velocity = new Vector3 (0.0f, -0.3f, 0.0f);
 			break; // Down
 		}
+
+        Vector2 player_velocity = holder.GetComponent<Rigidbody2D>().velocity;
+        velocity.x += player_velocity.x / 60;
+        velocity.y += player_velocity.y / 60;
+
+        print(velocity.x + " " + velocity.y);
 	}
 	
 	// Update is called once per frame
