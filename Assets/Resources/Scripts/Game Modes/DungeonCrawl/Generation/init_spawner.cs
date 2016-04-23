@@ -10,6 +10,8 @@ public class init_spawner : MonoBehaviour {
 	private CharCodes character;
 	public RuntimeAnimatorController missq, shifter, rich, vegano;
 
+	public GameObject missq_ranged, shifter_ranged, rich_ranged, vegano_ranged;
+
     public bool isDebug = false;
 
 	// Use this for initialization
@@ -63,19 +65,25 @@ public class init_spawner : MonoBehaviour {
 				break;
 			}
 			p.GetComponent<PlayerController> ().character = character;
+
+			GameObject ranged_obj = p.GetComponent<PlayerController> ().ranged_hitbox;
+			CharacterSpecificRangedObjects storage = p.GetComponent<CharacterSpecificRangedObjects> ();
+
 			//Debug.Log (character);
 			switch(character) {
 			case CharCodes.MissQ:
 				p.AddComponent<MissQ_Ultimate> ();
 				p.GetComponent<Animator> ().runtimeAnimatorController = missq;
-                p.GetComponent<Animator>().SetFloat("rangeSpeed", 0.5f);
-                p.GetComponent<Animator>().SetFloat("meleeSpeed", 0.5f);
+				p.GetComponent<Animator> ().SetFloat ("rangeSpeed", 0.5f);
+				p.GetComponent<Animator> ().SetFloat ("meleeSpeed", 0.5f);
+				p.GetComponent<PlayerController> ().ranged_hitbox = missq_ranged;
 				break;
 			case CharCodes.Shifter:
 				p.AddComponent<Shifter_Ultimate> ();
 				p.GetComponent<Animator> ().runtimeAnimatorController = shifter;
                 p.GetComponent<Animator>().SetFloat("rangeSpeed", 3);
                 p.GetComponent<Animator>().SetFloat("meleeSpeed", 3);
+				p.GetComponent<PlayerController> ().ranged_hitbox = shifter_ranged;
                 break;
 			case CharCodes.Rich:
 				p.AddComponent<Rich_Ultimate> ();
