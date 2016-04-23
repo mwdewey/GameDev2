@@ -225,20 +225,14 @@ public class generateDungeon : MonoBehaviour {
 			for (int x = 0; x < map_size -1  ; x++) {
 				for (int y = 0; y < map_size -1 ; y++) {
 					if (map[x,y].type == 0) {
-						if(map[x + 1,y].type == 1 || map[x + 1,y].type == 3) { 
-							map[x,y].type = 2;
-						}
-						if (x > 0 && (map[x - 1,y].type == 1 || map[x - 1,y].type == 3 )) {
-							map[x,y].type = 2;
-						}
-
-						if (map[x,y + 1].type == 1 || map[x,y + 1].type == 3) { 
-							map[x,y].type = 2;
+						if(    (map[x + 1,y].type == 1 || map[x + 1,y].type == 3) 
+							|| (map[x,y + 1].type == 1 || map[x,y + 1].type == 3)
+							|| (x > 0 && (map[x - 1,y].type == 1 || map[x - 1,y].type == 3))
+							|| (y > 0 && (map[x,y - 1].type == 1 || map[x,y - 1].type == 3)) )
+						{ 
+								map[x,y].type = 2;
 						}
 
-						if (y > 0 && (map[x,y - 1].type == 1 || map[x,y - 1].type == 3) ) {
-							map[x,y].type = 2;
-						}
 					}
 				}
 			}
@@ -316,9 +310,6 @@ public class generateDungeon : MonoBehaviour {
         dungeon.prune = pruneCollidingRooms;
 		
 		dungeon.Generate ();
-
-		
-		//Dungeon.map = floodFill(Dungeon.map,1,1);
 		
 		for (var y = 0; y < Dungeon.map_size; y++) {
 			for (var x = 0; x < Dungeon.map_size; x++) {
@@ -358,11 +349,8 @@ public class generateDungeon : MonoBehaviour {
 			}
 		}
 
-
-		GameObject end_point;
-		GameObject start_point;
-		end_point = GameObject.Instantiate (exitPrefab, new Vector3 (Dungeon.goalRoom.x * tileScaling, Dungeon.goalRoom.y * tileScaling, 0), Quaternion.identity) as GameObject;
-		start_point = GameObject.Instantiate (startPrefab, new Vector3 (Dungeon.startRoom.x * tileScaling, Dungeon.startRoom.y * tileScaling, 0), Quaternion.identity) as GameObject;
+		GameObject end_point   = GameObject.Instantiate (exitPrefab,  new Vector3 (Dungeon.goalRoom.x  * tileScaling,  Dungeon.goalRoom.y * tileScaling, 0), Quaternion.identity) as GameObject;
+		GameObject start_point = GameObject.Instantiate (startPrefab, new Vector3 (Dungeon.startRoom.x * tileScaling, Dungeon.startRoom.y * tileScaling, 0), Quaternion.identity) as GameObject;
 
 		end_point.transform.parent = transform;
 		start_point.transform.parent = transform;
@@ -373,8 +361,6 @@ public class generateDungeon : MonoBehaviour {
 		//OTHERS
 		for (int x = 0; x < Dungeon.map_size; x++) {
 			for (int y = 0; y < Dungeon.map_size; y++) {
-				//&& (Dungeon.startRoom.x < x || Dungeon.startRoom.x + Dungeon.startRoom.w > x ) && (Dungeon.startRoom.y < y || Dungeon.startRoom.y + Dungeon.startRoom.h > y )
-
 				if (Dungeon.map [x, y].type == 1 && ((Dungeon.startRoom != Dungeon.map [x, y].room && Dungeon.goalRoom != Dungeon.map [x, y].room) || maximumRoomCount <= 3)) {
 					var location = new SpawnList ();
 					location.x = x;
@@ -387,7 +373,6 @@ public class generateDungeon : MonoBehaviour {
 					}
 					if (Dungeon.map [x + 1, y + 1].type == 3 || Dungeon.map [x - 1, y - 1].type == 3 || Dungeon.map [x - 1, y + 1].type == 3 || Dungeon.map [x + 1, y - 1].type == 3) {
 						location.byCorridor = true;
-
 					}
 					spawnedObjectLocations.Add (location);
 				} 
