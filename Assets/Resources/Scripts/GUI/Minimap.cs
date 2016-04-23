@@ -75,8 +75,24 @@ public class Minimap : MonoBehaviour {
                 pos.y = mapped_y;
 
                 icon.transform.localPosition = pos;
-                if (pController != null) icon.color = pController.playerColor;
-                else icon.color = new Color32(100,100,100,255);
+
+                switch(player.tag)
+                {
+                    case "PlayerObject":
+                        icon.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);
+                        icon.color = pController.playerColor;
+                        break;
+                    case "Fountain":
+                        icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                        icon.color = new Color32(3, 169, 244, 255);
+                        break;
+                    case "Wall":
+                        icon.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+                        icon.color = new Color32(100, 100, 100, 255);
+                        break;
+
+                }
+
             }
 
             else if (icon.enabled) icon.enabled = false;
