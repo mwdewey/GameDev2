@@ -10,14 +10,4 @@ public class CharacterSpecificRangedObjects : MonoBehaviour {
 	//This is a storage space for character-specific objects
 	//that init_spawner will look for when building one of the
 	//characters.
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

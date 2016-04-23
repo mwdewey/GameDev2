@@ -21,12 +21,7 @@ public class CauseKnockback : MonoBehaviour {
 		//assigned for it in the Attacks script.
 
 	}
-
-	// Update is called once per frame
-	void Update () {
-		//LOLOLOL
-	}
-
+		
 	void OnTriggerEnter2D(Collider2D c){
 		//print ("Pokeball pushes back "+c.gameObject.name);
 		if (c.gameObject.GetComponent<ReceiveKnockback>()!=null && c.gameObject.name != my_parent_name) {

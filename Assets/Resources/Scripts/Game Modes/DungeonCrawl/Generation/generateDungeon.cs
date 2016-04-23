@@ -145,9 +145,6 @@ public class generateDungeon : MonoBehaviour {
                     roomA = rooms[Random.Range(0, rooms.Count)];
                     roomB = rooms[Random.Range(0, rooms.Count)];
                 }
-				//Room roomB = FindClosestRoom(roomA);
-
-
 
 				var pointA = new Room();
 				pointA.x = Random.Range(roomA.x, roomA.x + roomA.w);
@@ -156,8 +153,6 @@ public class generateDungeon : MonoBehaviour {
                 var pointA2 = new Room();
                 pointA2.x = pointA.x + 1;
                 pointA2.y = pointA.y;
-					
-
 
 				var pointB = new Room();
 				pointB.x = Random.Range(roomB.x, roomB.x + roomB.w);
@@ -167,11 +162,10 @@ public class generateDungeon : MonoBehaviour {
                 pointB2.x = pointB.x;
                 pointB2.y = pointB.y + 1;
 
-
 					
 				roomA.connectedTo = roomB;
 					
-				while ((pointB.x != pointA.x) || (pointB.y != pointA.y)) {
+				while ( (pointB.x != pointA.x) || (pointB.y != pointA.y) || (pointB2.x != pointA2.x) || (pointB2.y != pointA2.y) ) {
 					if (pointB.x != pointA.x) {
 						if (pointB.x > pointA.x) { 
 							pointB.x--; 
@@ -189,39 +183,28 @@ public class generateDungeon : MonoBehaviour {
 						}
 					}
 
+
+					if (pointB2.x != pointA2.x) {
+						if (pointB2.x > pointA2.x) {
+							pointB2.x--;
+						}
+						else {
+							pointB2.x++;
+						}
+					}
+					else if (pointB2.y != pointA2.y) {
+						if (pointB2.y > pointA2.y) {
+							pointB2.y--;
+						}
+						else {
+							pointB2.y++;
+						}
+					}
+
 					map[pointB.x,pointB.y].type = 3;
+					map[pointB2.x, pointB2.y].type = 3;
+
 				}
-
-
-                while ((pointB2.x != pointA2.x) || (pointB2.y != pointA2.y))
-                {
-                    if (pointB2.x != pointA2.x)
-                    {
-                        if (pointB2.x > pointA2.x)
-                        {
-                            pointB2.x--;
-                        }
-                        else
-                        {
-                            pointB2.x++;
-                        }
-                    }
-                    else if (pointB2.y != pointA2.y)
-                    {
-                        if (pointB2.y > pointA2.y)
-                        {
-                            pointB2.y--;
-                        }
-                        else
-                        {
-                            pointB2.y++;
-                        }
-                    }
-
-                    map[pointB2.x, pointB2.y].type = 3;
-                }
-
-
 
 			}
 			
@@ -307,47 +290,6 @@ public class generateDungeon : MonoBehaviour {
 			}
 			return false;
 		}
-
-        private void SquashRooms()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < rooms.Count; j++)
-                {
-                    Room room = rooms[j];
-                    int plsno = 0;
-                    while (true)
-                    {
-                        Room old_position = new Room();
-
-                        old_position.x = room.x;
-                        old_position.y = room.y;
-
-                        if (room.x > 1)
-                        {
-                            room.x--;
-                        }
-                        if (room.y > 1)
-                        {
-                            room.y--;
-                        }
-                        if ((room.x == 1) && (room.y == 1))
-                        {
-                            break;
-                        }
-                        if (this.DoesCollide(room, j))
-                        {
-                            room.x = old_position.x;
-                            room.y = old_position.y;
-                            break;
-                        }
-
-                        plsno += 1;
-
-                    }
-                }
-            }
-        }
     
 	}
 
