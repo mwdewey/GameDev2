@@ -1,0 +1,555 @@
+fileFormatVersion: 2
+guid: 7cc2003f3071dc34a84edbd035cfde78
+timeCreated: 1461518575
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Veg_Back_Death_0
+    21300002: Veg_Back_Death_1
+    21300004: Veg_Back_Death_2
+    21300006: Veg_Back_Death_3
+    21300008: Veg_Back_Death_4
+    21300010: Veg_Back_Death_5
+    21300012: Veg_Back_Death_6
+    21300014: Veg_Back_Death_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Veg_Back_Death_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 41, y: 1}
+        - {x: 41, y: 41}
+        - {x: 25, y: 59}
+        - {x: 11, y: 59}
+        - {x: 10, y: 57}
+        - {x: 10, y: 47}
+        - {x: 13, y: 42}
+        - {x: 23, y: 34}
+        - {x: 26, y: 29}
+        - {x: 20, y: 11}
+        - {x: 19, y: 17}
+        - {x: 22, y: 20}
+        - {x: 23, y: 23}
+        - {x: 24, y: 31}
+        - {x: 20, y: 34}
+        - {x: 13, y: 41}
+        - {x: 10, y: 47}
+        - {x: 5, y: 55}
+        - {x: -2, y: 55}
+        - {x: -7, y: 52}
+        - {x: -9, y: 47}
+        - {x: -13, y: 41}
+        - {x: -24, y: 31}
+        - {x: -24, y: 22}
+        - {x: -26, y: 29}
+        - {x: -23, y: 34}
+        - {x: -11, y: 44}
+        - {x: -10, y: 47}
+        - {x: -10, y: 59}
+        - {x: -25, y: 59}
+        - {x: -41, y: 43}
+        - {x: -41, y: 10}
+        - {x: -35, y: -52}
+        - {x: 32, y: -52}
+        - {x: 32, y: -47}
+        - {x: 29, y: -42}
+    - name: Veg_Back_Death_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 59}
+        - {x: 9, y: 58}
+        - {x: 10, y: 47}
+        - {x: 13, y: 43}
+        - {x: 16, y: 40}
+        - {x: 23, y: 34}
+        - {x: 25, y: 30}
+        - {x: 24, y: 31}
+        - {x: 20, y: 34}
+        - {x: 13, y: 41}
+        - {x: 10, y: 47}
+        - {x: 5, y: 55}
+        - {x: -2, y: 55}
+        - {x: -7, y: 52}
+        - {x: -9, y: 47}
+        - {x: -13, y: 41}
+        - {x: -24, y: 31}
+        - {x: -24, y: 22}
+        - {x: -26, y: 29}
+        - {x: -23, y: 34}
+        - {x: -12, y: 43}
+        - {x: -8, y: 50}
+        - {x: -10, y: 59}
+        - {x: -18, y: 59}
+        - {x: -37, y: 47}
+        - {x: -41, y: 32}
+        - {x: -41, y: 13}
+        - {x: -39, y: 11}
+        - {x: -30, y: -52}
+        - {x: 41, y: -52}
+        - {x: 41, y: 57}
+        - {x: 29, y: 59}
+    - name: Veg_Back_Death_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: 58}
+        - {x: 15, y: 58}
+        - {x: 8, y: 56}
+        - {x: 10, y: 48}
+        - {x: 13, y: 43}
+        - {x: 17, y: 40}
+        - {x: 13, y: 41}
+        - {x: 10, y: 47}
+        - {x: 5, y: 55}
+        - {x: -2, y: 55}
+        - {x: -7, y: 52}
+        - {x: -9, y: 47}
+        - {x: -9, y: 51}
+        - {x: -15, y: 58}
+        - {x: -19, y: 58}
+        - {x: -30, y: 53}
+        - {x: -47, y: 40}
+        - {x: -47, y: -3}
+        - {x: -35, y: -52}
+        - {x: 37, y: -52}
+        - {x: 44, y: -18}
+        - {x: 44, y: 39}
+        - {x: 36, y: 47}
+    - name: Veg_Back_Death_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34, y: 64}
+        - {x: -31, y: 64}
+        - {x: -37, y: 63}
+        - {x: -47, y: 51}
+        - {x: -47, y: -8}
+        - {x: -32, y: -52}
+        - {x: 30, y: -52}
+        - {x: 32, y: -50}
+        - {x: 50, y: 5}
+        - {x: 50, y: 45}
+    - name: Veg_Back_Death_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 64}
+        - {x: -37, y: 63}
+        - {x: -47, y: 53}
+        - {x: -47, y: -28}
+        - {x: -40, y: -52}
+        - {x: 35, y: -52}
+        - {x: 50, y: 22}
+        - {x: 50, y: 45}
+        - {x: 28, y: 64}
+    - name: Veg_Back_Death_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: 10}
+        - {x: 19, y: 10}
+        - {x: 26, y: 2}
+        - {x: 55, y: 20}
+        - {x: 55, y: 53}
+        - {x: 50, y: 64}
+        - {x: -32, y: 64}
+        - {x: -40, y: 63}
+        - {x: -33, y: 49}
+        - {x: -29, y: 48}
+        - {x: -19, y: 50}
+        - {x: -14, y: 48}
+        - {x: -6, y: 48}
+        - {x: -3, y: 47}
+        - {x: -4, y: 48}
+        - {x: -12, y: 48}
+        - {x: -15, y: 47}
+        - {x: -15, y: 43}
+        - {x: -13, y: 41}
+        - {x: -18, y: 38}
+        - {x: -16, y: 44}
+        - {x: -19, y: 47}
+        - {x: -23, y: 49}
+        - {x: -26, y: 48}
+        - {x: -33, y: 48}
+        - {x: -41, y: 45}
+        - {x: -44, y: 40}
+        - {x: -44, y: 18}
+        - {x: -31, y: -52}
+        - {x: 30, y: -52}
+        - {x: 34, y: -51}
+        - {x: 17, y: 9}
+        - {x: 14, y: 10}
+      - - {x: -1, y: 53}
+        - {x: 2, y: 54}
+        - {x: 2, y: 57}
+        - {x: -1, y: 58}
+        - {x: -3, y: 56}
+    - name: Veg_Back_Death_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: -13}
+        - {x: 7, y: -15}
+        - {x: 7, y: -18}
+        - {x: 7, y: -13}
+        - {x: -19, y: -13}
+        - {x: -21, y: -15}
+        - {x: -30, y: -37}
+        - {x: -30, y: -52}
+        - {x: 32, y: -52}
+        - {x: 32, y: -46}
+        - {x: 18, y: -13}
+      - - {x: -14, y: -7}
+        - {x: -10, y: -12}
+        - {x: -7, y: -11}
+        - {x: -7, y: -9}
+        - {x: -11, y: -4}
+        - {x: -13, y: -4}
+      - - {x: 4, y: -1}
+        - {x: -3, y: -1}
+        - {x: -7, y: -5}
+        - {x: -7, y: -10}
+        - {x: -3, y: -12}
+        - {x: 3, y: -12}
+        - {x: 11, y: -6}
+        - {x: 11, y: -4}
+        - {x: 10, y: -2}
+      - - {x: 17, y: -1}
+        - {x: 14, y: -3}
+        - {x: 14, y: -6}
+        - {x: 16, y: -12}
+        - {x: 23, y: -12}
+        - {x: 23, y: -1}
+      - - {x: 12, y: -11}
+        - {x: 15, y: -10}
+        - {x: 15, y: -7}
+        - {x: 12, y: -6}
+        - {x: 10, y: -8}
+      - - {x: -8, y: -5}
+        - {x: -5, y: -4}
+        - {x: -5, y: -1}
+        - {x: -8, y: 0}
+        - {x: -10, y: -2}
+      - - {x: 24, y: 27}
+        - {x: -4, y: 27}
+        - {x: -10, y: 22}
+        - {x: -12, y: 16}
+        - {x: -12, y: 13}
+        - {x: -9, y: 11}
+        - {x: -5, y: 11}
+        - {x: -7, y: 11}
+        - {x: -12, y: 7}
+        - {x: -12, y: 4}
+        - {x: -10, y: 3}
+        - {x: 24, y: 3}
+      - - {x: 39, y: 35}
+        - {x: 34, y: 28}
+        - {x: 35, y: 24}
+        - {x: 37, y: 22}
+        - {x: 42, y: 22}
+        - {x: 46, y: 25}
+        - {x: 46, y: 27}
+        - {x: 43, y: 28}
+        - {x: 46, y: 33}
+        - {x: 46, y: 26}
+        - {x: 49, y: 22}
+        - {x: 53, y: 22}
+        - {x: 60, y: 34}
+        - {x: 58, y: 43}
+        - {x: 55, y: 46}
+        - {x: 54, y: 46}
+        - {x: 55, y: 47}
+        - {x: 57, y: 45}
+        - {x: 62, y: 44}
+        - {x: 64, y: 45}
+        - {x: 64, y: 56}
+        - {x: 54, y: 59}
+        - {x: 41, y: 63}
+        - {x: 18, y: 63}
+        - {x: 15, y: 59}
+        - {x: 16, y: 56}
+        - {x: 19, y: 55}
+        - {x: 22, y: 51}
+        - {x: 25, y: 51}
+        - {x: 24, y: 49}
+        - {x: 19, y: 55}
+        - {x: 16, y: 56}
+        - {x: 9, y: 56}
+        - {x: 5, y: 55}
+        - {x: 1, y: 44}
+        - {x: -1, y: 40}
+        - {x: 1, y: 42}
+        - {x: -2, y: 40}
+        - {x: -2, y: 35}
+        - {x: 1, y: 28}
+        - {x: 6, y: 26}
+        - {x: 15, y: 29}
+        - {x: 23, y: 32}
+        - {x: 12, y: 28}
+        - {x: 9, y: 25}
+        - {x: 10, y: 22}
+        - {x: 33, y: 22}
+        - {x: 35, y: 24}
+        - {x: 32, y: 34}
+      - - {x: 60, y: 34}
+        - {x: 63, y: 31}
+        - {x: 64, y: 31}
+        - {x: 64, y: 41}
+        - {x: 61, y: 40}
+      - - {x: -23, y: 38}
+        - {x: -20, y: 36}
+        - {x: -15, y: 39}
+        - {x: -14, y: 36}
+        - {x: -11, y: 35}
+        - {x: -7, y: 35}
+        - {x: -2, y: 36}
+        - {x: -2, y: 43}
+        - {x: -6, y: 58}
+        - {x: -18, y: 58}
+        - {x: -23, y: 46}
+      - - {x: -4, y: 56}
+        - {x: -7, y: 52}
+        - {x: -9, y: 50}
+        - {x: -10, y: 47}
+        - {x: -5, y: 43}
+        - {x: 4, y: 46}
+        - {x: 4, y: 52}
+        - {x: 3, y: 56}
+      - - {x: -9, y: 56}
+        - {x: -6, y: 57}
+        - {x: -6, y: 60}
+        - {x: -9, y: 61}
+        - {x: -11, y: 59}
+      - - {x: -1, y: 58}
+        - {x: 3, y: 56}
+        - {x: 9, y: 56}
+        - {x: 11, y: 57}
+        - {x: 11, y: 59}
+        - {x: 7, y: 64}
+        - {x: 4, y: 64}
+        - {x: -1, y: 62}
+    - name: Veg_Back_Death_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9, y: -19}
+        - {x: 9, y: -40}
+        - {x: 24, y: -40}
+        - {x: 30, y: -37}
+        - {x: 30, y: -26}
+        - {x: 25, y: -19}
+      - - {x: 26, y: -26}
+        - {x: 29, y: -25}
+        - {x: 29, y: -22}
+        - {x: 26, y: -21}
+        - {x: 24, y: -23}
+      - - {x: 43, y: 7}
+        - {x: 44, y: 9}
+        - {x: 45, y: 12}
+        - {x: 37, y: 14}
+        - {x: 40, y: 15}
+        - {x: 41, y: 18}
+        - {x: 41, y: 17}
+        - {x: 43, y: 14}
+        - {x: 51, y: 14}
+        - {x: 54, y: 23}
+        - {x: 52, y: 29}
+        - {x: 45, y: 31}
+        - {x: 40, y: 27}
+        - {x: 37, y: 29}
+        - {x: 37, y: 28}
+        - {x: 38, y: 29}
+        - {x: 39, y: 28}
+        - {x: 42, y: 29}
+        - {x: 42, y: 32}
+        - {x: 39, y: 33}
+        - {x: 40, y: 37}
+        - {x: 40, y: 38}
+        - {x: 46, y: 44}
+        - {x: 45, y: 46}
+        - {x: 47, y: 44}
+        - {x: 42, y: 40}
+        - {x: 39, y: 35}
+        - {x: 43, y: 31}
+        - {x: 46, y: 33}
+        - {x: 50, y: 38}
+        - {x: 50, y: 42}
+        - {x: 50, y: 40}
+        - {x: 49, y: 32}
+        - {x: 52, y: 30}
+        - {x: 60, y: 34}
+        - {x: 60, y: 36}
+        - {x: 61, y: 33}
+        - {x: 64, y: 31}
+        - {x: 64, y: 51}
+        - {x: 59, y: 51}
+        - {x: 57, y: 49}
+        - {x: 64, y: 60}
+        - {x: 64, y: 61}
+        - {x: 63, y: 64}
+        - {x: 42, y: 64}
+        - {x: 14, y: 58}
+        - {x: 4, y: 39}
+        - {x: 4, y: 31}
+        - {x: 7, y: 30}
+        - {x: 11, y: 30}
+        - {x: 9, y: 30}
+        - {x: 4, y: 26}
+        - {x: 4, y: -11}
+        - {x: 24, y: -17}
+        - {x: 29, y: -5}
+        - {x: 29, y: 1}
+        - {x: 29, y: -8}
+        - {x: 30, y: -22}
+        - {x: 33, y: -26}
+        - {x: 39, y: -26}
+        - {x: 53, y: -19}
+        - {x: 50, y: -6}
+        - {x: 46, y: 5}
+        - {x: 44, y: 7}
+      - - {x: 42, y: -19}
+        - {x: 39, y: -22}
+        - {x: 39, y: -23}
+        - {x: 41, y: -25}
+        - {x: 43, y: -25}
+        - {x: 45, y: -23}
+        - {x: 45, y: -21}
+        - {x: 43, y: -19}
+      - - {x: 47, y: -17}
+        - {x: 47, y: -21}
+        - {x: 50, y: -23}
+        - {x: 56, y: -23}
+        - {x: 56, y: -19}
+        - {x: 54, y: -14}
+        - {x: 51, y: -14}
+        - {x: 48, y: -15}
+      - - {x: 12, y: 57}
+        - {x: 15, y: 51}
+        - {x: 34, y: 51}
+        - {x: 34, y: 60}
+        - {x: 32, y: 63}
+        - {x: 31, y: 64}
+        - {x: 15, y: 64}
+        - {x: 12, y: 62}
+      - - {x: 4, y: 59}
+        - {x: 7, y: 60}
+        - {x: 7, y: 63}
+        - {x: 4, y: 64}
+        - {x: 2, y: 62}
+      - - {x: 38, y: 59}
+        - {x: 41, y: 60}
+        - {x: 41, y: 63}
+        - {x: 38, y: 64}
+        - {x: 36, y: 62}
+      - - {x: 45, y: 59}
+        - {x: 48, y: 60}
+        - {x: 48, y: 63}
+        - {x: 45, y: 64}
+        - {x: 43, y: 62}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b76965470b6d7e949817c29a48ea9e61
-timeCreated: 1460164542
+timeCreated: 1461469954
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -64,14 +64,12 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -18, y: 59}
-        - {x: -24, y: 44}
-        - {x: -24, y: -36}
-        - {x: -19, y: -49}
-        - {x: 16, y: -49}
-        - {x: 24, y: -28}
-        - {x: 24, y: 33}
-        - {x: 11, y: 59}
+      - - {x: -7, y: 59}
+        - {x: -20, y: 51}
+        - {x: -20, y: -48}
+        - {x: 14, y: -48}
+        - {x: 21, y: -39}
+        - {x: 21, y: 59}
     - name: MissQ_Back_Melee_1
       rect:
         serializedVersion: 2

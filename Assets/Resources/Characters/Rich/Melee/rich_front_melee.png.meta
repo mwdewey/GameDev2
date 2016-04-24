@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 570fba185b3dec349aea8a3c3e8b79de
-timeCreated: 1460217634
+timeCreated: 1461515909
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -69,14 +69,18 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -29, y: 56}
-        - {x: -47, y: 37}
-        - {x: -47, y: -3}
-        - {x: -31, y: -42}
-        - {x: 30, y: -42}
-        - {x: 47, y: -17}
-        - {x: 47, y: 30}
-        - {x: 32, y: 56}
+      - - {x: 25, y: 56}
+        - {x: -23, y: 56}
+        - {x: -24, y: 54}
+        - {x: -23, y: 44}
+        - {x: -30, y: 38}
+        - {x: -47, y: 23}
+        - {x: -47, y: -1}
+        - {x: -22, y: -42}
+        - {x: 28, y: -42}
+        - {x: 47, y: -12}
+        - {x: 47, y: 24}
+        - {x: 32, y: 51}
     - name: rich_front_melee_1
       rect:
         serializedVersion: 2
@@ -88,9 +92,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -29, y: 56}
-        - {x: -47, y: 37}
-        - {x: -47, y: -3}
+      - - {x: -23, y: 56}
+        - {x: -47, y: 36}
+        - {x: -47, y: -4}
         - {x: -31, y: -42}
         - {x: 30, y: -42}
         - {x: 47, y: -17}
@@ -107,18 +111,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 25, y: 56}
-        - {x: -23, y: 56}
-        - {x: -24, y: 54}
-        - {x: -23, y: 44}
-        - {x: -30, y: 38}
-        - {x: -47, y: 23}
-        - {x: -47, y: -1}
-        - {x: -22, y: -42}
-        - {x: 28, y: -42}
-        - {x: 47, y: -12}
-        - {x: 47, y: 24}
-        - {x: 32, y: 51}
+      - - {x: -23, y: 56}
+        - {x: -47, y: 36}
+        - {x: -47, y: -7}
+        - {x: -35, y: -42}
+        - {x: 29, y: -42}
+        - {x: 47, y: -13}
+        - {x: 47, y: 29}
+        - {x: 28, y: 56}
     - name: rich_front_melee_3
       rect:
         serializedVersion: 2
@@ -130,18 +130,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 25, y: 56}
-        - {x: -23, y: 56}
-        - {x: -24, y: 54}
-        - {x: -23, y: 44}
-        - {x: -30, y: 38}
-        - {x: -47, y: 23}
-        - {x: -47, y: -1}
-        - {x: -22, y: -42}
-        - {x: 28, y: -42}
-        - {x: 47, y: -12}
-        - {x: 47, y: 24}
-        - {x: 32, y: 51}
+      - - {x: -29, y: 56}
+        - {x: -47, y: 37}
+        - {x: -47, y: -3}
+        - {x: -31, y: -42}
+        - {x: 30, y: -42}
+        - {x: 47, y: -17}
+        - {x: 47, y: 30}
+        - {x: 32, y: 56}
     - name: rich_front_melee_4
       rect:
         serializedVersion: 2
@@ -153,9 +149,9 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -23, y: 56}
-        - {x: -47, y: 36}
-        - {x: -47, y: -4}
+      - - {x: -29, y: 56}
+        - {x: -47, y: 37}
+        - {x: -47, y: -3}
         - {x: -31, y: -42}
         - {x: 30, y: -42}
         - {x: 47, y: -17}

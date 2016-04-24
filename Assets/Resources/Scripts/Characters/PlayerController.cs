@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown ("Joy" + PID + "_Item") || Input.GetKeyDown(KeyCode.L)) {
 			GetComponent<Score_Counter> ().progress_portal ();
 			if (held_item == null && item_list.Count > 0) {
+                GetComponent<Animator>().SetTrigger("Pickup");
 				held_item = item_list [0];
 				item_list.Remove (held_item);
 				held_item.Picked_Up ();
