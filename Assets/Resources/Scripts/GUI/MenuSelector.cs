@@ -111,8 +111,6 @@ public class MenuSelector : MonoBehaviour {
 
         selectIcon.transform.SetParent(menuItem.transform,false);
 
-        Button menuButton = menuItem.GetComponent<Button>();
-        Image imageButton = menuItem.GetComponent<Image>();
 
     }
 

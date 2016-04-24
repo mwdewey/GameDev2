@@ -31,7 +31,7 @@ public class BowlingBall : Item {
 			velocity = new Vector3 (0.0f, speed, 0.0f);
 			break; // Up
 		case 3: 
-			velocity = new Vector3 (0.0f, speed, 0.0f);
+			velocity = new Vector3 (0.0f, -speed, 0.0f);
 			break; // Down
 		}
 
@@ -60,6 +60,7 @@ public class BowlingBall : Item {
 	void Update(){
 		if (activated) {
 			t.position += velocity;
+			transform.Rotate (0, 0, -10);
 		}
 	}
 }

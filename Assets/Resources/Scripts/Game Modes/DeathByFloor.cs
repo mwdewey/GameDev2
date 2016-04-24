@@ -17,10 +17,8 @@ public class DeathByFloor : MonoBehaviour {
 	int millis_until_respawn = 3000;
 	int closest_distance;
 
-	private List<Item> ilist;
     GameObject coin;
 
-	Sprite original_sprite; //so we can set the original sprite back after they aren't dead anymore
 	public Sprite dead;		//this is the dead version of the player. Code can be added to pick which sprite that is later on
 
 	public AudioClip death_sound;
@@ -42,7 +40,6 @@ public class DeathByFloor : MonoBehaviour {
 			c2.gameObject.GetComponent<PlayerController> ().unconscious = true;//stop movement
 			c2.gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			c2.gameObject.GetComponent<PlayerController> ().setKnockBack (null);
-			ilist = c2.gameObject.GetComponent<PlayerController>().item_list;
 
             int coins_lost = c2.GetComponent<Score_Counter>().score / 2;
             c2.GetComponent<Score_Counter>().score /= 2;
@@ -56,12 +53,12 @@ public class DeathByFloor : MonoBehaviour {
             }
 
 			  //make sure they don't just keep moving on the velocity they already had
-			StartCoroutine (RespawnCountdown( c2.gameObject, original_sprite )); 
+			StartCoroutine (RespawnCountdown( c2.gameObject )); 
 			  //countdown to respawn
 		}
 	}
 
-	IEnumerator RespawnCountdown(GameObject g, Sprite original){
+	IEnumerator RespawnCountdown(GameObject g){
 		yield return new WaitForSeconds(millis_until_respawn/1000f); 
 
 		//pick the closest available respawn point

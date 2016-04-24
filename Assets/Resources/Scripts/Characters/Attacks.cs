@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Attacks : MonoBehaviour {
 
-	int MELEE_DAMAGE = 20;
 	int PROJECTILE_SPEED = 12;
 	Vector2 direction;
 	public GameObject melee_hitbox;

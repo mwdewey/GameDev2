@@ -20,7 +20,6 @@ public class Consciousness : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		pc = GetComponent<PlayerController>();
-		string pid = pc.PID;
 		healthBar = (Healthbar) transform.Find("Player 1 UI").Find("Healthbar").gameObject.GetComponent<Healthbar>();
 		initial_health = healthBar.health;
 		coin = (GameObject)Resources.Load ("Prefabs/Environment/Coin");

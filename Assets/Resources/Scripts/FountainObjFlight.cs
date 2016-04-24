@@ -6,13 +6,7 @@ public class FountainObjFlight : MonoBehaviour {
 
 	List<GameObject> moving_objs = new List<GameObject> ();
 	List<GameObject> remove_from_moving_objs = new List<GameObject> ();
-	float ground;
 	private GameObject spawn_object;
-
-	// Use this for initialization
-	void Start () {
-		ground = transform.position.y - 1;
-	}
 
 	// Update is called once per frame
 	void Update () {

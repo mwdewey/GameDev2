@@ -68,7 +68,6 @@ public class PickUpAndThrow : MonoBehaviour {
 		}
 		if (launched!=null) {
 			// get direction
-			int directionState = GetComponent<Animator>().GetInteger("DirectionState");
 			switch (dir_string)
 			{
 			case "Left": break; // Left

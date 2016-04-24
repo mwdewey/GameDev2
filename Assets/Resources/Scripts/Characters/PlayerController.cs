@@ -241,7 +241,7 @@ public class PlayerController : MonoBehaviour {
             float z_angle = i / num_of_particles * 360f;
             Vector2 direction = new Vector2(Mathf.Sin(Mathf.Deg2Rad * z_angle), Mathf.Cos(Mathf.Deg2Rad * z_angle));
             float correction = 360f * (num_of_particles - i) / num_of_particles;
-            Quaternion angle = Quaternion.EulerAngles(0, 0, correction);
+			Quaternion angle = Quaternion.Euler(0, 0, correction);
             GameObject projectile = (GameObject)Instantiate(ranged_hitbox, transform.position + new Vector3(direction.x,direction.y,0)* 2, angle);
             projectile.transform.localEulerAngles = new Vector3(0, 0, correction);
             projectile.GetComponent<Rigidbody2D>().velocity = direction * PROJECTILE_SPEED + GetComponent<Rigidbody2D>().velocity;

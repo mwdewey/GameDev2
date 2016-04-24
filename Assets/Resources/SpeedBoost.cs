@@ -6,7 +6,6 @@ public class SpeedBoost : Item {
 	float active_lifetime;
 	Transform t;
 	Transform holder_t;
-	bool dontSpam = true;
 	public AudioClip speed_sound;
 	PlayerController pc;
 

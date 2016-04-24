@@ -20,8 +20,6 @@ public class N_Create : MonoBehaviour
     private Text sizeText;
     private Text publicText;
 
-    private List<MatchDesc> matchList = new List<MatchDesc>();
-    private bool matchCreated;
     private NetworkMatch networkMatch;
     private CreateMatchRequest create;
     private NetworkManager nm;
@@ -57,7 +55,6 @@ public class N_Create : MonoBehaviour
         if (matchResponse.success)
         {
             successObject.SetActive(true);
-            matchCreated = true;
             Utility.SetAccessTokenForNetwork(matchResponse.networkId, new NetworkAccessToken(matchResponse.accessTokenString));
 
             NetworkClient nc = nm.StartHost(new MatchInfo(matchResponse));

@@ -18,7 +18,7 @@ public class CauseKnockback : MonoBehaviour {
 		//assigned for it in the Attacks script.
 
 	}
-		
+
 	void OnTriggerEnter2D(Collider2D c){
 		//print ("Pokeball pushes back "+c.gameObject.name);
 		if (c.gameObject.GetComponent<ReceiveKnockback>()!=null && c.gameObject.name != my_parent_name) {
@@ -33,9 +33,10 @@ public class CauseKnockback : MonoBehaviour {
 			//causing them to fly backward! In players, this function is in PlayerMovement.
 		}
 		//ADD EXCEPTIONS FOR DIE_ON_CONTACT object destroys here \/
-		if (die_on_contact && c.gameObject.name != my_parent_name && c.gameObject.name!="Ring" && c.tag != "Coin" && c.tag != "Item"){
+		if (die_on_contact && c.gameObject.name != my_parent_name && c.gameObject.name!="Ring" 
+			&& c.tag != "Coin" && c.tag != "Item" && c.tag != "Melee Hitbox"){
 			//if we hit ANYTHING but the player we came from
-            GameObject expl_temp = (GameObject)Instantiate(explosion, new Vector3(transform.position.x, transform.position.y,-2), Quaternion.identity);
+            GameObject expl_temp = (GameObject) Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(expl_temp, expl_temp.GetComponent<ParticleSystem>().startLifetime);
 			Destroy (gameObject);
 		}
