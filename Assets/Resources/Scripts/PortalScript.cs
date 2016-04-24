@@ -8,7 +8,6 @@ public class PortalScript : MonoBehaviour {
 	float timer;
 
 	bool vortex = false;
-	int total_players;
 	GameObject[] players;
 
 	public AudioClip portal_open_sound;
@@ -41,7 +40,6 @@ public class PortalScript : MonoBehaviour {
 				Debug.Log ("The portal has been closed");
 				//shut down all the player colliders
 				players = GameObject.FindGameObjectsWithTag ("PlayerObject");
-				total_players = players.Length;
 				for (int i = 0; i < players.Length; i++) {
 					players [i].GetComponent<Collider2D> ().enabled = false;
                     players[i].GetComponent<PlayerController>().unconscious = true;

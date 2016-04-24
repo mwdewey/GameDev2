@@ -21,7 +21,7 @@ public class init_spawner : MonoBehaviour {
 
         if (isDebug)
         {
-            PlayerPrefs.SetInt(PlayerPrefCodes.Player1CharSelect.ToString(),(int) CharCodes.Shifter);
+            PlayerPrefs.SetInt(PlayerPrefCodes.Player1CharSelect.ToString(),(int) CharCodes.Vegano);
             controllerCount = 1;
         }
 
@@ -66,8 +66,6 @@ public class init_spawner : MonoBehaviour {
 			}
 			p.GetComponent<PlayerController> ().character = character;
 
-			GameObject ranged_obj = p.GetComponent<PlayerController> ().ranged_hitbox;
-			CharacterSpecificRangedObjects storage = p.GetComponent<CharacterSpecificRangedObjects> ();
 
 			//Debug.Log (character);
 			switch(character) {
@@ -88,7 +86,11 @@ public class init_spawner : MonoBehaviour {
 			case CharCodes.Rich:
 				p.AddComponent<Rich_Ultimate> ();
 				p.GetComponent<Animator> ().runtimeAnimatorController = rich;
+<<<<<<< HEAD
+                p.GetComponent<PlayerController>().ranged_hitbox = rich_ranged;
+=======
 				p.GetComponent<PlayerController> ().ranged_hitbox = rich_ranged;
+>>>>>>> e9e920290796bd6ac340d90c190f3272e08aa58c
 				break;
 			case CharCodes.Vegano:
 				p.AddComponent<Vegano_Ultimate> ();

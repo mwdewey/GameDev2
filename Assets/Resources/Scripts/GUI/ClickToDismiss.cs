@@ -12,12 +12,7 @@ public class ClickToDismiss : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         isBackPressed = false;
-
-        try
-        {
-            curtain = transform.Find("Curtain").gameObject.GetComponent<Curtain>();
-        }
-        catch(Exception e){}
+        curtain = transform.Find("Curtain").gameObject.GetComponent<Curtain>();
 	}
 	
 	// Update is called once per frame

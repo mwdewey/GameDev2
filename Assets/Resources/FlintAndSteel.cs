@@ -5,14 +5,12 @@ using System.Collections.Generic;
 public class FlintAndSteel : Item {
 
 	int ammo;
-	Transform t;
 	public GameObject fire;
 
 	public override void Activate () {
 		if (!activated) {
 			ammo = 6;
 			activated = true;
-			t = GetComponent<Transform> ();
 		}
 		if (ammo > 0) {
 			ammo -= 1;

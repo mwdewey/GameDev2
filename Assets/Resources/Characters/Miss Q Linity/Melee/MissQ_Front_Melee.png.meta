@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 3de0202735924ec43822f1d22114d5e3
-timeCreated: 1460164549
+timeCreated: 1461469954
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -64,14 +64,15 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -15, y: 59}
-        - {x: -24, y: 52}
-        - {x: -24, y: -42}
-        - {x: -16, y: -49}
-        - {x: 17, y: -49}
-        - {x: 24, y: -35}
-        - {x: 24, y: 49}
-        - {x: 19, y: 59}
+      - - {x: -7, y: 59}
+        - {x: -29, y: 41}
+        - {x: -29, y: -25}
+        - {x: -26, y: -43}
+        - {x: -15, y: -48}
+        - {x: 22, y: -48}
+        - {x: 24, y: -42}
+        - {x: 24, y: 43}
+        - {x: 13, y: 59}
     - name: MissQ_Front_Melee_1
       rect:
         serializedVersion: 2

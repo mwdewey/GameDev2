@@ -14,7 +14,6 @@ public class N_Join : MonoBehaviour
     private Text nameText;
 
     private bool matchFound = false;
-    private List<MatchDesc> matchList = new List<MatchDesc>();
     private NetworkMatch networkMatch;
     private NetworkManager nm;
 

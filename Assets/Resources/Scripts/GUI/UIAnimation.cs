@@ -6,7 +6,6 @@ public class UIAnimation : MonoBehaviour {
 
     private Image img;
     private SpriteRenderer rend;
-    private Animator anim;
 
     private string name;
 
@@ -15,7 +14,6 @@ public class UIAnimation : MonoBehaviour {
 
         img  = GetComponent<Image>();
         rend = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
 
         name = "";
 	}

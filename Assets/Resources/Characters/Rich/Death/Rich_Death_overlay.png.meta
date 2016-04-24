@@ -1,0 +1,418 @@
+fileFormatVersion: 2
+guid: 427a3708b0e80ff48b642866488a9371
+timeCreated: 1461515933
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Rich_Death_overlay_0
+    21300002: Rich_Death_overlay_1
+    21300004: Rich_Death_overlay_2
+    21300006: Rich_Death_overlay_3
+    21300008: Rich_Death_overlay_4
+    21300010: Rich_Death_overlay_5
+    21300012: Rich_Death_overlay_6
+    21300014: Rich_Death_overlay_7
+    21300016: Rich_Death_overlay_8
+    21300018: Rich_Death_overlay_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Rich_Death_overlay_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 15}
+        - {x: -22, y: 15}
+        - {x: -21, y: 9}
+        - {x: -10, y: 3}
+        - {x: -4, y: 0}
+        - {x: -26, y: -18}
+        - {x: -29, y: -30}
+        - {x: -29, y: -44}
+        - {x: 34, y: -44}
+        - {x: 34, y: -9}
+        - {x: 30, y: 7}
+      - - {x: -7, y: -2}
+        - {x: -6, y: -5}
+        - {x: 0, y: -5}
+        - {x: 2, y: -3}
+        - {x: 1, y: 0}
+        - {x: -5, y: 0}
+      - - {x: 0, y: 19}
+        - {x: 3, y: 20}
+        - {x: 3, y: 23}
+        - {x: 0, y: 24}
+        - {x: -2, y: 22}
+      - - {x: 20, y: 32}
+        - {x: 23, y: 33}
+        - {x: 23, y: 36}
+        - {x: 20, y: 37}
+        - {x: 18, y: 35}
+    - name: Rich_Death_overlay_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 20}
+        - {x: -31, y: 16}
+        - {x: -34, y: 11}
+        - {x: -33, y: 8}
+        - {x: -24, y: 7}
+        - {x: -27, y: 2}
+        - {x: -34, y: -36}
+        - {x: -34, y: -43}
+        - {x: -29, y: -45}
+        - {x: -25, y: -47}
+        - {x: 7, y: -47}
+        - {x: 26, y: -46}
+        - {x: 36, y: -15}
+        - {x: 36, y: -5}
+        - {x: 3, y: 20}
+      - - {x: 24, y: 36}
+        - {x: 27, y: 37}
+        - {x: 27, y: 40}
+        - {x: 24, y: 41}
+        - {x: 22, y: 39}
+      - - {x: 14, y: 41}
+        - {x: 25, y: 41}
+        - {x: 25, y: 46}
+        - {x: 24, y: 48}
+        - {x: 14, y: 48}
+        - {x: 13, y: 46}
+    - name: Rich_Death_overlay_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 0, y: 49}
+        - {x: -34, y: 40}
+        - {x: -34, y: -22}
+        - {x: -30, y: -45}
+        - {x: 20, y: -45}
+        - {x: 29, y: -44}
+        - {x: 34, y: -15}
+        - {x: 34, y: 7}
+        - {x: 28, y: 49}
+      - - {x: 8, y: 45}
+        - {x: 11, y: 46}
+        - {x: 11, y: 49}
+        - {x: 8, y: 50}
+        - {x: 6, y: 48}
+      - - {x: -21, y: 52}
+        - {x: -18, y: 53}
+        - {x: -18, y: 56}
+        - {x: -21, y: 57}
+        - {x: -23, y: 55}
+      - - {x: -27, y: 53}
+        - {x: -24, y: 54}
+        - {x: -24, y: 57}
+        - {x: -27, y: 58}
+        - {x: -29, y: 56}
+    - name: Rich_Death_overlay_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36, y: 64}
+        - {x: -36, y: -40}
+        - {x: -34, y: -45}
+        - {x: 30, y: -45}
+        - {x: 30, y: 63}
+        - {x: 29, y: 64}
+    - name: Rich_Death_overlay_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -38, y: 64}
+        - {x: -38, y: -42}
+        - {x: -30, y: -46}
+        - {x: 31, y: -46}
+        - {x: 31, y: 59}
+        - {x: 28, y: 64}
+    - name: Rich_Death_overlay_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 59}
+        - {x: -34, y: 57}
+        - {x: -31, y: 52}
+        - {x: -36, y: 49}
+        - {x: -36, y: -45}
+        - {x: 1, y: -45}
+        - {x: 4, y: -44}
+        - {x: 30, y: -19}
+        - {x: 30, y: 50}
+        - {x: 6, y: 59}
+    - name: Rich_Death_overlay_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34, y: -3}
+        - {x: 17, y: 7}
+        - {x: 2, y: 13}
+        - {x: 24, y: 26}
+        - {x: 29, y: 42}
+        - {x: 22, y: 49}
+        - {x: 7, y: 49}
+        - {x: -34, y: 25}
+        - {x: -34, y: -38}
+        - {x: -33, y: -40}
+        - {x: -28, y: -45}
+        - {x: -11, y: -45}
+        - {x: 25, y: -23}
+        - {x: 32, y: -19}
+        - {x: 34, y: -12}
+      - - {x: 8, y: 45}
+        - {x: 11, y: 46}
+        - {x: 11, y: 49}
+        - {x: 8, y: 50}
+        - {x: 6, y: 48}
+      - - {x: -21, y: 52}
+        - {x: -18, y: 53}
+        - {x: -18, y: 56}
+        - {x: -21, y: 57}
+        - {x: -23, y: 55}
+      - - {x: -27, y: 53}
+        - {x: -24, y: 54}
+        - {x: -24, y: 57}
+        - {x: -27, y: 58}
+        - {x: -29, y: 56}
+    - name: Rich_Death_overlay_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 20}
+        - {x: -31, y: 16}
+        - {x: -34, y: 15}
+        - {x: -34, y: -41}
+        - {x: -32, y: -47}
+        - {x: 5, y: -47}
+        - {x: 13, y: -40}
+        - {x: 36, y: -10}
+        - {x: 36, y: -4}
+        - {x: 3, y: 20}
+      - - {x: 24, y: 36}
+        - {x: 27, y: 37}
+        - {x: 27, y: 40}
+        - {x: 24, y: 41}
+        - {x: 22, y: 39}
+      - - {x: 14, y: 41}
+        - {x: 25, y: 41}
+        - {x: 25, y: 46}
+        - {x: 24, y: 48}
+        - {x: 14, y: 48}
+        - {x: 13, y: 46}
+    - name: Rich_Death_overlay_8
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 15}
+        - {x: -21, y: 9}
+        - {x: -11, y: 2}
+        - {x: -29, y: -42}
+        - {x: -27, y: -44}
+        - {x: -12, y: -44}
+        - {x: 29, y: -18}
+        - {x: 29, y: 7}
+        - {x: -1, y: 15}
+      - - {x: -7, y: -2}
+        - {x: -6, y: -5}
+        - {x: 0, y: -5}
+        - {x: 2, y: -3}
+        - {x: 1, y: 0}
+        - {x: -5, y: 0}
+      - - {x: 0, y: 19}
+        - {x: 3, y: 20}
+        - {x: 3, y: 23}
+        - {x: 0, y: 24}
+        - {x: -2, y: 22}
+      - - {x: 20, y: 32}
+        - {x: 23, y: 33}
+        - {x: 23, y: 36}
+        - {x: 20, y: 37}
+        - {x: 18, y: 35}
+    - name: Rich_Death_overlay_9
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: -26}
+        - {x: 2, y: -23}
+        - {x: -7, y: -23}
+        - {x: -28, y: -36}
+        - {x: -29, y: -42}
+        - {x: -27, y: -44}
+        - {x: -15, y: -44}
+        - {x: -10, y: -42}
+        - {x: -1, y: -31}
+      - - {x: 2, y: -22}
+        - {x: 2, y: -28}
+        - {x: 3, y: -30}
+        - {x: 5, y: -30}
+        - {x: 11, y: -25}
+        - {x: 11, y: -22}
+      - - {x: 10, y: -18}
+        - {x: 10, y: -20}
+        - {x: 12, y: -22}
+        - {x: 14, y: -23}
+        - {x: 17, y: -23}
+        - {x: 23, y: -19}
+        - {x: 25, y: -13}
+        - {x: 22, y: -11}
+        - {x: 17, y: -13}
+      - - {x: 17, y: -13}
+        - {x: 20, y: -12}
+        - {x: 20, y: -9}
+        - {x: 17, y: -8}
+        - {x: 15, y: -10}
+      - - {x: 10, y: -8}
+        - {x: 13, y: -7}
+        - {x: 13, y: -4}
+        - {x: 10, y: -3}
+        - {x: 8, y: -5}
+      - - {x: 11, y: -2}
+        - {x: 15, y: -6}
+        - {x: 18, y: -5}
+        - {x: 18, y: -3}
+        - {x: 14, y: 1}
+        - {x: 12, y: 1}
+      - - {x: -2, y: -5}
+        - {x: 1, y: -4}
+        - {x: 1, y: -1}
+        - {x: -2, y: 0}
+        - {x: -4, y: -2}
+      - - {x: 20, y: -5}
+        - {x: 23, y: -4}
+        - {x: 23, y: -1}
+        - {x: 20, y: 0}
+        - {x: 18, y: -2}
+      - - {x: 9, y: 2}
+        - {x: 12, y: 3}
+        - {x: 12, y: 6}
+        - {x: 9, y: 7}
+        - {x: 7, y: 5}
+      - - {x: -17, y: 14}
+        - {x: -18, y: 12}
+        - {x: -17, y: 8}
+        - {x: -9, y: 8}
+        - {x: -9, y: 12}
+        - {x: -14, y: 14}
+      - - {x: -6, y: 9}
+        - {x: -3, y: 10}
+        - {x: -3, y: 13}
+        - {x: -6, y: 14}
+        - {x: -8, y: 12}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

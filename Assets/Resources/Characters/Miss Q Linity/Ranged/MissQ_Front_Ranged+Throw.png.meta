@@ -1,0 +1,97 @@
+fileFormatVersion: 2
+guid: 3905d23d6565d4f4c8d7596029f45f97
+timeCreated: 1461468696
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MissQ_Front_Ranged+Throw_0
+    21300002: MissQ_Front_Ranged+Throw_1
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: MissQ_Front_Ranged+Throw_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 59}
+        - {x: -38, y: 53}
+        - {x: -38, y: -25}
+        - {x: -32, y: -48}
+        - {x: 17, y: -48}
+        - {x: 24, y: -45}
+        - {x: 24, y: 56}
+        - {x: 14, y: 59}
+    - name: MissQ_Front_Ranged+Throw_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 59}
+        - {x: -24, y: 38}
+        - {x: -24, y: -45}
+        - {x: -11, y: -49}
+        - {x: 17, y: -49}
+        - {x: 24, y: -41}
+        - {x: 24, y: 47}
+        - {x: 19, y: 59}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
