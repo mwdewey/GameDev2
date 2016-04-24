@@ -13,12 +13,14 @@ public class Consciousness : MonoBehaviour {
 	private Healthbar healthBar;
 	private float initial_health;
 	GameObject coin;
+	PlayerController pc;
 
 	public AudioClip unconscious_sound;
 
 	// Use this for initialization
 	void Start () {
-		string pid = GetComponent<PlayerController> ().PID;
+		pc = GetComponent<PlayerController>();
+		string pid = pc.PID;
 		healthBar = (Healthbar) transform.Find("Player 1 UI").Find("Healthbar").gameObject.GetComponent<Healthbar>();
 		initial_health = healthBar.health;
 		coin = (GameObject)Resources.Load ("Prefabs/Environment/Coin");
@@ -26,9 +28,9 @@ public class Consciousness : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (healthBar.health <= 0 && !GetComponent<PlayerController>().unconscious) {
+		if (healthBar.health <= 0 && !pc.unconscious) {
 			GetComponent<Animator> ().SetInteger ("PlayerState", 0);
-			GetComponent<PlayerController>().unconscious = true;
+			pc.unconscious = true;
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, 0);
 			GetComponent<AudioSource> ().clip = unconscious_sound;
 			GetComponent<AudioSource> ().Play ();
@@ -48,7 +50,7 @@ public class Consciousness : MonoBehaviour {
 	}
 
 	public void TakeDamage(int damage){
-		if (!GetComponent<PlayerController> ().unconscious) {
+		if (!pc.unconscious) {
 			healthBar.health -= damage;
 		}
 	}
@@ -62,8 +64,8 @@ public class Consciousness : MonoBehaviour {
 		if (GetComponent<Animator> ().GetInteger ("PlayerState") != 1) { 
 			GetComponent<Animator> ().SetInteger ("PlayerState", 2);
 			healthBar.health = initial_health;
-			if (!GetComponent<PlayerController> ().locked) {
-				GetComponent<PlayerController> ().unconscious = false;
+			if (!pc.locked) {
+				pc.unconscious = false;
 			}
 		}
 	}
