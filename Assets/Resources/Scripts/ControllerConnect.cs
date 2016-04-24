@@ -51,6 +51,8 @@ public class ControllerConnect : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+        controllerCount = Input.GetJoystickNames().Length;
+
         playerColors = new List<Color32>();
         playerColors.Add(P1_Color);
         playerColors.Add(P2_Color);

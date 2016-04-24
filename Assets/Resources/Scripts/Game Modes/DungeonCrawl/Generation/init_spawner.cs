@@ -86,11 +86,7 @@ public class init_spawner : MonoBehaviour {
 			case CharCodes.Rich:
 				p.AddComponent<Rich_Ultimate> ();
 				p.GetComponent<Animator> ().runtimeAnimatorController = rich;
-<<<<<<< HEAD
                 p.GetComponent<PlayerController>().ranged_hitbox = rich_ranged;
-=======
-				p.GetComponent<PlayerController> ().ranged_hitbox = rich_ranged;
->>>>>>> e9e920290796bd6ac340d90c190f3272e08aa58c
 				break;
 			case CharCodes.Vegano:
 				p.AddComponent<Vegano_Ultimate> ();
