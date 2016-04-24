@@ -66,8 +66,6 @@ public class init_spawner : MonoBehaviour {
 			}
 			p.GetComponent<PlayerController> ().character = character;
 
-			GameObject ranged_obj = p.GetComponent<PlayerController> ().ranged_hitbox;
-			CharacterSpecificRangedObjects storage = p.GetComponent<CharacterSpecificRangedObjects> ();
 
 			//Debug.Log (character);
 			switch(character) {

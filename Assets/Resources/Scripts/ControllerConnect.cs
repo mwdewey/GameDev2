@@ -11,12 +11,7 @@ public class ControllerConnect : MonoBehaviour
 {
     public GameObject prevMenu;
 
-    private Regex joystickRegex;
-    private List<int> controllerIds;
     private int controllerCount;
-    private readonly int MAX_PLAYERS = 4;
-    private readonly Color32 ACTIVE_COLOR = new Color32(56, 142, 60, 255);
-    private readonly Color32 INACTIVE_COLOR = new Color32(211, 47, 47, 255);
 
     private List<Color32> playerColors;
     private readonly Color32 P1_Color = new Color32(244, 67, 54, 255);
@@ -56,11 +51,6 @@ public class ControllerConnect : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-        joystickRegex = new Regex(@"Joystick([0-9]+)Button([0-9]+)");
-        controllerIds = new List<int>();
-        controllerCount = Input.GetJoystickNames().Length;
-        //print(controllerCount);
-
         playerColors = new List<Color32>();
         playerColors.Add(P1_Color);
         playerColors.Add(P2_Color);

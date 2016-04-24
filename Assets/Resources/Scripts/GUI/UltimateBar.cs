@@ -12,7 +12,6 @@ public class UltimateBar : MonoBehaviour {
     public float min_power;
     public float max_power;
 
-    private float icon_min_width = 0;
     private float icon_max_width = 400;
 
 	// Use this for initialization
