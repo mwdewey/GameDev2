@@ -81,7 +81,8 @@ public class Minimap : MonoBehaviour {
                 {
                     case "PlayerObject":
                         icon.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
-                        icon.color = pController.playerColor;
+                        if (pController != null) icon.color = pController.playerColor;
+                        else new Color32(255, 0, 0, 255);
                         break;
                     case "Fountain":
                         icon.transform.localScale = new Vector3(0.06f, 0.06f, 0.06f);

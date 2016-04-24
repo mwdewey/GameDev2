@@ -145,9 +145,6 @@ public class generateDungeon : MonoBehaviour {
                     roomA = rooms[Random.Range(0, rooms.Count)];
                     roomB = rooms[Random.Range(0, rooms.Count)];
                 }
-				//Room roomB = FindClosestRoom(roomA);
-
-
 
 				var pointA = new Room();
 				pointA.x = Random.Range(roomA.x, roomA.x + roomA.w);
@@ -156,8 +153,6 @@ public class generateDungeon : MonoBehaviour {
                 var pointA2 = new Room();
                 pointA2.x = pointA.x + 1;
                 pointA2.y = pointA.y;
-					
-
 
 				var pointB = new Room();
 				pointB.x = Random.Range(roomB.x, roomB.x + roomB.w);
@@ -167,11 +162,10 @@ public class generateDungeon : MonoBehaviour {
                 pointB2.x = pointB.x;
                 pointB2.y = pointB.y + 1;
 
-
 					
 				roomA.connectedTo = roomB;
 					
-				while ((pointB.x != pointA.x) || (pointB.y != pointA.y)) {
+				while ( (pointB.x != pointA.x) || (pointB.y != pointA.y) || (pointB2.x != pointA2.x) || (pointB2.y != pointA2.y) ) {
 					if (pointB.x != pointA.x) {
 						if (pointB.x > pointA.x) { 
 							pointB.x--; 
@@ -189,39 +183,28 @@ public class generateDungeon : MonoBehaviour {
 						}
 					}
 
+
+					if (pointB2.x != pointA2.x) {
+						if (pointB2.x > pointA2.x) {
+							pointB2.x--;
+						}
+						else {
+							pointB2.x++;
+						}
+					}
+					else if (pointB2.y != pointA2.y) {
+						if (pointB2.y > pointA2.y) {
+							pointB2.y--;
+						}
+						else {
+							pointB2.y++;
+						}
+					}
+
 					map[pointB.x,pointB.y].type = 3;
+					map[pointB2.x, pointB2.y].type = 3;
+
 				}
-
-
-                while ((pointB2.x != pointA2.x) || (pointB2.y != pointA2.y))
-                {
-                    if (pointB2.x != pointA2.x)
-                    {
-                        if (pointB2.x > pointA2.x)
-                        {
-                            pointB2.x--;
-                        }
-                        else
-                        {
-                            pointB2.x++;
-                        }
-                    }
-                    else if (pointB2.y != pointA2.y)
-                    {
-                        if (pointB2.y > pointA2.y)
-                        {
-                            pointB2.y--;
-                        }
-                        else
-                        {
-                            pointB2.y++;
-                        }
-                    }
-
-                    map[pointB2.x, pointB2.y].type = 3;
-                }
-
-
 
 			}
 			
@@ -242,20 +225,14 @@ public class generateDungeon : MonoBehaviour {
 			for (int x = 0; x < map_size -1  ; x++) {
 				for (int y = 0; y < map_size -1 ; y++) {
 					if (map[x,y].type == 0) {
-						if(map[x + 1,y].type == 1 || map[x + 1,y].type == 3) { 
-							map[x,y].type = 2;
-						}
-						if (x > 0 && (map[x - 1,y].type == 1 || map[x - 1,y].type == 3 )) {
-							map[x,y].type = 2;
-						}
-
-						if (map[x,y + 1].type == 1 || map[x,y + 1].type == 3) { 
-							map[x,y].type = 2;
+						if(    (map[x + 1,y].type == 1 || map[x + 1,y].type == 3) 
+							|| (map[x,y + 1].type == 1 || map[x,y + 1].type == 3)
+							|| (x > 0 && (map[x - 1,y].type == 1 || map[x - 1,y].type == 3))
+							|| (y > 0 && (map[x,y - 1].type == 1 || map[x,y - 1].type == 3)) )
+						{ 
+								map[x,y].type = 2;
 						}
 
-						if (y > 0 && (map[x,y - 1].type == 1 || map[x,y - 1].type == 3) ) {
-							map[x,y].type = 2;
-						}
 					}
 				}
 			}
@@ -307,47 +284,6 @@ public class generateDungeon : MonoBehaviour {
 			}
 			return false;
 		}
-
-        private void SquashRooms()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < rooms.Count; j++)
-                {
-                    Room room = rooms[j];
-                    int plsno = 0;
-                    while (true)
-                    {
-                        Room old_position = new Room();
-
-                        old_position.x = room.x;
-                        old_position.y = room.y;
-
-                        if (room.x > 1)
-                        {
-                            room.x--;
-                        }
-                        if (room.y > 1)
-                        {
-                            room.y--;
-                        }
-                        if ((room.x == 1) && (room.y == 1))
-                        {
-                            break;
-                        }
-                        if (this.DoesCollide(room, j))
-                        {
-                            room.x = old_position.x;
-                            room.y = old_position.y;
-                            break;
-                        }
-
-                        plsno += 1;
-
-                    }
-                }
-            }
-        }
     
 	}
 
@@ -374,9 +310,6 @@ public class generateDungeon : MonoBehaviour {
         dungeon.prune = pruneCollidingRooms;
 		
 		dungeon.Generate ();
-
-		
-		//Dungeon.map = floodFill(Dungeon.map,1,1);
 		
 		for (var y = 0; y < Dungeon.map_size; y++) {
 			for (var x = 0; x < Dungeon.map_size; x++) {
@@ -416,11 +349,8 @@ public class generateDungeon : MonoBehaviour {
 			}
 		}
 
-
-		GameObject end_point;
-		GameObject start_point;
-		end_point = GameObject.Instantiate (exitPrefab, new Vector3 (Dungeon.goalRoom.x * tileScaling, Dungeon.goalRoom.y * tileScaling, 0), Quaternion.identity) as GameObject;
-		start_point = GameObject.Instantiate (startPrefab, new Vector3 (Dungeon.startRoom.x * tileScaling, Dungeon.startRoom.y * tileScaling, 0), Quaternion.identity) as GameObject;
+		GameObject end_point   = GameObject.Instantiate (exitPrefab,  new Vector3 (Dungeon.goalRoom.x  * tileScaling,  Dungeon.goalRoom.y * tileScaling, 0), Quaternion.identity) as GameObject;
+		GameObject start_point = GameObject.Instantiate (startPrefab, new Vector3 (Dungeon.startRoom.x * tileScaling, Dungeon.startRoom.y * tileScaling, 0), Quaternion.identity) as GameObject;
 
 		end_point.transform.parent = transform;
 		start_point.transform.parent = transform;
@@ -431,8 +361,6 @@ public class generateDungeon : MonoBehaviour {
 		//OTHERS
 		for (int x = 0; x < Dungeon.map_size; x++) {
 			for (int y = 0; y < Dungeon.map_size; y++) {
-				//&& (Dungeon.startRoom.x < x || Dungeon.startRoom.x + Dungeon.startRoom.w > x ) && (Dungeon.startRoom.y < y || Dungeon.startRoom.y + Dungeon.startRoom.h > y )
-
 				if (Dungeon.map [x, y].type == 1 && ((Dungeon.startRoom != Dungeon.map [x, y].room && Dungeon.goalRoom != Dungeon.map [x, y].room) || maximumRoomCount <= 3)) {
 					var location = new SpawnList ();
 					location.x = x;
@@ -445,7 +373,6 @@ public class generateDungeon : MonoBehaviour {
 					}
 					if (Dungeon.map [x + 1, y + 1].type == 3 || Dungeon.map [x - 1, y - 1].type == 3 || Dungeon.map [x - 1, y + 1].type == 3 || Dungeon.map [x + 1, y - 1].type == 3) {
 						location.byCorridor = true;
-
 					}
 					spawnedObjectLocations.Add (location);
 				} 
