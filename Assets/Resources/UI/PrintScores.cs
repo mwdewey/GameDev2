@@ -13,7 +13,7 @@ public class PrintScores : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        for (var i = 0; i < 0; i++)
+        for (var i = 0; i < 1; i++)
         {
             PlayerPrefs.SetInt("p" + (i + 1) + "score",i*4);
             PlayerPrefs.SetInt("Player" + (i + 1) + "CharSelect",(int)CharCodes.Shifter);
@@ -55,10 +55,20 @@ public class PrintScores : MonoBehaviour {
 
             switch (player.charCode)
             {
-                case CharCodes.MissQ: place.anim.runtimeAnimatorController = missq_anim; break;
-                case CharCodes.Shifter: place.anim.runtimeAnimatorController = shifter_anim; break;
-                case CharCodes.Vegano: place.anim.runtimeAnimatorController = vegano_anim; break;
-                case CharCodes.Rich: place.anim.runtimeAnimatorController = rich_anim; break;
+                case CharCodes.MissQ: 
+                    place.anim.runtimeAnimatorController = missq_anim; 
+                    break;
+                case CharCodes.Shifter: 
+                    place.anim.runtimeAnimatorController = shifter_anim;
+                    place.anim.SetFloat("animSpeed", 15 / 8f);
+                    break;
+                case CharCodes.Vegano: 
+                    place.anim.runtimeAnimatorController = vegano_anim; 
+                    break;
+                case CharCodes.Rich: 
+                    place.anim.runtimeAnimatorController = rich_anim;
+                    place.anim.SetFloat("animSpeed",6/8f);
+                    break;
             }
 
             string textOutput = placeText + " Player " + player.id + " Score " + player.score;
