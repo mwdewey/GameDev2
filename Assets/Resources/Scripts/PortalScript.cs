@@ -58,7 +58,7 @@ public class PortalScript : MonoBehaviour {
 		}
 		if (vortex) {
 			for (int p =0; p < players.Length; p++) {
-				players[p].transform.position = Vector2.MoveTowards (players [p].transform.position, transform.position, .1f); 
+				players[p].transform.position = Vector2.MoveTowards (players [p].transform.position, transform.position, .7f); 
 			}
 		}
 	}
