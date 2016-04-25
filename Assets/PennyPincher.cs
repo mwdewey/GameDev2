@@ -64,8 +64,9 @@ public class PennyPincher: Item {
 	}
 
 	void FixedUpdate(){
-		if (activated) 
-			holder.transform.position = player_stays_here;
+		if (activated) {
+			//holder.transform.position = player_stays_here;
+		}
 	}
 
 }
