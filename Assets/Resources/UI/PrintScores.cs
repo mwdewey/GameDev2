@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class PrintScores : MonoBehaviour {
 
@@ -100,10 +101,16 @@ public class PrintScores : MonoBehaviour {
 
         for (int i = 0; i < 4; i++) if (i > playerCount - 1) transform.Find("Rank " + (i + 1)).gameObject.SetActive(false);
 
-        
-
-
 	}
+
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.JoystickButton0))
+        {
+            SceneManager.LoadScene("main_menu");
+        }
+    }
 	
 }
 

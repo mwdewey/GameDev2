@@ -129,6 +129,9 @@ public class PlayerController : MonoBehaviour {
 			} 
 			else if (held_item != null) {
 				held_item.Activate ();
+
+                // increment item used counter
+                PlayerStats.getStats(PID).itemsUsed++;
 			}
 		}
 		if (Input.GetButtonDown("Joy" + PID + "_Drop") && held_item != null) {
@@ -231,6 +234,9 @@ public class PlayerController : MonoBehaviour {
 
         // preform animation
         anim.SetTrigger("Range");
+
+        // add attack to stats
+        PlayerStats.getStats(PID).attacksDone++;
     }
 
     private void rangeAttackUltra()
@@ -251,6 +257,9 @@ public class PlayerController : MonoBehaviour {
 
         // preform animation
         anim.SetTrigger("Range");
+
+        // add attack to stats
+        PlayerStats.getStats(PID).attacksDone++;
     }
 
     private void meleeAttack()
@@ -273,6 +282,9 @@ public class PlayerController : MonoBehaviour {
 
         // preform animation
         anim.SetTrigger("Melee");
+
+        // add attack to stats
+        PlayerStats.getStats(PID).attacksDone++;
     }
 
 	private void ultimateAttack()

@@ -14,7 +14,7 @@ public class Healthbar : MonoBehaviour {
     public float min_health;
     public float max_health;
 
-    private float icon_max_width = 180;
+    private float icon_max_width = 200;
 
 	// Use this for initialization
 	void Start () {

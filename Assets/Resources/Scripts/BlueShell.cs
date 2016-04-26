@@ -52,12 +52,17 @@ public class BlueShell : Item {
 		desired_velocity *= speed;
 
 		if (target_distance < 0.3f) {
-			target.GetComponent<Consciousness> ().TakeDamage (50);
+            target.GetComponent<Consciousness>().TakeDamage(50, holder.GetComponent<PlayerController>().PID);
 			//Debug.Log ("BOOM HEADSHOT");
 			target.GetComponent<AudioSource>().clip = blue_shell_sound;
 			target.GetComponent<AudioSource>().Play ();
 			Instantiate (blue_particles, transform.position, Quaternion.identity);
 			activated = false;
+
+            // update damage stats
+            PlayerStats.getStats(holder.GetComponent<PlayerController>().PID).damageDone += 50;
+            PlayerStats.getStats(target.gameObject.GetComponent<PlayerController>().PID).damageReceived += 50;
+
 			Destroy (gameObject);
 		}
 

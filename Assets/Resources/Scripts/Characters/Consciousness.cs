@@ -14,6 +14,7 @@ public class Consciousness : MonoBehaviour {
 	private float initial_health;
 	GameObject coin;
 	PlayerController pc;
+    private string lastDamagerPID;
 
 	public AudioClip unconscious_sound;
 
@@ -44,13 +45,19 @@ public class Consciousness : MonoBehaviour {
 				Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
 			}
 
+            // update lost coins, kill, and death stats
+            PlayerStats.getStats(pc.PID).coinsLost += coins_lost;
+            PlayerStats.getStats(lastDamagerPID).deaths++;
+            PlayerStats.getStats(pc.PID).deaths++;
+
 			StartCoroutine(GetUp());
 		}
 	}
 
-	public void TakeDamage(int damage){
+	public void TakeDamage(int damage,string damagerPID){
 		if (!pc.unconscious) {
 			healthBar.health -= damage;
+            lastDamagerPID = damagerPID;
 		}
 	}
 

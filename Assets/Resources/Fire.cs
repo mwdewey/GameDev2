@@ -10,6 +10,8 @@ public class Fire : MonoBehaviour {
 	public AudioClip get_burned_sound;
 	public AudioClip its_lit_sound;
 
+    public GameObject source;
+
 	// Use this for initialization
 	void Start () {
 		GetComponent<AudioSource> ().clip = its_lit_sound;
@@ -41,9 +43,14 @@ public class Fire : MonoBehaviour {
 		else if (damager <= 0) {
 			damager = 0.5f;
 			foreach (GameObject victim in victims) {
-				victim.GetComponent<Consciousness> ().TakeDamage (5);
+                victim.GetComponent<Consciousness>().TakeDamage(5, source.GetComponent<PlayerController>().PID);
 				GetComponent<AudioSource> ().clip = get_burned_sound;
 				GetComponent<AudioSource> ().Play ();
+
+                // update damage stats
+                PlayerStats.getStats(source.GetComponent<PlayerController>().PID).damageDone += 5;
+                PlayerStats.getStats(victim.gameObject.GetComponent<PlayerController>().PID).damageReceived += 5;
+
 			}
 		}
 	}

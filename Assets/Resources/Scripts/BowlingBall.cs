@@ -45,6 +45,10 @@ public class BowlingBall : Item {
 			if (other.tag == "PlayerObject" && other.gameObject != holder && !other.GetComponent<PlayerController>().unconscious) {
 				other.gameObject.SendMessage ("TakeDamage", 50);
 				Instantiate (blam, t.position, Quaternion.identity);
+
+                // update damage stats
+                PlayerStats.getStats(holder.GetComponent<PlayerController>().PID).damageDone += 50;
+                PlayerStats.getStats(other.gameObject.gameObject.GetComponent<PlayerController>().PID).damageReceived += 50;
 			} 
 			else if (other.tag == "Wall") {
 				Destroy (gameObject);

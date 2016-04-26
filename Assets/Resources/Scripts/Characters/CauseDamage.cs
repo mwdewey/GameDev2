@@ -20,10 +20,13 @@ public class CauseDamage : MonoBehaviour {
 	public GameObject blam; 
 	public AudioClip thrown_player_hit_sound;
 
+    public GameObject source;
+
 	// Use this for initialization
 	void Start () {
 		if (transform.parent != null) {
-			dontdamage.Add(transform.parent.name);
+            source = transform.parent.gameObject;
+			dontdamage.Add(source.name);
 		}//if the object is a projectile, it won't have a parent
 		//so, when a projectile is made, it will have this variable 
 		//assigned for it in the Attacks script.
@@ -51,6 +54,11 @@ public class CauseDamage : MonoBehaviour {
 				GetComponent<AudioSource> ().clip = thrown_player_hit_sound;
 				GetComponent<AudioSource> ().Play ();
 			}
+
+            // update damage stats
+            PlayerStats.getStats(source.GetComponent<PlayerController>().PID).damageDone += DAMAGE;
+            PlayerStats.getStats(c.gameObject.GetComponent<PlayerController>().PID).damageReceived += DAMAGE;
+
 		}
 		if (die_on_contact && !dontdamage.Contains(c.gameObject.name)){ 
 			//if we hit ANYTHING but the player we came from
