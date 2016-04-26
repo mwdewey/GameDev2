@@ -90,7 +90,9 @@ public class PrintScores : MonoBehaviour {
 
             }
 
-            string textOutput = placeText + " Place: Player " + player.id + " Score:" + player.score;
+            if (playerCount - 1 - i == 0) place.background.transform.parent.Find("super background").gameObject.GetComponent<Image>().color = place.background.color;
+
+            string textOutput = placeText + " Place : Score " + player.score;
 
             place.text.text = textOutput;
 
