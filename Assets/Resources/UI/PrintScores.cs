@@ -101,6 +101,38 @@ public class PrintScores : MonoBehaviour {
 
         for (int i = 0; i < 4; i++) if (i > playerCount - 1) transform.Find("Rank " + (i + 1)).gameObject.SetActive(false);
 
+        // update leaderboards
+        Stats bestStats = new Stats();
+
+        for (int i = 1; i < playerCount+1; i++)
+        {
+            string pid = i.ToString();
+            PlayerStatStruct stats = PlayerStats.getStats(pid);
+
+            if (bestStats.kills.value <= stats.kills) bestStats.kills = new Stat(stats.kills, pid);
+            if (bestStats.deaths.value <= stats.deaths) bestStats.deaths = new Stat(stats.deaths, pid);
+            if (bestStats.coinsLost.value <= stats.coinsLost) bestStats.coinsLost = new Stat(stats.coinsLost, pid);
+            if (bestStats.coinsGained.value <= stats.coinsGained) bestStats.coinsGained = new Stat(stats.coinsGained, pid);
+            if (bestStats.attacksDone.value <= stats.attacksDone) bestStats.attacksDone = new Stat(stats.attacksDone, pid);
+            if (bestStats.itemsUsed.value <= stats.itemsUsed) bestStats.itemsUsed = new Stat(stats.itemsUsed, pid);
+            if (bestStats.damageDone.value <= stats.damageDone) bestStats.damageDone = new Stat(stats.damageDone, pid);
+            if (bestStats.damageReceived.value <= stats.damageReceived) bestStats.damageReceived = new Stat(stats.damageReceived, pid);
+
+        }
+
+        GameObject statsObject = transform.Find("Stats").gameObject;
+        for (int i = 1; i < 9; i++)
+        {
+            GameObject statObject = statsObject.transform.Find(i.ToString()).gameObject;
+
+            Text descText = statObject.transform.Find("Text").gameObject.GetComponent<Text>();
+            Image icon = statObject.transform.Find("playerIcon").gameObject.GetComponent<Image>();
+            Text valueText = statObject.transform.Find("playerIcon").Find("Text").gameObject.GetComponent<Text>();
+
+
+        }
+
+
 	}
 
 
@@ -141,4 +173,30 @@ public class PlayerEnd
         score = _score;
     }
 
+}
+
+public class Stats
+{
+    public Stat kills;
+    public Stat deaths;
+    public Stat coinsLost;
+    public Stat coinsGained;
+    public Stat attacksDone;
+    public Stat itemsUsed;
+    public Stat damageDone;
+    public Stat damageReceived;
+
+    public Stats() { }
+}
+
+public class Stat
+{
+    public int value;
+    public string pid;
+
+    public Stat(int value_, string pid_) 
+    {
+        value = value_;
+        pid = pid_;
+    }
 }
