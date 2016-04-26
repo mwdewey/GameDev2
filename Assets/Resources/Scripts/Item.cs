@@ -57,7 +57,7 @@ public class Item : MonoBehaviour {
         {
             player.GetComponent<PlayerController>().item_list.Remove(this);
         }
-		if (my_ps!=null) Destroy (my_ps);
+		if (my_ps!=null) Destroy (my_ps.gameObject);
     }
 
 	public void Drop(){
