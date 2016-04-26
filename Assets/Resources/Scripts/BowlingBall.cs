@@ -38,6 +38,9 @@ public class BowlingBall : Item {
 		Vector2 player_velocity = holder.GetComponent<Rigidbody2D>().velocity;
 		velocity.x += player_velocity.x / 60;
 		velocity.y += player_velocity.y / 60;
+
+		//add particle trail
+		GetComponent<ParticleTrail>().addParticleTrails(holder);
 	}
 
 	void OnTriggerEnter2D(Collider2D other){

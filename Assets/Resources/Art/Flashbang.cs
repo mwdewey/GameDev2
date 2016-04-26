@@ -49,6 +49,8 @@ public class Flashbang : Item {
         velocity.y += player_velocity.y / 60;
 
         print(velocity.x + " " + velocity.y);
+
+		GetComponent<ParticleTrail>().addParticleTrails(holder);
 	}
 	
 	// Update is called once per frame
