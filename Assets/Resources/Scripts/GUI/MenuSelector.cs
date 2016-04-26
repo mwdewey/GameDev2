@@ -16,6 +16,9 @@ public class MenuSelector : MonoBehaviour {
     private Button.ButtonClickedEvent eventToFire;
     private Curtain curtain;
 
+    private AudioSource audioSource;
+    public AudioClip audioClip;
+
 	// Use this for initialization
 	void Start () {
 
@@ -25,6 +28,7 @@ public class MenuSelector : MonoBehaviour {
 	    isMove = false;
 	    eventToFire = null;
         curtain = transform.Find("Curtain").gameObject.GetComponent<Curtain>();
+        audioSource = GetComponent<AudioSource>();
 
         updateUI();
 	}
@@ -65,7 +69,7 @@ public class MenuSelector : MonoBehaviour {
             if (tempSelected != currentSelected)
             {
                 updateUI();
-
+                audioSource.PlayOneShot(audioClip);
                 timeSinceAction = 0;
             }
         }

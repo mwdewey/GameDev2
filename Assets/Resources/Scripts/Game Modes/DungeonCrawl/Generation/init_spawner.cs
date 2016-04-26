@@ -21,7 +21,7 @@ public class init_spawner : MonoBehaviour {
 
         if (isDebug)
         {
-            PlayerPrefs.SetInt(PlayerPrefCodes.Player1CharSelect.ToString(),(int) CharCodes.Vegano);
+            PlayerPrefs.SetInt(PlayerPrefCodes.Player1CharSelect.ToString(),(int) CharCodes.Shifter);
             controllerCount = 1;
         }
 
