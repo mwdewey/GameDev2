@@ -15,6 +15,11 @@ public class PlayerStats
         return stats[pid];
     }
 
+    public static void clearStats(string pid)
+    {
+        if (stats.ContainsKey(pid)) stats[pid] = new PlayerStatStruct();
+    }
+
 }
 
 public class PlayerStatStruct

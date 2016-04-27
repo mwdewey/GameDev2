@@ -126,6 +126,7 @@ public class PrintScores : MonoBehaviour {
             if (bestStats.damageDone == null || bestStats.damageDone.value <= stats.damageDone) bestStats.damageDone = new Stat(stats.damageDone, pid);
             if (bestStats.damageReceived == null || bestStats.damageReceived.value <= stats.damageReceived) bestStats.damageReceived = new Stat(stats.damageReceived, pid);
 
+            PlayerStats.clearStats(pid);
         }
 
         GameObject statsObject = transform.Find("Stats").gameObject;

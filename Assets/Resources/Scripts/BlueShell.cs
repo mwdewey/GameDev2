@@ -51,7 +51,7 @@ public class BlueShell : Item {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (activated) {
-			if (other.tag == "PlayerObject" && other.gameObject != holder) {
+			if (other.tag == "PlayerObject" && other.gameObject != holder && !other.GetComponent<PlayerController>().unconscious) {
 				GameObject[] players = GameObject.FindGameObjectsWithTag ("PlayerObject");
 				foreach (GameObject player in players) {
 					if ((player.transform.position - t.position).magnitude < 2f && player != holder) {
@@ -70,7 +70,7 @@ public class BlueShell : Item {
 				Destroy (gameObject);
 			}
 		}
-		else if (other.tag == "PlayerObject") {
+		else if (other.tag == "PlayerObject" && !activated) {
 			other.GetComponent<PlayerController> ().item_list.Add (this);
 			ring.enabled = true;
 		}

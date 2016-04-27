@@ -41,8 +41,6 @@ public class Item : MonoBehaviour {
             player.GetComponent<PlayerController>().item_list.Remove(this);
         }
 
-        if (gameObject == null) return;
-
         ring.enabled = false;
         rendy.enabled = false;
         collidy.enabled = false;

@@ -21,7 +21,7 @@ public class CauseKnockback : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D c){
 		//print ("Pokeball pushes back "+c.gameObject.name);
-		if (c.gameObject.GetComponent<ReceiveKnockback>()!=null && c.gameObject.name != my_parent_name) {
+		if (c.gameObject.GetComponent<ReceiveKnockback>()!=null && c.gameObject.name != my_parent_name && !c.GetComponent<PlayerController>().locked) {
 			//if what we hit is a player and isn't the player who made us...
 			Vector2 knockback = GetComponent<Rigidbody2D>().velocity;
 			knockback.Normalize ();
