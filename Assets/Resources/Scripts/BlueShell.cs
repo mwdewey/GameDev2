@@ -14,7 +14,7 @@ public class BlueShell : Item {
 	
 	public override void Activate(){
 		holder.GetComponent<PlayerController> ().held_item = null;
-		GetComponent<ParticleTrail> ().Activate (holder);
+		GetComponent<ParticleTrail>().Activate (holder);
 		t = GetComponent<Transform> ();
 		t.position = holder.transform.position;
 		activated = true;
