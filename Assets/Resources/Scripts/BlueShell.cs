@@ -12,6 +12,7 @@ public class BlueShell : Item {
 	
 	public override void Activate(){
 		holder.GetComponent<PlayerController> ().held_item = null;
+		GetComponent<ParticleTrail> ().active = true;
 		t = GetComponent<Transform> ();
 		t.position = holder.transform.position;
 		//Debug.Log ("YOU HAVE SENT OUT A BLUE SHELL");

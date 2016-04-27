@@ -16,6 +16,7 @@ public class Flashbang : Item {
 
 	public override void Activate(){
 		holder.GetComponent<PlayerController> ().held_item = null;
+		GetComponent<ParticleTrail> ().active = true;
 		activated = true;
 		blinding = false;
 		t = GetComponent<Transform> ();
