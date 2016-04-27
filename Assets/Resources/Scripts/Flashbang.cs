@@ -76,9 +76,16 @@ public class Flashbang : Item {
 			}
 		}
 		if (!blinding) {
-			Destroy (gameObject);
+			blinding = true;
+			StartCoroutine (Fizzle ());
+			return;
 		}
 		StartCoroutine (Flasher());
+	}
+
+	IEnumerator Fizzle(){
+		yield return new WaitForSeconds (0.1f);
+		Destroy (gameObject);
 	}
 
 	IEnumerator Flasher(){
