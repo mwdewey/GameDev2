@@ -60,4 +60,9 @@ public class FountainObjFlight : MonoBehaviour {
 	public void SpawnObject(GameObject obj){
 		spawn_object = obj;
 	}
+
+	public void SpawnObject(GameObject obj, Vector3 pos){
+		spawn_object = obj;
+		spawn_object.transform.position = pos;
+	}
 }
