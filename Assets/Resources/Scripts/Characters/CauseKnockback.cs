@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CauseKnockback : MonoBehaviour {
 
-	float KNOCKBACK_AMOUNT = 15; //variable constant, change in testing
+	float KNOCKBACK_AMOUNT = 10; //variable constant, change in testing
     private readonly float KNOCKBACK_TIME = .1f;
 	public string my_parent_name = ""; //this is what the object stores their parent's name in
 	public bool die_on_contact = true;

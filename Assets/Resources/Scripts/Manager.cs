@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Manager : MonoBehaviour {
 
 	public static int coins_remaining;
-	float time_remaining;
+	public float time_remaining;
 	GameObject portal;
 	bool portal_active = false;
 
