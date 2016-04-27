@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class UltimateBar : MonoBehaviour {
+public class PortalBar : MonoBehaviour
+{
 
     private PlayerController pc;
     private Image meter;
@@ -14,21 +15,19 @@ public class UltimateBar : MonoBehaviour {
 
     private float icon_max_width = 400;
 
-    private Manager manager;
-
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         pc = transform.parent.parent.GetComponent<PlayerController>();
         meter = transform.Find("meter").GetComponent<Image>();
+        meter.color = pc.playerColor;
+    }
 
-        manager = GameObject.Find("Manager").GetComponent<Manager>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
         Vector2 size = meter.rectTransform.sizeDelta;
-        float percentage = (60 - manager.time_remaining) / 60 * 100;
-        size.x = percentage / max_power * icon_max_width;
+        size.x = pc.power / max_power * icon_max_width;
         meter.rectTransform.sizeDelta = size;
-	}
+    }
 }
