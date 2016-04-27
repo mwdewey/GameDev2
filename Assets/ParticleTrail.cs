@@ -9,11 +9,17 @@ public class ParticleTrail : MonoBehaviour {
 	 * GetComponent<ParticleTrail>().addParticleTrails(holder);
 	*/
 
+	ParticleSystem ps;
+	Transform t;
+	Transform t2;
+	public bool active;
+
 	public ParticleSystem particle_system;
 
 	public void addParticleTrails(GameObject holder){
-		ParticleSystem ps = (ParticleSystem) Instantiate (particle_system, transform.position, Quaternion.identity);
-		GetComponent<Item>().my_ps = ps;
+		ps = (ParticleSystem) Instantiate (particle_system, transform.position, Quaternion.identity);
+		t = ps.gameObject.GetComponent<Transform> ();
+		t2 = GetComponent<Transform> ();
 		//ps.transform.parent = gameObject.transform;
 		ps.startColor = (Color) holder.GetComponent<PlayerController> ().playerColor;
 
@@ -22,9 +28,13 @@ public class ParticleTrail : MonoBehaviour {
 		//ps.GetComponent<ParticleEmitter> ().maxEmission = 100;
 	}
 
+	void OnDestroy(){
+		Destroy (ps);
+	}
+
 	void Update(){
-		if (GetComponent<Item>().my_ps != null) {
-			GetComponent<Item>().my_ps.transform.position = gameObject.transform.position;
+		if (active) {
+			t.position = t2.position;
 		}
 	}
 }

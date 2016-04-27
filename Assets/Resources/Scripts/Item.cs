@@ -9,7 +9,6 @@ public class Item : MonoBehaviour {
 	public CircleCollider2D collidy;
 	public GameObject holder;
 	public bool activated;
-	public ParticleSystem my_ps;
 
 	// Use this for initialization
 	void Start () {
@@ -57,7 +56,6 @@ public class Item : MonoBehaviour {
         {
             player.GetComponent<PlayerController>().item_list.Remove(this);
         }
-		if (my_ps!=null) Destroy (my_ps.gameObject);
     }
 
 	public void Drop(){
