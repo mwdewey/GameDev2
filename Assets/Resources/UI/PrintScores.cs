@@ -12,6 +12,7 @@ public class PrintScores : MonoBehaviour {
     public RuntimeAnimatorController rich_anim;
     public RuntimeAnimatorController missq_anim;
 
+    private List<Color32> colors;
     private readonly Color32 P1_Color = new Color32(244, 67, 54, 255);
     private readonly Color32 P2_Color = new Color32(33, 150, 243, 255);
     private readonly Color32 P3_Color = new Color32(76, 175, 80, 255);
@@ -20,9 +21,16 @@ public class PrintScores : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         int playerCount = Input.GetJoystickNames().Length;
-        playerCount = 4;
+        //playerCount = 4;
 
-        for (var i = 0; i < 1; i++)
+        colors = new List<Color32>();
+        colors.Add(P1_Color);
+        colors.Add(P2_Color);
+        colors.Add(P3_Color);
+        colors.Add(P4_Color);
+
+
+        for (var i = 0; i < 0; i++)
         {
             PlayerPrefs.SetInt("p" + (i + 1) + "score",i*4);
             PlayerPrefs.SetInt("Player" + (i + 1) + "CharSelect",(int)CharCodes.Shifter);
@@ -109,25 +117,55 @@ public class PrintScores : MonoBehaviour {
             string pid = i.ToString();
             PlayerStatStruct stats = PlayerStats.getStats(pid);
 
-            if (bestStats.kills.value <= stats.kills) bestStats.kills = new Stat(stats.kills, pid);
-            if (bestStats.deaths.value <= stats.deaths) bestStats.deaths = new Stat(stats.deaths, pid);
-            if (bestStats.coinsLost.value <= stats.coinsLost) bestStats.coinsLost = new Stat(stats.coinsLost, pid);
-            if (bestStats.coinsGained.value <= stats.coinsGained) bestStats.coinsGained = new Stat(stats.coinsGained, pid);
-            if (bestStats.attacksDone.value <= stats.attacksDone) bestStats.attacksDone = new Stat(stats.attacksDone, pid);
-            if (bestStats.itemsUsed.value <= stats.itemsUsed) bestStats.itemsUsed = new Stat(stats.itemsUsed, pid);
-            if (bestStats.damageDone.value <= stats.damageDone) bestStats.damageDone = new Stat(stats.damageDone, pid);
-            if (bestStats.damageReceived.value <= stats.damageReceived) bestStats.damageReceived = new Stat(stats.damageReceived, pid);
+            if (bestStats.kills == null || bestStats.kills.value <= stats.kills) bestStats.kills = new Stat(stats.kills, pid);
+            if (bestStats.deaths == null || bestStats.deaths.value <= stats.deaths) bestStats.deaths = new Stat(stats.deaths, pid);
+            if (bestStats.coinsLost == null || bestStats.coinsLost.value <= stats.coinsLost) bestStats.coinsLost = new Stat(stats.coinsLost, pid);
+            if (bestStats.coinsGained == null || bestStats.coinsGained.value <= stats.coinsGained) bestStats.coinsGained = new Stat(stats.coinsGained, pid);
+            if (bestStats.attacksDone == null || bestStats.attacksDone.value <= stats.attacksDone) bestStats.attacksDone = new Stat(stats.attacksDone, pid);
+            if (bestStats.itemsUsed == null || bestStats.itemsUsed.value <= stats.itemsUsed) bestStats.itemsUsed = new Stat(stats.itemsUsed, pid);
+            if (bestStats.damageDone == null || bestStats.damageDone.value <= stats.damageDone) bestStats.damageDone = new Stat(stats.damageDone, pid);
+            if (bestStats.damageReceived == null || bestStats.damageReceived.value <= stats.damageReceived) bestStats.damageReceived = new Stat(stats.damageReceived, pid);
 
         }
 
         GameObject statsObject = transform.Find("Stats").gameObject;
-        for (int i = 1; i < 9; i++)
+        for (int i = 1; i < 6; i++)
         {
             GameObject statObject = statsObject.transform.Find(i.ToString()).gameObject;
 
             Text descText = statObject.transform.Find("Text").gameObject.GetComponent<Text>();
             Image icon = statObject.transform.Find("playerIcon").gameObject.GetComponent<Image>();
             Text valueText = statObject.transform.Find("playerIcon").Find("Text").gameObject.GetComponent<Text>();
+            
+            Stat stat = null;
+            switch(i)
+            {
+                case 1 :
+                    stat = bestStats.kills;
+                    descText.text = "Kills";
+                    break;
+                case 2:
+                    stat = bestStats.deaths;
+                    descText.text = "Deaths";
+                    break;
+                case 3:
+                    stat = bestStats.coinsLost;
+                    descText.text = "Coins Lost";
+                    break;
+                case 4:
+                    stat = bestStats.attacksDone;
+                    descText.text = "Attacks Done";
+                    break;
+                case 5:
+                    stat = bestStats.itemsUsed;
+                    descText.text = "Items Used";
+                    break;
+            }
+
+
+            if (int.Parse(stat.pid) > 0 && int.Parse(stat.pid) < 5) icon.color = colors[int.Parse(stat.pid)-1];
+            valueText.text = stat.value.ToString();
+
 
 
         }
