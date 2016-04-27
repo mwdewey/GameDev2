@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     private Knockback playerKnockback;
     private SpriteRenderer ring;
     private Animator anim;
+	private Rigidbody2D body;
 
 	public Item held_item;
 	public List<Item> item_list;
@@ -68,6 +69,8 @@ public class PlayerController : MonoBehaviour {
         ring = transform.Find("Ring").gameObject.GetComponent<SpriteRenderer>();
         ring.color = playerColor;
 
+		body = GetComponent<Rigidbody2D> ();
+
         anim = GetComponent<Animator>();
         playerKnockback = null;
         
@@ -79,6 +82,16 @@ public class PlayerController : MonoBehaviour {
 
 		Audio = GetComponent<AudioSource> ();
     }
+
+	public void Lock(bool which){
+		if (which) {
+			unconscious = true;
+			locked = true;
+		} else {
+			unconscious = false;
+			locked = false;
+		}
+	}
 
 	void Update () {
 		if (unconscious) return;

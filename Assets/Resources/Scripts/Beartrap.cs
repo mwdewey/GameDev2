@@ -22,8 +22,7 @@ public class Beartrap : Item {
 		if (activated && !sprung) {
 			if (primed && other.tag == "PlayerObject") {
 				other.transform.position = transform.position + new Vector3(0f, 1f, 0f);
-				other.GetComponent<PlayerController> ().unconscious = true;
-				other.GetComponent<PlayerController> ().locked = true;
+				other.GetComponent<PlayerController> ().Lock (true);
 				StartCoroutine (ReleaseVictim (other.GetComponent<PlayerController> ()));
                 sprung = true;
 			} 
@@ -31,7 +30,7 @@ public class Beartrap : Item {
 				return;
 			}
 		}
-		else if (other.tag == "PlayerObject") {
+		else if (!activated && other.tag == "PlayerObject") {
 			other.GetComponent<PlayerController> ().item_list.Add (this);
 			ring.enabled = true;
 		}
@@ -44,8 +43,7 @@ public class Beartrap : Item {
 
 	IEnumerator ReleaseVictim(PlayerController victim){
 		yield return new WaitForSeconds (5f);
-		victim.unconscious = false;
-		victim.locked = false;
+		victim.Lock (false);
 		Destroy (gameObject);
 	}
 }
