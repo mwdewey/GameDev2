@@ -44,7 +44,7 @@ public class BowlingBall : Item {
 	void OnTriggerEnter2D(Collider2D other){
 		if (activated){
 			if (other.tag == "PlayerObject" && other.gameObject != holder && !other.GetComponent<PlayerController>().unconscious) {
-				other.gameObject.SendMessage ("TakeDamage", 50);
+                other.GetComponent<Consciousness>().TakeDamage(50, holder.GetComponent<PlayerController>().PID);
 				Instantiate (blam, t.position, Quaternion.identity);
 
                 // update damage stats

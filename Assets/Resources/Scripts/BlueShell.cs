@@ -70,7 +70,7 @@ public class BlueShell : Item {
 				Destroy (gameObject);
 			}
 		}
-		if (other.tag == "PlayerObject") {
+		else if (other.tag == "PlayerObject") {
 			other.GetComponent<PlayerController> ().item_list.Add (this);
 			ring.enabled = true;
 		}
