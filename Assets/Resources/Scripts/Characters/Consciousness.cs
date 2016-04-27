@@ -47,7 +47,7 @@ public class Consciousness : MonoBehaviour {
 
             // update lost coins, kill, and death stats
             PlayerStats.getStats(pc.PID).coinsLost += coins_lost;
-            PlayerStats.getStats(lastDamagerPID).deaths++;
+            PlayerStats.getStats(lastDamagerPID).kills++;
             PlayerStats.getStats(pc.PID).deaths++;
 
 			StartCoroutine(GetUp());

@@ -42,7 +42,10 @@ public class CauseDamage : MonoBehaviour {
 		//print ("I hit "+c.gameObject.name);
 		if (c.gameObject.tag == "PlayerObject" && !dontdamage.Contains(c.gameObject.name)) {
 			//if what we hit is a player and isn't the player who made us...
-			c.gameObject.SendMessage ("TakeDamage", DAMAGE);
+            c.GetComponent<Consciousness>().TakeDamage(DAMAGE, source.GetComponent<PlayerController>().PID);
+            PlayerStats.getStats(source.GetComponent<PlayerController>().PID).damageDone += DAMAGE;
+            PlayerStats.getStats(c.GetComponent<PlayerController>().PID).damageReceived += DAMAGE;
+
 			//...activate the TakeDamage function of the thing we just hit
 			//causing them to take DAMAGE amount of damage
 

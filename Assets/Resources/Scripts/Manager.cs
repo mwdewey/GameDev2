@@ -11,7 +11,7 @@ public class Manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		time_remaining = 60f;
+		time_remaining = 10f;
 		coins_remaining = GameObject.FindGameObjectsWithTag ("Coin").Length;
 		portal = GameObject.FindGameObjectWithTag ("Portal");
 	}
@@ -19,7 +19,7 @@ public class Manager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (portal == null) {
-			time_remaining = 60f;
+			time_remaining = 10f;
 			coins_remaining = GameObject.FindGameObjectsWithTag ("Coin").Length;
 			portal = GameObject.FindGameObjectWithTag ("Portal");
 		}
