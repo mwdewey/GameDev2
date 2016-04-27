@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Cage : MonoBehaviour {
 
@@ -9,6 +10,11 @@ public class Cage : MonoBehaviour {
 	PlayerController victim;
 	public Sprite unlocked_sprite;
 	public AudioClip cage_sound;
+
+	public GameObject coin;
+
+	int coins_to_eject=10;
+	int coins_left = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +38,7 @@ public class Cage : MonoBehaviour {
 			GetComponentsInChildren<SpriteRenderer>()[1].sprite = unlocked_sprite;
 			GetComponent<AudioSource> ().clip = cage_sound;
 			GetComponent<AudioSource> ().Play ();
+			coins_left = coins_to_eject;
 		}
 	}
 	
@@ -46,6 +53,11 @@ public class Cage : MonoBehaviour {
 				victim.locked = false;
 				victim.unconscious = false;
 			}
+		}
+		if (coins_left>0) {
+			GetComponentInChildren<FountainObjFlight> ().SpawnObject (coin);
+			coins_left--;
+			Manager.coins_remaining += 1;
 		}
 	}
 }
