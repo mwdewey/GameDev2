@@ -30,6 +30,7 @@ public class Score_Counter : MonoBehaviour {
 			if (Vector3.Distance(t.position, other.transform.position) <= 0.5 && other.GetComponent<Renderer>().enabled){
                 score += 1;
 				transform.Find ("Player 1 UI").transform.Find("Coin Text").gameObject.GetComponent<Text>().text = score.ToString();
+                PlayerPrefs.SetInt("p" + GetComponent<PlayerController>().PID + "score", score);
                 other.GetComponent<Renderer>().enabled = false;
                 Destroy(other.gameObject);
                 Manager.coins_remaining -= 1;
@@ -68,6 +69,7 @@ public class Score_Counter : MonoBehaviour {
 				pp_sprite.enabled = false;
 				Destroy (pp_sprite.gameObject);
 				Debug.Log ("Player has escaped with " + score + " coins!");
+                PlayerPrefs.SetInt("p" + GetComponent<PlayerController>().PID + "score",score);
 			}
 		} 
 		else if (pp_sprite.color.a > 0f) {
