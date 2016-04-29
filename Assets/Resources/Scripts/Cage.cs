@@ -10,6 +10,8 @@ public class Cage : MonoBehaviour {
 	PlayerController victim;
 	public Sprite unlocked_sprite;
 	public AudioClip cage_sound;
+	private Vector2 cage_top_left;
+	private float distance_to_box;
 
 	public GameObject coin;
 
@@ -21,6 +23,41 @@ public class Cage : MonoBehaviour {
 		active = true;
 		locked = false;
 		locked_timer = 5;
+
+		Vector2 prospective_pos = transform.Find("Locked Door").position;
+		cage_top_left = new Vector2(transform.position.x - GetComponent<SpriteRenderer> ().bounds.size.x/2,
+			transform.position.y- GetComponent<SpriteRenderer>().bounds.size.y/2);
+		distance_to_box = Vector2.Distance (transform.position, transform.Find("Locked Door").position);
+		if (IsGoodPlaceForBox (prospective_pos)) {
+			return;
+		} else if (IsGoodPlaceForBox (new Vector2 (transform.position.x, transform.position.y + distance_to_box))) {
+			transform.Find("Locked Door").position = new Vector2 (transform.position.x, transform.position.y + distance_to_box);
+			return;
+		} else if (IsGoodPlaceForBox (new Vector2 (transform.position.x - distance_to_box, transform.position.y))) {
+			transform.Find("Locked Door").position = new Vector2 (transform.position.x - distance_to_box, transform.position.y);
+			return;
+		} else if (IsGoodPlaceForBox (new Vector2 (transform.position.x, transform.position.y - distance_to_box))) {
+			transform.Find("Locked Door").position = new Vector2 (transform.position.x, transform.position.y - distance_to_box);
+			return;
+		} else {
+			//there's nowhere nearby to put this box. Kill the object
+			Destroy (gameObject);
+			return;
+		}
+	}
+
+	bool IsGoodPlaceForBox(Vector2 prospective_pos){
+
+		Collider2D[] colliders = Physics2D.OverlapAreaAll (cage_top_left, prospective_pos);
+		if (colliders.Length == 0) 
+			return true;
+		
+		foreach (Collider2D c in colliders){
+			if (c.gameObject.tag == "Wall")
+				return false;
+		}
+
+		return true;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
