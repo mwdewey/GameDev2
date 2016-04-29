@@ -6,9 +6,10 @@ public class PennyPincher: Item {
 	GameObject spr;
 	float spr_scale_x;
 	bool reverse = false;
-	int lock_out = 11;
+	int lock_out = 8;
 	Vector3 player_stays_here;
 	public AudioClip grabber_sound;
+	float grabber_speed = .1f;
 
 	public override void Activate(){
 
@@ -42,7 +43,7 @@ public class PennyPincher: Item {
 			if (!reverse) {
 				//spring out!
 				if (spr.transform.localScale.x < spr_scale_x) {
-					spr.transform.localScale = new Vector3 (spr.transform.localScale.x + .02f, spr.transform.localScale.y, spr.transform.localScale.z);
+					spr.transform.localScale = new Vector3 (spr.transform.localScale.x + grabber_speed, spr.transform.localScale.y, spr.transform.localScale.z);
 				} 
 				else {
 					reverse = true;
@@ -52,11 +53,13 @@ public class PennyPincher: Item {
 				//spring in!
 				if (lock_out-- < 0) {
 					if (spr.transform.localScale.x > 0) {
-						spr.transform.localScale = new Vector3 (spr.transform.localScale.x - .02f, spr.transform.localScale.y, spr.transform.localScale.z);
+						spr.transform.localScale = new Vector3 (spr.transform.localScale.x - grabber_speed, spr.transform.localScale.y, spr.transform.localScale.z);
 					} 
 					else {
                         activated = false;
+						Destroy (spr);
 						Destroy (gameObject);
+						return;
 					}
 				}
 			}
