@@ -14,12 +14,15 @@ public class Healthbar : MonoBehaviour {
     public float min_health;
     public float max_health;
 
-    private float icon_max_width = 200;
+    private float icon_max_width;
 
 	// Use this for initialization
 	void Start () {
 
-        meter = transform.Find("meter").gameObject.GetComponent<Image>();
+        GameObject meterObj = transform.Find("meter").gameObject;
+
+        meter = meterObj.GetComponent<Image>();
+        icon_max_width = meterObj.GetComponent<RectTransform>().rect.width;
 
 	}
 	

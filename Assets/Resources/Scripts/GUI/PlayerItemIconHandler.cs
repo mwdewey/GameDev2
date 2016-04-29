@@ -17,7 +17,6 @@ public class PlayerItemIconHandler : MonoBehaviour {
 	void Update () {
 		if (pc.held_item == null && iconImage.sprite != null) {
 			iconImage.sprite = null;
-            iconImage.color = Color.black;
 			return;
 		}
 		if (pc.held_item != null && iconImage.sprite == null) {
