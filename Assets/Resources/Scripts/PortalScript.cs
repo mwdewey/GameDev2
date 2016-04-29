@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PortalScript : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class PortalScript : MonoBehaviour {
 
 	bool vortex = false;
 	GameObject[] players;
+	public List<Sprite> sprites;
+	int which_sprite;
+	SpriteRenderer rendy;
 
 	public AudioClip portal_open_sound;
 
@@ -16,6 +20,8 @@ public class PortalScript : MonoBehaviour {
 	void Start () {
 		opened = false;
 		timer = 30f;
+		which_sprite = 0;
+		rendy = GetComponent<SpriteRenderer> ();
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -29,6 +35,13 @@ public class PortalScript : MonoBehaviour {
 			other.GetComponentsInParent<Score_Counter> ()[0].in_portal = false;
 		}
 	}
+
+	public void Open(){
+		opened = true;
+		which_sprite++;
+		rendy.sprite = sprites [which_sprite];
+		StartCoroutine (PortalAnimation ());
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -36,8 +49,9 @@ public class PortalScript : MonoBehaviour {
 			timer -= Time.deltaTime;
 			if (timer <= 0 || Input.GetKeyDown(KeyCode.P)) {
 				opened = false;
-				GetComponent<SpriteRenderer> ().enabled = false;
 				Debug.Log ("The portal has been closed");
+				StopCoroutine ("PortalAnimation");
+				rendy.sprite = sprites [1];
 				//shut down all the player colliders
 				players = GameObject.FindGameObjectsWithTag ("PlayerObject");
 				for (int i = 0; i < players.Length; i++) {
@@ -59,6 +73,17 @@ public class PortalScript : MonoBehaviour {
 		if (vortex) {
 			for (int p =0; p < players.Length; p++) {
 				players[p].transform.position = Vector2.MoveTowards (players [p].transform.position, transform.position, .25f); 
+			}
+		}
+	}
+
+	IEnumerator PortalAnimation(){
+		while (true) {
+			yield return new WaitForSeconds (0.2f);
+			rendy.sprite = sprites [which_sprite];
+			which_sprite++;
+			if (which_sprite >= sprites.Count) {
+				which_sprite = 1;
 			}
 		}
 	}

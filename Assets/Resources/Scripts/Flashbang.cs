@@ -44,7 +44,7 @@ public class Flashbang : Item {
         velocity.x += player_velocity.x / 60;
         velocity.y += player_velocity.y / 60;
 		collidy.enabled = true;
-		collidy.radius = 1;
+		collidy.radius = 0.2f;
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -66,6 +66,7 @@ public class Flashbang : Item {
 		GetComponent<AudioSource> ().clip = flashbang_sound;
 		GetComponent<AudioSource> ().Play();
 		rendy.sprite = blam;
+		t.localScale /= 2f;
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("PlayerObject");
 		foreach (GameObject player in players) {
 			if ((player.transform.position - t.position).magnitude < 2f && player != holder) {

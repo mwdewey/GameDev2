@@ -30,7 +30,7 @@ public class Manager : MonoBehaviour {
 				portal_active = true;
 				Color portal_color = portal.GetComponent<SpriteRenderer> ().color;
 				portal.GetComponent<SpriteRenderer> ().color = new Color (portal_color.r, portal_color.g, portal_color.b, 1f);
-				portal.GetComponent<PortalScript>().opened = true;
+				portal.GetComponent<PortalScript> ().Open ();
 				//Debug.Log ("THE PORTAL HAS OPENED");
 			}
 		}
