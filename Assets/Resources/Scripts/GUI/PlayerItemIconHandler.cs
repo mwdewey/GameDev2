@@ -22,7 +22,6 @@ public class PlayerItemIconHandler : MonoBehaviour {
 		if (pc.held_item != null && iconImage.sprite == null) {
 			Sprite currentSprite = pc.held_item.GetComponent<SpriteRenderer> ().sprite;
 			iconImage.sprite = currentSprite;
-            iconImage.color = Color.white;
 		}
 
 	}

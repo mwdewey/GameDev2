@@ -45,9 +45,10 @@ public class Minimap : MonoBehaviour {
     void updateMiniMap()
     {
         List<GameObject> objects = new List<GameObject>();
+        objects.AddRange(GameObject.FindGameObjectsWithTag("Floor"));
         objects.AddRange(GameObject.FindGameObjectsWithTag("PlayerObject"));
         objects.AddRange(GameObject.FindGameObjectsWithTag("Fountain"));
-        objects.AddRange(GameObject.FindGameObjectsWithTag("Wall"));
+        //objects.AddRange(GameObject.FindGameObjectsWithTag("Wall"));
         objects.AddRange(GameObject.FindGameObjectsWithTag("Portal"));
 
         for (var i = 0; i < objects.Count; i++)
@@ -88,8 +89,8 @@ public class Minimap : MonoBehaviour {
                         icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                         icon.color = new Color32(3, 169, 244, 255);
                         break;
-                    case "Wall":
-                        icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    case "Floor":
+                        icon.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
                         icon.color = new Color32(100, 100, 100, 255);
                         break;
                     case "Portal":
