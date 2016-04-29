@@ -5,6 +5,7 @@ public class Beartrap : Item {
 
 	bool primed;
     bool sprung;
+	public Sprite sprung_sprite;
 
 	public override void Activate(){
         sprung = false;
@@ -25,6 +26,7 @@ public class Beartrap : Item {
 				other.GetComponent<PlayerController> ().Lock (true);
 				StartCoroutine (ReleaseVictim (other.GetComponent<PlayerController> ()));
                 sprung = true;
+				GetComponent<SpriteRenderer> ().sprite = sprung_sprite;
 			} 
 			else {
 				return;

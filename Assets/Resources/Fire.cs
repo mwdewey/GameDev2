@@ -9,6 +9,9 @@ public class Fire : MonoBehaviour {
 	List<GameObject> victims;
 	public AudioClip get_burned_sound;
 	public AudioClip its_lit_sound;
+	public Sprite sprite1;
+	public Sprite sprite2;
+	SpriteRenderer rendy;
 
     public GameObject source;
 
@@ -19,6 +22,7 @@ public class Fire : MonoBehaviour {
 		life = 7f;
 		damager = 0.5f;
 		victims = new List<GameObject> ();
+		rendy = GetComponent<SpriteRenderer> ();
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
@@ -32,6 +36,15 @@ public class Fire : MonoBehaviour {
 			victims.Remove (other.transform.parent.gameObject);
 		}
 	}
+
+	void SwitchSprite(){
+		if (rendy.sprite == sprite1) {
+			rendy.sprite = sprite2;
+		} 
+		else {
+			rendy.sprite = sprite1;
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,6 +54,7 @@ public class Fire : MonoBehaviour {
 			Destroy (gameObject);
 		} 
 		else if (damager <= 0) {
+			SwitchSprite ();
 			damager = 0.5f;
 			foreach (GameObject victim in victims) {
                 victim.GetComponent<Consciousness>().TakeDamage(5, source.GetComponent<PlayerController>().PID);
