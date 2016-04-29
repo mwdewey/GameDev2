@@ -456,7 +456,7 @@ public class generateDungeon : MonoBehaviour {
 	void Start () {
 		if (generateOnLoad) {
 			ClearOldDungeon();
-			Generate();
+			Generate(); 
 		}
 	}
 }
