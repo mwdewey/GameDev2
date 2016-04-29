@@ -18,6 +18,9 @@ public class PrintScores : MonoBehaviour {
     private readonly Color32 P3_Color = new Color32(76, 175, 80, 255);
     private readonly Color32 P4_Color = new Color32(255, 235, 59, 255);
 
+	List<bool> players_ready;
+
+
 	// Use this for initialization
 	void Start () {
         int playerCount = Input.GetJoystickNames().Length;
@@ -167,23 +170,47 @@ public class PrintScores : MonoBehaviour {
             if (int.Parse(stat.pid) > 0 && int.Parse(stat.pid) < 5) icon.color = colors[int.Parse(stat.pid)-1];
             valueText.text = stat.value.ToString();
 
-
-
         }
-
-
+		players_ready = new List<bool> ();
+		for (int ii = 0; ii < playerCount; ii++) {
+			players_ready.Add (false);
+		}
 	}
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton0))
+		if (Input.GetButtonDown ("Joy1_MeleeAttack")) {
+			transform.Find ("Checkmark P1").gameObject.SetActive(true);
+			players_ready[0] = true;
+		}
+		if (Input.GetButtonDown ("Joy2_MeleeAttack")) {
+			transform.Find ("Checkmark P2").gameObject.SetActive(true);
+			players_ready[1] = true;
+		}
+		if (Input.GetButtonDown ("Joy3_MeleeAttack")) {
+			transform.Find ("Checkmark P3").gameObject.SetActive(true);
+			players_ready[2] = true;
+		}
+		if (Input.GetButtonDown ("Joy4_MeleeAttack")) {
+			transform.Find ("Checkmark P4").gameObject.SetActive(true);
+			players_ready[3] = true;
+		}
+
+		if (!players_ready.Contains(false))
         {
-            SceneManager.LoadScene("main_menu");
+			StartCoroutine (GoToMainMenu());
+
         }
     }
+
+	IEnumerator GoToMainMenu(){
+		yield return new WaitForSeconds (1);
+		SceneManager.LoadScene ("main_menu");
+	}
 	
 }
+
 
 public class Place
 {
