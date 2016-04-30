@@ -34,7 +34,7 @@ public class init_spawner : MonoBehaviour {
 			case 0:
 				p.name = "kdaddy";
 				p.GetComponent<PlayerController> ().PID = "1";
-				p.GetComponent<PlayerController>().playerColor = new Color32(244, 67, 54, 255);
+                p.GetComponent<PlayerController>().playerColor = new Color32(198, 40, 40, 255);
 				character = (CharCodes) PlayerPrefs.GetInt (PlayerPrefCodes.Player1CharSelect.ToString ());    
 				p.GetComponent<CameraController> ().cameraObject = GameObject.Find ("TopLeft");
 				p.transform.Find ("Player 1 UI").gameObject.GetComponent<Canvas> ().worldCamera = GameObject.Find ("TopLeft").GetComponent<Camera>();
@@ -42,7 +42,7 @@ public class init_spawner : MonoBehaviour {
 			case 1:
 				p.name = "d-diddy";
 				p.GetComponent<PlayerController> ().PID = "2";
-				p.GetComponent<PlayerController>().playerColor = new Color32(33, 150, 243, 255);
+                p.GetComponent<PlayerController>().playerColor = new Color32(21, 101, 192, 255);
 				character = (CharCodes) PlayerPrefs.GetInt (PlayerPrefCodes.Player2CharSelect.ToString ());  
 				p.GetComponent<CameraController> ().cameraObject = GameObject.Find ("TopRight");
 				p.transform.Find ("Player 1 UI").gameObject.GetComponent<Canvas> ().worldCamera = GameObject.Find ("TopRight").GetComponent<Camera>();
@@ -50,7 +50,7 @@ public class init_spawner : MonoBehaviour {
 			case 2:
 				p.name = "trumpster";
 				p.GetComponent<PlayerController> ().PID = "3";
-				p.GetComponent<PlayerController>().playerColor = new Color32(76, 175, 80, 255);
+                p.GetComponent<PlayerController>().playerColor = new Color32(46, 125, 50, 255);
 				character = (CharCodes) PlayerPrefs.GetInt (PlayerPrefCodes.Player3CharSelect.ToString ());  
 				p.GetComponent<CameraController> ().cameraObject = GameObject.Find ("BottomLeft");
 				p.transform.Find ("Player 1 UI").gameObject.GetComponent<Canvas> ().worldCamera = GameObject.Find ("BottomLeft").GetComponent<Camera>();
@@ -58,7 +58,7 @@ public class init_spawner : MonoBehaviour {
 			case 3:
 				p.name = "LOOK AT ME I'M A EASTER EGG";
 				p.GetComponent<PlayerController> ().PID = "4";
-				p.GetComponent<PlayerController>().playerColor = new Color32(255, 235, 59, 255);
+                p.GetComponent<PlayerController>().playerColor = new Color32(249, 168, 37, 255);
 				character = (CharCodes) PlayerPrefs.GetInt (PlayerPrefCodes.Player4CharSelect.ToString ());  
 				p.GetComponent<CameraController> ().cameraObject = GameObject.Find ("BottomRight");
 				p.transform.Find ("Player 1 UI").gameObject.GetComponent<Canvas> ().worldCamera = GameObject.Find ("BottomRight").GetComponent<Camera>();

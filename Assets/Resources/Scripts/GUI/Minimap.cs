@@ -12,6 +12,8 @@ public class Minimap : MonoBehaviour {
     private float map_width;
     private float map_height;
 
+    private GameObject[] staticObjects;
+
 
 	// Use this for initialization
 	void Start () {
@@ -22,12 +24,17 @@ public class Minimap : MonoBehaviour {
 
         // minimap -> UI -> player
         main_player = transform.parent.parent.gameObject;
+
+        staticObjects = GameObject.FindGameObjectsWithTag("Wall");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        updateMiniMap();
+        updateMiniMap(staticObjects);
+        updateMiniMap(GameObject.FindGameObjectsWithTag("PlayerObject"));
+        updateMiniMap(GameObject.FindGameObjectsWithTag("Fountain"));
+        updateMiniMap(GameObject.FindGameObjectsWithTag("Portal"));
 
 	}
 
@@ -42,16 +49,10 @@ public class Minimap : MonoBehaviour {
         icons.Add(ico);
     }
 
-    void updateMiniMap()
+    void updateMiniMap(GameObject[] objects)
     {
-        List<GameObject> objects = new List<GameObject>();
-        //objects.AddRange(GameObject.FindGameObjectsWithTag("Floor"));
-        objects.AddRange(GameObject.FindGameObjectsWithTag("PlayerObject"));
-        objects.AddRange(GameObject.FindGameObjectsWithTag("Fountain"));
-        objects.AddRange(GameObject.FindGameObjectsWithTag("Wall"));
-        objects.AddRange(GameObject.FindGameObjectsWithTag("Portal"));
 
-        for (var i = 0; i < objects.Count; i++)
+        for (var i = 0; i < objects.Length; i++)
         {
             GameObject player = objects[i];
             PlayerController pController = player.GetComponent<PlayerController>();
@@ -78,6 +79,7 @@ public class Minimap : MonoBehaviour {
 
                 icon.transform.localPosition = pos;
 
+                
                 switch(player.tag)
                 {
                     case "PlayerObject":
