@@ -1,11 +1,11 @@
 fileFormatVersion: 2
 guid: db8decfcdf42bd149b268c4a818e548e
-timeCreated: 1461609907
+timeCreated: 1462461520
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - selectIcon: {instanceID: 0}
+  - selectIconObject: {fileID: 167344, guid: 68d9eb0af68b5b64a8af5efbd3030552, type: 2}
   - audioClip: {fileID: 8300000, guid: d5607e9fe9f5d264ab8a8c25f03a6422, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
