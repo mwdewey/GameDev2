@@ -13,6 +13,8 @@ public class BowlingBall : Item {
 	public List<Sprite> horizontal;
 	List<Sprite> which_sprite;
 	int anim;
+	public AudioClip bowling_ball_roll;
+	public AudioClip bowling_ball_hit;
 
 
 	public override void Activate(){
@@ -50,6 +52,9 @@ public class BowlingBall : Item {
 		rendy.sprite = which_sprite [0];
 		anim = 0;
 		StartCoroutine (Roll ());
+
+		GetComponent<AudioSource> ().clip = bowling_ball_roll;
+		GetComponent<AudioSource> ().Play ();
 	}
 
 	IEnumerator Roll(){
@@ -68,6 +73,8 @@ public class BowlingBall : Item {
 			if (other.tag == "PlayerObject" && other.gameObject != holder && !other.GetComponent<PlayerController>().unconscious) {
                 other.GetComponent<Consciousness>().TakeDamage(50, holder.GetComponent<PlayerController>().PID);
 				Instantiate (blam, t.position, Quaternion.identity);
+				other.GetComponent<AudioSource> ().clip = bowling_ball_hit;
+				other.GetComponent<AudioSource> ().Play ();
 
                 // update damage stats
                 PlayerStats.getStats(holder.GetComponent<PlayerController>().PID).damageDone += 50;

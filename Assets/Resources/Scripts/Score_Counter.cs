@@ -12,6 +12,7 @@ public class Score_Counter : MonoBehaviour {
 	Color pp_color;
 	public AudioClip coin_collect_sound;
 	public bool magnetized;
+	public GameObject coin_particles;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,7 @@ public class Score_Counter : MonoBehaviour {
                 Manager.coins_remaining -= 1;
 				GetComponent<AudioSource> ().clip = coin_collect_sound;
 				GetComponent<AudioSource> ().Play ();
+				Instantiate (coin_particles, transform.position, Quaternion.identity);
             }
         }
 	}
