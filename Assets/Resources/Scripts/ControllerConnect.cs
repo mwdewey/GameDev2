@@ -290,6 +290,8 @@ public class ControllerConnect : MonoBehaviour
     {
         gameObject.SetActive(true);
         prevMenu.SetActive(false);
+
+        PlayerPrefs.SetString("mode", gameMode);
     }
 
     void gotoMainMenu()
@@ -398,7 +400,17 @@ public class ControllerConnect : MonoBehaviour
             {
                 // start dungeon
                 cb_ready_text.text = "Starting...";
-                SceneManager.LoadScene("split_screen_test");
+
+                string sceneName;
+                switch (PlayerPrefs.GetString("mode"))
+                {
+                    case "dungeon": sceneName = "split_screen_test"; break;
+                    case "arena": sceneName = "arena_scene"; break;
+                    case "oddball": sceneName = "split_screen_test"; break;
+                    default: sceneName = "split_screen_test"; break;
+                }
+
+                SceneManager.LoadScene(sceneName);
                 curtain.instantOpen();
             }
 

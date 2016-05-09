@@ -94,6 +94,22 @@ public class init_spawner : MonoBehaviour {
 				p.GetComponent<PlayerController> ().ranged_hitbox = vegano_ranged;
 				break;
 			}
+
+            switch (PlayerPrefs.GetString("mode"))
+            {
+                case "dungeon":
+
+                    break;
+                case "arena":
+                    GameObject ui = p.transform.Find("Player 1 UI").gameObject;
+                    ui.transform.Find("coinBackgroundBlock").gameObject.SetActive(true);
+
+                    break;
+                case "oddball": break;
+                default: break;
+            }
+
+
 		}
 	}
 }
