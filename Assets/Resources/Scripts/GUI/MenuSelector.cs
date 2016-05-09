@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class MenuSelector : MonoBehaviour {
 
     public List<GameObject> menuItems;
-    public GameObject selectIcon;
+    public GameObject selectIconObject;
     public bool useCurtain = true;
 
+    private GameObject selectIcon;
     private int currentSelected;
     private readonly float TIME_ACTION = 0.2f;
     private float timeSinceAction;
     private bool isMove;
     private Button.ButtonClickedEvent eventToFire;
+    private Animator anim;
     private Curtain curtain;
 
     private AudioSource audioSource;
@@ -30,6 +32,13 @@ public class MenuSelector : MonoBehaviour {
         curtain = transform.Find("Curtain").gameObject.GetComponent<Curtain>();
         audioSource = GetComponent<AudioSource>();
 
+        selectIcon = Instantiate(selectIconObject);
+        selectIcon.transform.SetParent(menuItems[0].transform);
+        selectIcon.GetComponent<RectTransform>().anchoredPosition = new Vector3(-25, 15, 0);
+        selectIcon.transform.localScale = new Vector3(1, 1, 1);
+
+        anim = selectIcon.GetComponent<Animator>();
+
         updateUI();
 	}
 	
@@ -37,9 +46,7 @@ public class MenuSelector : MonoBehaviour {
 	void Update () {
 
         checkInput();
-
-        animate();
-
+  
         timeSinceAction += Time.deltaTime;
 
 	}
@@ -70,6 +77,7 @@ public class MenuSelector : MonoBehaviour {
             {
                 updateUI();
                 audioSource.PlayOneShot(audioClip);
+                anim.SetTrigger("activate");
                 timeSinceAction = 0;
             }
         }
@@ -117,28 +125,5 @@ public class MenuSelector : MonoBehaviour {
 
 
     }
-
-    void animate()
-    {
-        if (timeSinceAction < TIME_ACTION && Time.time > 1)
-        {
-            float scale = (timeSinceAction / TIME_ACTION)/2 + 0.5f;
-            selectIcon.transform.localScale = new Vector3(scale, scale, 1);
-
-            scale = (timeSinceAction / TIME_ACTION);
-
-            /*if (scale < 0.5f)
-            {
-                selectIcon.transform.parent.Find("Text").localPosition = new Vector3(-scale * 20, 0, 0);
-            }
-
-            else
-            {
-                selectIcon.transform.parent.Find("Text").localPosition = new Vector3(-(1-scale) * 20, 0, 0);
-            }*/
-
-        }
-
-
-    }
+   
 }

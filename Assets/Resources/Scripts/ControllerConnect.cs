@@ -14,10 +14,10 @@ public class ControllerConnect : MonoBehaviour
     private int controllerCount;
 
     private List<Color32> playerColors;
-    private readonly Color32 P1_Color = new Color32(244, 67, 54, 255);
-    private readonly Color32 P2_Color = new Color32(33, 150, 243, 255);
-    private readonly Color32 P3_Color = new Color32(76, 175, 80, 255);
-    private readonly Color32 P4_Color = new Color32(255, 235, 59, 255);
+    private readonly Color32 P1_Color = new Color32(198, 40, 40, 255);
+    private readonly Color32 P2_Color = new Color32(21, 101, 192, 255);
+    private readonly Color32 P3_Color = new Color32(46, 125, 50, 255);
+    private readonly Color32 P4_Color = new Color32(249, 168, 37, 255);
 
     private int characterCount = 4;
 
@@ -290,6 +290,8 @@ public class ControllerConnect : MonoBehaviour
     {
         gameObject.SetActive(true);
         prevMenu.SetActive(false);
+
+        PlayerPrefs.SetString("mode", gameMode);
     }
 
     void gotoMainMenu()
@@ -398,7 +400,17 @@ public class ControllerConnect : MonoBehaviour
             {
                 // start dungeon
                 cb_ready_text.text = "Starting...";
-                SceneManager.LoadScene("split_screen_test");
+
+                string sceneName;
+                switch (PlayerPrefs.GetString("mode"))
+                {
+                    case "dungeon": sceneName = "split_screen_test"; break;
+                    case "arena": sceneName = "arena_scene"; break;
+                    case "oddball": sceneName = "split_screen_test"; break;
+                    default: sceneName = "split_screen_test"; break;
+                }
+
+                SceneManager.LoadScene(sceneName);
                 curtain.instantOpen();
             }
 

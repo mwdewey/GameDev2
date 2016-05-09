@@ -121,7 +121,7 @@ public class generateDungeon : MonoBehaviour {
 					room.h = Random.Range(min_size, max_size);
 				}
 
-				bool doesCollide =this.DoesCollide(room,0);
+				bool doesCollide = this.DoesCollide(room,0);
 				
 				if (doesCollide && prune) {
 					i--;
@@ -138,76 +138,77 @@ public class generateDungeon : MonoBehaviour {
 
 
 			//corridor making
-			for (int i = 0; i < 10; i++) {
-                Room roomA = null;
-                Room roomB = null;
-                while (roomA == roomB) {
-                    roomA = rooms[Random.Range(0, rooms.Count)];
-                    roomB = rooms[Random.Range(0, rooms.Count)];
-                }
+			if (maximumRoomCount != 1) {
+				for (int i = 0; i < 10; i++) {
+	                Room roomA = null;
+	                Room roomB = null;
+	                while (roomA == roomB) {
+	                    roomA = rooms[Random.Range(0, rooms.Count)];
+	                    roomB = rooms[Random.Range(0, rooms.Count)];
+	                }
 
-				var pointA = new Room();
-				pointA.x = Random.Range(roomA.x, roomA.x + roomA.w);
-				pointA.y = Random.Range(roomA.y, roomA.y + roomA.h);
+					var pointA = new Room();
+					pointA.x = Random.Range(roomA.x, roomA.x + roomA.w);
+					pointA.y = Random.Range(roomA.y, roomA.y + roomA.h);
 
-                var pointA2 = new Room();
-                pointA2.x = pointA.x + 1;
-                pointA2.y = pointA.y;
+	                var pointA2 = new Room();
+	                pointA2.x = pointA.x + 1;
+	                pointA2.y = pointA.y;
 
-				var pointB = new Room();
-				pointB.x = Random.Range(roomB.x, roomB.x + roomB.w);
-				pointB.y = Random.Range(roomB.y, roomB.y + roomB.h);
+					var pointB = new Room();
+					pointB.x = Random.Range(roomB.x, roomB.x + roomB.w);
+					pointB.y = Random.Range(roomB.y, roomB.y + roomB.h);
 
-                var pointB2 = new Room();
-                pointB2.x = pointB.x;
-                pointB2.y = pointB.y + 1;
+	                var pointB2 = new Room();
+	                pointB2.x = pointB.x;
+	                pointB2.y = pointB.y + 1;
 
-					
-				roomA.connectedTo = roomB;
-					
-				while ( (pointB.x != pointA.x) || (pointB.y != pointA.y) || (pointB2.x != pointA2.x) || (pointB2.y != pointA2.y) ) {
-					if (pointB.x != pointA.x) {
-						if (pointB.x > pointA.x) { 
-							pointB.x--; 
+						
+					roomA.connectedTo = roomB;
+						
+					while ( (pointB.x != pointA.x) || (pointB.y != pointA.y) || (pointB2.x != pointA2.x) || (pointB2.y != pointA2.y) ) {
+						if (pointB.x != pointA.x) {
+							if (pointB.x > pointA.x) { 
+								pointB.x--; 
+							}
+							else { 
+								pointB.x++; 
+							}
+						} 
+						else if (pointB.y != pointA.y) {
+							if (pointB.y > pointA.y) { 
+								pointB.y--; 
+							}
+							else {
+								pointB.y++; 
+							}
 						}
-						else { 
-							pointB.x++; 
+
+
+						if (pointB2.x != pointA2.x) {
+							if (pointB2.x > pointA2.x) {
+								pointB2.x--;
+							}
+							else {
+								pointB2.x++;
+							}
 						}
-					} 
-					else if (pointB.y != pointA.y) {
-						if (pointB.y > pointA.y) { 
-							pointB.y--; 
+						else if (pointB2.y != pointA2.y) {
+							if (pointB2.y > pointA2.y) {
+								pointB2.y--;
+							}
+							else {
+								pointB2.y++;
+							}
 						}
-						else {
-							pointB.y++; 
-						}
+
+						map[pointB.x,pointB.y].type = 3;
+						map[pointB2.x, pointB2.y].type = 3;
+
 					}
-
-
-					if (pointB2.x != pointA2.x) {
-						if (pointB2.x > pointA2.x) {
-							pointB2.x--;
-						}
-						else {
-							pointB2.x++;
-						}
-					}
-					else if (pointB2.y != pointA2.y) {
-						if (pointB2.y > pointA2.y) {
-							pointB2.y--;
-						}
-						else {
-							pointB2.y++;
-						}
-					}
-
-					map[pointB.x,pointB.y].type = 3;
-					map[pointB2.x, pointB2.y].type = 3;
 
 				}
-
 			}
-			
 			//room making
 			for (int i = 0; i < rooms.Count; i++) {
 				Room room = rooms[i];
@@ -448,7 +449,7 @@ public class generateDungeon : MonoBehaviour {
                  * PHIL
                  * 
                  */
-                objectCountToSpawn--;
+                
 			}
 		}
 	}

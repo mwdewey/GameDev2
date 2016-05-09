@@ -57,13 +57,13 @@ public class Fire : MonoBehaviour {
 			SwitchSprite ();
 			damager = 0.5f;
 			foreach (GameObject victim in victims) {
-                victim.GetComponent<Consciousness>().TakeDamage(5, source.GetComponent<PlayerController>().PID);
+                victim.GetComponent<Consciousness>().TakeDamage(20, source.GetComponent<PlayerController>().PID);
 				GetComponent<AudioSource> ().clip = get_burned_sound;
 				GetComponent<AudioSource> ().Play ();
 
                 // update damage stats
-                PlayerStats.getStats(source.GetComponent<PlayerController>().PID).damageDone += 5;
-                PlayerStats.getStats(victim.gameObject.GetComponent<PlayerController>().PID).damageReceived += 5;
+                PlayerStats.getStats(source.GetComponent<PlayerController>().PID).damageDone += 20;
+                PlayerStats.getStats(victim.gameObject.GetComponent<PlayerController>().PID).damageReceived += 20;
 
 			}
 		}

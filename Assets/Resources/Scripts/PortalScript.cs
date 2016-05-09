@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class PortalScript : MonoBehaviour {
 
 	public bool opened;
-	float timer;
+    public float timer;
 
 	bool vortex = false;
 	GameObject[] players;

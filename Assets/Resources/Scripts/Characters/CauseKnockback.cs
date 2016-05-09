@@ -8,10 +8,12 @@ public class CauseKnockback : MonoBehaviour {
 	public string my_parent_name = ""; //this is what the object stores their parent's name in
 	public bool die_on_contact = true;
     public GameObject explosion;
+    private string pid;
 
 	// Use this for initialization
 	void Start () {
 		if (transform.parent != null) {
+            pid = transform.parent.GetComponent<PlayerController>().PID;
 			my_parent_name = transform.parent.name;
 		}//if the object is a projectile, it won't have a parent
 		//so, when a projectile is made, it will have this variable 
@@ -22,7 +24,8 @@ public class CauseKnockback : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c){
 		//print ("Pokeball pushes back "+c.gameObject.name);
 		if (c.gameObject.GetComponent<ReceiveKnockback>()!=null && c.gameObject.name != my_parent_name && !c.GetComponent<PlayerController>().locked) {
-			//if what we hit is a player and isn't the player who made us...
+            c.gameObject.GetComponent<Consciousness>().TakeDamage(3, pid);
+            //if what we hit is a player and isn't the player who made us...
 			Vector2 knockback = GetComponent<Rigidbody2D>().velocity;
 			knockback.Normalize ();
 			knockback.x *= KNOCKBACK_AMOUNT;

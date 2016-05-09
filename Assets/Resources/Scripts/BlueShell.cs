@@ -45,7 +45,8 @@ public class BlueShell : Item {
 			rendy.enabled = true;
 			speed = 0.08f;
 			collidy.enabled = true;
-			collidy.radius = 3f;
+			collidy.radius = .32f;
+            collidy.offset = new Vector2(0, 0.08f);
 		}
 	}
 

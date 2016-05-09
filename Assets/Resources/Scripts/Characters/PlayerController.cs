@@ -87,9 +87,11 @@ public class PlayerController : MonoBehaviour {
 		if (which) {
 			unconscious = true;
 			locked = true;
+            rb.isKinematic = true;
 		} else {
 			unconscious = false;
 			locked = false;
+            rb.isKinematic = false;
 		}
 	}
 

@@ -68,10 +68,8 @@ public class Cage : MonoBehaviour {
 			//Debug.Log ("MWAHAHA, YOU HAVE BEEN TRAPPED, MORTAL");
 			locked = true;
 			victim = other.GetComponent<PlayerController> ();
-			victim.unconscious = true;
-			victim.setKnockBack (null);
-			victim.locked = true;
-			other.transform.position = transform.position;
+            victim.Lock(true);
+            other.transform.position = transform.position;
 			GetComponentsInChildren<SpriteRenderer>()[1].sprite = unlocked_sprite;
 			GetComponent<AudioSource> ().clip = cage_sound;
 			GetComponent<AudioSource> ().Play ();
@@ -83,12 +81,12 @@ public class Cage : MonoBehaviour {
 	void Update () {
 		if (locked && active) {
 			locked_timer -= Time.deltaTime;
+            victim.transform.position = transform.position;
 			if (locked_timer <= 0) {
 				//Debug.Log ("Okay, you can go now. I got bored");
 				locked = false;
 				active = false;
-				victim.locked = false;
-				victim.unconscious = false;
+                victim.Lock(false);
 			}
 		}
 		if (coins_left>0) {

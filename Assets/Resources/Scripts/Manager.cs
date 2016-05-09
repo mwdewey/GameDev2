@@ -26,7 +26,7 @@ public class Manager : MonoBehaviour {
 		if (!portal_active) {
 			time_remaining -= Time.deltaTime;
 			//Debug.Log (time_remaining);
-			if (time_remaining <= 0 || coins_remaining <= 0) {
+			if (time_remaining <= 0) {
 				portal_active = true;
 				Color portal_color = portal.GetComponent<SpriteRenderer> ().color;
 				portal.GetComponent<SpriteRenderer> ().color = new Color (portal_color.r, portal_color.g, portal_color.b, 1f);

@@ -41,7 +41,9 @@ public class Magnet : Item {
 
 			if (Vector3.Distance(holder_t.position, other.transform.position) <= 0.5 && other.GetComponent<Renderer>().enabled){
 				scorey.score += 1;
+
 				holder_t.Find ("Player 1 UI").transform.Find("Coin Text").gameObject.GetComponent<Text>().text = scorey.score.ToString();
+                PlayerPrefs.SetInt("p" + holder.GetComponent<PlayerController>().PID + "score", scorey.score);
 				other.GetComponent<Renderer>().enabled = false;
 				Destroy(other.gameObject);
 				Manager.coins_remaining -= 1;
@@ -58,5 +60,9 @@ public class Magnet : Item {
 				scorey.magnetized = true;
 			}
 		}
+        if (holder == null) {
+            Destroy(gameObject);
+            //destroy gameobject phil
+        }
 	}
 }

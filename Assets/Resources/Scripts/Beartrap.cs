@@ -12,7 +12,8 @@ public class Beartrap : Item {
 		holder.GetComponent<PlayerController> ().held_item = null;
 		activated = true;
 		transform.position = holder.transform.position;
-		collidy.radius = 1f;
+		collidy.radius = .29f;
+        collidy.offset = new Vector2(0, -0.1f);
 		collidy.enabled = true;
 		primed = false;
 		rendy.enabled = true;
