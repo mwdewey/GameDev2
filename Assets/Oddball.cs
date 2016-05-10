@@ -22,6 +22,13 @@ public class Oddball : Item {
 
 	void Update(){
 		if (holder != null) {
+
+            if (holder.GetComponent<PlayerController>().unconscious)
+            {
+                Drop();
+                return;
+            }
+
 			timer -= Time.deltaTime;
 			if (timer <= 0) {
 				timer = score_timer;

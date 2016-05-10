@@ -44,7 +44,9 @@ public class Consciousness : MonoBehaviour {
 
 			Manager.coins_remaining += coins_lost;
 			for (int x = 0; x < coins_lost; x++) {
-				Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
+				GameObject c = (GameObject) Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
+
+                c.GetComponent<Animator>().time
 			}
 
             // update lost coins, kill, and death stats

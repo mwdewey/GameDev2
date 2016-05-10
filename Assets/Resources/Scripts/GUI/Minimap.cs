@@ -31,12 +31,16 @@ public class Minimap : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        updateMiniMap(staticObjects);
-        updateMiniMap(GameObject.FindGameObjectsWithTag("PlayerObject"));
-        updateMiniMap(GameObject.FindGameObjectsWithTag("Fountain"));
-        updateMiniMap(GameObject.FindGameObjectsWithTag("Portal"));
+        List<GameObject> allObjects = new List<GameObject>();
 
-	}
+        allObjects.AddRange(staticObjects);
+        allObjects.AddRange(GameObject.FindGameObjectsWithTag("Fountain"));
+        allObjects.AddRange(GameObject.FindGameObjectsWithTag("Portal"));
+        allObjects.AddRange(GameObject.FindGameObjectsWithTag("Item"));
+        allObjects.AddRange(GameObject.FindGameObjectsWithTag("PlayerObject"));
+
+        updateMiniMap(allObjects.ToArray());
+    }
 
     void addIcon()
     {
@@ -58,9 +62,11 @@ public class Minimap : MonoBehaviour {
             PlayerController pController = player.GetComponent<PlayerController>();
 
 
-            if (icons.Count < i + 1) addIcon();
+            while (icons.Count < i + 1) addIcon();
             Image icon = icons[i];
 
+            // if object is item, it has to be oddball
+            if (player.tag == "Item" && player.name != "Oddball(Clone)") continue;
 
             if (Mathf.Abs(player.transform.position.x - main_player.transform.position.x) < x_dist &&
                         Mathf.Abs(player.transform.position.y - main_player.transform.position.y) < y_dist)
@@ -78,14 +84,14 @@ public class Minimap : MonoBehaviour {
                 pos.y = mapped_y;
 
                 icon.transform.localPosition = pos;
-
                 
                 switch(player.tag)
                 {
                     case "PlayerObject":
+                        print("player: " + pos);
                         icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                         if (pController != null) icon.color = pController.playerColor;
-                        else new Color32(255, 0, 0, 255);
+                        else icon.color = new Color32(255, 0, 0, 255);
                         break;
                     case "Fountain":
                         icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
@@ -100,8 +106,16 @@ public class Minimap : MonoBehaviour {
                         icon.color = new Color32(100, 100, 100, 255);
                         break;
                     case "Portal":
+                        print("portal: " + pos);
                         icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                         icon.color = new Color32(230,0,255, 255);
+                        break;
+                    case "Item":
+                        if (player.name == "Oddball(Clone)")
+                        {
+                            icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                            icon.color = new Color32(255, 255, 255, 255);
+                        }
                         break;
 
                 }
