@@ -87,6 +87,7 @@ public class MenuSelector : MonoBehaviour {
         {
             isMove = true;
             eventToFire = selectIcon.transform.parent.gameObject.GetComponent<Button>().onClick;
+            anim.SetTrigger("activate");
             if (useCurtain) curtain.close();
             timeSinceAction = 0;
         }

@@ -95,14 +95,14 @@ public class init_spawner : MonoBehaviour {
 				break;
 			}
 
+            GameObject ui = p.transform.Find("Player 1 UI").gameObject;
             switch (PlayerPrefs.GetString("mode"))
             {
                 case "dungeon":
-
+                    ui.transform.Find("oddballIcon").gameObject.SetActive(false);
                     break;
                 case "arena":
-                    GameObject ui = p.transform.Find("Player 1 UI").gameObject;
-                    ui.transform.Find("coinBackgroundBlock").gameObject.SetActive(true);
+                    ui.transform.Find("oddballIcon").gameObject.SetActive(true);
 
                     break;
                 case "oddball": break;

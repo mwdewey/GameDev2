@@ -15,6 +15,7 @@ public class Consciousness : MonoBehaviour {
 	GameObject coin;
 	PlayerController pc;
     private string lastDamagerPID;
+	SpriteRenderer rendy;
 
 	public AudioClip unconscious_sound;
 
@@ -24,6 +25,7 @@ public class Consciousness : MonoBehaviour {
 		healthBar = (Healthbar) transform.Find("Player 1 UI").Find("Healthbar").gameObject.GetComponent<Healthbar>();
 		initial_health = healthBar.health;
 		coin = (GameObject)Resources.Load ("Prefabs/Environment/Coin");
+		rendy = GetComponent<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -42,7 +44,9 @@ public class Consciousness : MonoBehaviour {
 
 			Manager.coins_remaining += coins_lost;
 			for (int x = 0; x < coins_lost; x++) {
-				Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
+				GameObject c = (GameObject) Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
+
+                c.GetComponent<Animator>().time
 			}
 
             // update lost coins, kill, and death stats
@@ -58,6 +62,17 @@ public class Consciousness : MonoBehaviour {
 		if (!pc.unconscious) {
 			healthBar.health -= damage;
             lastDamagerPID = damagerPID;
+		}
+		StopCoroutine ("RedFlash");
+		StartCoroutine (RedFlash ());
+	}
+
+	IEnumerator RedFlash(){
+		Color flasher = new Color(0f, 0.05f, 0.05f);
+		rendy.color = new Color (1f, 0f, 0f);
+		while (rendy.color.g < 1) {
+			yield return new WaitForEndOfFrame ();
+			rendy.color += flasher;
 		}
 	}
 

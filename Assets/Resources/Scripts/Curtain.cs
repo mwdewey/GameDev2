@@ -36,8 +36,7 @@ public class Curtain : MonoBehaviour
         isRunning = true;
         isOpening = true;
         anim.SetTrigger("open");
-        anim.SetFloat("speed", transitionTime/2);
-        
+        anim.SetFloat("speed", 1 / transitionTime);
         Invoke("setISRunningFalse", transitionTime);
     }
 
@@ -51,8 +50,7 @@ public class Curtain : MonoBehaviour
         isRunning = true;
         isOpening = false;
         anim.SetTrigger("close");
-        anim.SetFloat("speed", transitionTime / 2);
-
+        anim.SetFloat("speed", 1 / transitionTime);
         Invoke("setISRunningFalse", transitionTime);
     }
 

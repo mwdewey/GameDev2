@@ -63,6 +63,7 @@ public class Item : MonoBehaviour {
 		rendy.enabled = true;
 		collidy.enabled = true;
 		transform.position = holder.transform.position - new Vector3 (0.0f, 0.5f, 0.0f);
+		holder.GetComponent<PlayerController> ().held_item = null;
 		holder = null;
 	}
 }
