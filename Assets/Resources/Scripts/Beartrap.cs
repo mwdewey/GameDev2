@@ -6,6 +6,7 @@ public class Beartrap : Item {
 	bool primed;
     bool sprung;
 	public Sprite sprung_sprite;
+	public AudioClip clank_sound;
 
 	public override void Activate(){
         sprung = false;
@@ -28,6 +29,8 @@ public class Beartrap : Item {
 				StartCoroutine (ReleaseVictim (other.GetComponent<PlayerController> ()));
                 sprung = true;
 				GetComponent<SpriteRenderer> ().sprite = sprung_sprite;
+				GetComponent<AudioSource> ().clip = clank_sound;
+				GetComponent<AudioSource> ().Play ();
 			} 
 			else {
 				return;
