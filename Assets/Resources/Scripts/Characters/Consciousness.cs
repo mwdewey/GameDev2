@@ -53,7 +53,7 @@ public class Consciousness : MonoBehaviour {
 				// update lost coins, kill, and death stats
 				PlayerStats.getStats (pc.PID).coinsLost += coins_lost;
 			}
-            PlayerStats.getStats(lastDamagerPID).kills++;
+			if (lastDamagerPID!=null) PlayerStats.getStats(lastDamagerPID).kills++;
             PlayerStats.getStats(pc.PID).deaths++;
 
 			//increment the score if a kill is made in Arena

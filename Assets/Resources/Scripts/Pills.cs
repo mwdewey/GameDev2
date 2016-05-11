@@ -10,8 +10,8 @@ public class Pills : Item {
 		holder.GetComponent<Consciousness> ().Revive ();
 		GameObject x = (GameObject) Instantiate(particles, holder.transform.position, Quaternion.identity);
 		x.transform.SetParent (holder.transform);
-		holder.GetComponent<AudioSource> ().clip = dat_healing_sound;
-		holder.GetComponent<AudioSource> ().Play ();
+		x.GetComponent<AudioSource> ().clip = dat_healing_sound;
+		x.GetComponent<AudioSource> ().Play ();
 		Destroy (gameObject);
 	}
 }

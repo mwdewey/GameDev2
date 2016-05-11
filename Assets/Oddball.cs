@@ -6,6 +6,8 @@ public class Oddball : Item {
 
 	public float score_timer;
 	float timer;
+	public GameObject particles;
+	public GameObject my_ps;
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +19,21 @@ public class Oddball : Item {
 	}
 
 	public override void Activate(){
+		if(my_ps!=null) Destroy(my_ps);
 		Drop ();
 	}
 
 	void Update(){
 		if (holder != null) {
+			if (my_ps == null) {
+				GameObject p = (GameObject) Instantiate (particles, holder.transform.position, Quaternion.identity);
+				p.transform.SetParent (holder.transform);
+				my_ps = p;
+			}
 
             if (holder.GetComponent<PlayerController>().unconscious)
             {
+				if (my_ps!=null) Destroy (my_ps);
                 Drop();
                 return;
             }
@@ -38,5 +47,10 @@ public class Oddball : Item {
 		} else {
 			timer = score_timer;
 		}
+	}
+
+	public override void Drop(){
+		if (my_ps!=null) Destroy (my_ps);
+		base.Drop ();
 	}
 }

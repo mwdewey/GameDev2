@@ -36,8 +36,8 @@ public class Minimap : MonoBehaviour {
         allObjects.AddRange(staticObjects);
         allObjects.AddRange(GameObject.FindGameObjectsWithTag("Fountain"));
         allObjects.AddRange(GameObject.FindGameObjectsWithTag("Portal"));
-        allObjects.AddRange(GameObject.FindGameObjectsWithTag("Item"));
         allObjects.AddRange(GameObject.FindGameObjectsWithTag("PlayerObject"));
+		allObjects.AddRange(GameObject.FindGameObjectsWithTag("Oddball Particles"));
 
         updateMiniMap(allObjects.ToArray());
     }
@@ -64,9 +64,6 @@ public class Minimap : MonoBehaviour {
 
             while (icons.Count < i + 1) addIcon();
             Image icon = icons[i];
-
-            // if object is item, it has to be oddball
-            if (player.tag == "Item" && player.name != "Oddball(Clone)") continue;
 
             if (Mathf.Abs(player.transform.position.x - main_player.transform.position.x) < x_dist &&
                         Mathf.Abs(player.transform.position.y - main_player.transform.position.y) < y_dist)
@@ -108,12 +105,9 @@ public class Minimap : MonoBehaviour {
                         icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                         icon.color = new Color32(230,0,255, 255);
                         break;
-                    case "Item":
-                        if (player.name == "Oddball(Clone)")
-                        {
-                            icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-                            icon.color = new Color32(255, 255, 255, 255);
-                        }
+                    case "Oddball Particles":
+                        icon.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                        icon.color = new Color32(255, 255, 255, 255);
                         break;
 
                 }
