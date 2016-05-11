@@ -88,7 +88,6 @@ public class Minimap : MonoBehaviour {
                 switch(player.tag)
                 {
                     case "PlayerObject":
-                        print("player: " + pos);
                         icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                         if (pController != null) icon.color = pController.playerColor;
                         else icon.color = new Color32(255, 0, 0, 255);
@@ -106,7 +105,6 @@ public class Minimap : MonoBehaviour {
                         icon.color = new Color32(100, 100, 100, 255);
                         break;
                     case "Portal":
-                        print("portal: " + pos);
                         icon.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                         icon.color = new Color32(230,0,255, 255);
                         break;

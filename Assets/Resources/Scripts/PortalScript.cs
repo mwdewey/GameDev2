@@ -67,7 +67,7 @@ public class PortalScript : MonoBehaviour {
 				GetComponent<AudioSource> ().Play ();
 
                 // ends the game 10 seconds after the vortex is active
-                Invoke("endGame", 10);
+                Invoke("endGame", 5);
 			}
 		}
 		if (vortex) {

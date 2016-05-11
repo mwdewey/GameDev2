@@ -49,7 +49,10 @@ public class DeathByFloor : MonoBehaviour {
             Manager.coins_remaining += coins_lost;
             for (int x = 0; x < coins_lost; x++)
             {
-                Instantiate(coin, new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0) + c2.transform.position, Quaternion.identity);
+                GameObject coin_obj = (GameObject) Instantiate(coin, new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0) + c2.transform.position, Quaternion.identity);
+
+                coin_obj.GetComponent<Animator>().SetFloat("offset", Random.Range(0, 1f));
+
             }
 
 			  //make sure they don't just keep moving on the velocity they already had

@@ -44,10 +44,10 @@ public class Consciousness : MonoBehaviour {
 
 			Manager.coins_remaining += coins_lost;
 			for (int x = 0; x < coins_lost; x++) {
-				GameObject c = (GameObject) Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
+                //GameObject c = (GameObject) Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
 
-                c.GetComponent<Animator>().time
-			}
+                Invoke("spawnCoin", Random.Range(0,0.5f));
+            }
 
             // update lost coins, kill, and death stats
             PlayerStats.getStats(pc.PID).coinsLost += coins_lost;
@@ -57,6 +57,11 @@ public class Consciousness : MonoBehaviour {
 			StartCoroutine(GetUp());
 		}
 	}
+
+    private void spawnCoin()
+    {
+        Instantiate(coin, new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0) + transform.position, Quaternion.identity);
+    }
 
 	public void TakeDamage(int damage,string damagerPID){
 		if (!pc.unconscious) {
