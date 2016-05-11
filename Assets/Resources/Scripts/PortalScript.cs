@@ -13,6 +13,7 @@ public class PortalScript : MonoBehaviour {
 	public List<Sprite> sprites;
 	int which_sprite;
 	SpriteRenderer rendy;
+	public GameObject gravity_particles;
 
 	public AudioClip portal_open_sound;
 
@@ -65,6 +66,7 @@ public class PortalScript : MonoBehaviour {
 				}
 				GetComponent<AudioSource> ().clip = portal_open_sound;
 				GetComponent<AudioSource> ().Play ();
+				Instantiate (gravity_particles, transform.position, Quaternion.identity);
 
                 // ends the game 10 seconds after the vortex is active
                 Invoke("endGame", 5);
