@@ -32,7 +32,7 @@ public class DeathByFloor : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.gameObject.tag == "Ring") {
 			//You can do whatever you want to the player who just collided by using c.gameObject.whatever. 
-			//death time!
+			//Death time!
 			GameObject c2 = c.transform.parent.gameObject;
 			c2.gameObject.GetComponent<Animator>().SetInteger("PlayerState",1);
 			GetComponent<AudioSource> ().clip = death_sound;
@@ -41,19 +41,26 @@ public class DeathByFloor : MonoBehaviour {
 			c2.gameObject.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 			c2.gameObject.GetComponent<PlayerController> ().setKnockBack (null);
 
-            int coins_lost = c2.GetComponent<Score_Counter>().score / 2;
-            c2.GetComponent<Score_Counter>().score /= 2;
+			if (PlayerPrefs.GetString ("mode") == "dungeon") {
+				int coins_lost = c2.GetComponent<Score_Counter> ().score / 2;
+				c2.GetComponent<Score_Counter> ().score /= 2;
 
-            c2.transform.Find("Player 1 UI").transform.Find("Coin Text").gameObject.GetComponent<Text>().text = c2.GetComponent<Score_Counter>().score.ToString();
+				c2.transform.Find ("Player 1 UI").transform.Find ("Coin Text").gameObject.GetComponent<Text> ().text = c2.GetComponent<Score_Counter> ().score.ToString ();
 
-            Manager.coins_remaining += coins_lost;
-            for (int x = 0; x < coins_lost; x++)
-            {
-                GameObject coin_obj = (GameObject) Instantiate(coin, new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0) + c2.transform.position, Quaternion.identity);
+				Manager.coins_remaining += coins_lost;
+				for (int x = 0; x < coins_lost; x++) {
+					GameObject coin_obj = (GameObject)Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + c2.transform.position, Quaternion.identity);
 
-                coin_obj.GetComponent<Animator>().SetFloat("offset", Random.Range(0, 1f));
+					coin_obj.GetComponent<Animator> ().SetFloat ("offset", Random.Range (0, 1f));
 
-            }
+				}
+			}
+
+			if (PlayerPrefs.GetString ("mode") == "arena") {
+				print ("Lol " + c2.name + " you bad");
+				c2.GetComponent<Score_Counter> ().score--;
+				c2.transform.Find ("Player 1 UI").transform.Find ("Coin Text").gameObject.GetComponent<Text> ().text = c2.GetComponent<Score_Counter> ().score.ToString ();
+			}
 
 			  //make sure they don't just keep moving on the velocity they already had
 			StartCoroutine (RespawnCountdown( c2.gameObject )); 

@@ -406,7 +406,7 @@ public class ControllerConnect : MonoBehaviour
                 {
                     case "dungeon": sceneName = "split_screen_test"; break;
                     case "arena": sceneName = "arena_scene"; break;
-                    case "oddball": sceneName = "split_screen_test"; break;
+                    case "oddball": sceneName = "oddball_scene"; break;
                     default: sceneName = "split_screen_test"; break;
                 }
 

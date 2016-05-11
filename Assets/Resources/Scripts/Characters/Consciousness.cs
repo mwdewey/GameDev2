@@ -37,22 +37,34 @@ public class Consciousness : MonoBehaviour {
 			GetComponent<AudioSource> ().clip = unconscious_sound;
 			GetComponent<AudioSource> ().Play ();
 
-			int coins_lost = GetComponent<Score_Counter> ().score / 2;
-			GetComponent<Score_Counter> ().score /= 2;
+			if (PlayerPrefs.GetString("mode")=="dungeon"){
+				int coins_lost = GetComponent<Score_Counter> ().score / 2;
+				GetComponent<Score_Counter> ().score /= 2;
 
-			transform.Find ("Player 1 UI").transform.Find("Coin Text").gameObject.GetComponent<Text>().text = GetComponent<Score_Counter> ().score.ToString();
+				transform.Find ("Player 1 UI").transform.Find ("Coin Text").gameObject.GetComponent<Text> ().text = GetComponent<Score_Counter> ().score.ToString ();
 
-			Manager.coins_remaining += coins_lost;
-			for (int x = 0; x < coins_lost; x++) {
-                //GameObject c = (GameObject) Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
+				Manager.coins_remaining += coins_lost;
+				for (int x = 0; x < coins_lost; x++) {
+					//GameObject c = (GameObject) Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
+					GameObject coin_obj = (GameObject)Instantiate (coin, new Vector3 (Random.Range (-1f, 1f), Random.Range (-1f, 1f), 0) + transform.position, Quaternion.identity);
+					coin_obj.GetComponent<Animator> ().SetFloat ("offset", Random.Range (0, 1f));
+				}
 
-                Invoke("spawnCoin", Random.Range(0,0.5f));
-            }
-
-            // update lost coins, kill, and death stats
-            PlayerStats.getStats(pc.PID).coinsLost += coins_lost;
+				// update lost coins, kill, and death stats
+				PlayerStats.getStats (pc.PID).coinsLost += coins_lost;
+			}
             PlayerStats.getStats(lastDamagerPID).kills++;
             PlayerStats.getStats(pc.PID).deaths++;
+
+			//increment the score if a kill is made in Arena
+			if (PlayerPrefs.GetString("mode")=="arena")
+				foreach (GameObject p in GameObject.FindGameObjectsWithTag("PlayerObject")){
+					print ("Congrats, you killed someone");
+					if (p.GetComponent<PlayerController> ().PID == lastDamagerPID) {
+						p.GetComponent<Score_Counter> ().score++;
+						p.transform.Find ("Player 1 UI").transform.Find ("Coin Text").gameObject.GetComponent<Text> ().text = p.GetComponent<Score_Counter> ().score.ToString ();
+					}
+				}
 
 			StartCoroutine(GetUp());
 		}

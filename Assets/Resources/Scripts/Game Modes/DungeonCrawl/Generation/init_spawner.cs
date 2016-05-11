@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class init_spawner : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class init_spawner : MonoBehaviour {
 	public RuntimeAnimatorController missq, shifter, rich, vegano;
 
 	public GameObject missq_ranged, shifter_ranged, rich_ranged, vegano_ranged;
+	public Sprite kill_icon;
 
     public bool isDebug = false;
 
@@ -101,11 +103,13 @@ public class init_spawner : MonoBehaviour {
                 case "dungeon":
                     ui.transform.Find("oddballIcon").gameObject.SetActive(false);
                     break;
-                case "arena":
+                case "oddball":
                     ui.transform.Find("oddballIcon").gameObject.SetActive(true);
-
                     break;
-                case "oddball": break;
+			case "arena": 
+				ui.transform.Find ("oddballIcon").gameObject.SetActive (true);
+				ui.transform.Find ("oddballIcon").gameObject.GetComponent<Image> ().sprite = kill_icon;
+					break;
                 default: break;
             }
 
