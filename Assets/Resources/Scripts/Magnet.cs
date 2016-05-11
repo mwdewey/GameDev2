@@ -53,16 +53,25 @@ public class Magnet : Item {
 		}
 	}
 
+	void OnDestroy()
+	{
+		GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerObject");
+		foreach (GameObject player in players)
+		{
+			player.GetComponent<PlayerController>().item_list.Remove(this);
+		}
+	}
+
 	void Update(){
 		if (activated) {
 			t.position = holder_t.position;
 			if (!scorey.magnetized) {
 				scorey.magnetized = true;
 			}
+			if (holder == null) {
+				Destroy(gameObject);
+				//destroy gameobject phil
+			}
 		}
-        if (holder == null) {
-            Destroy(gameObject);
-            //destroy gameobject phil
-        }
 	}
 }
